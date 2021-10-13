@@ -36,11 +36,11 @@ Prepared by:
 
 | Name      | Date   | Changes   | Version   |
 | ------    | ------ | --------- | --------- |
-|Revision 1 |2021-10-05 |Initial draft | 1.0 |
-|           |        |           |           |
+| Revision 1 | 2021-10-05 | Initial draft | 1.0 |
+| Revision 2 | 2021-10-13 | Completed Document | 2.0 |
 |           |        |           |           |
 
---------
+--------k
 
 ## 1. Introduction
 
@@ -70,7 +70,7 @@ This section specifies the software product's requirements. Specify all of the s
 
 ### 2.1 Customer, Users, and Stakeholders
 
-A brief description of the customer, stakeholders, and users of your software.
+The customer for this site is Washington State University VCEA and the main users would be undergraduate students or faculty members at Washington State University.
 
 --------
 
@@ -93,18 +93,31 @@ Each use case should also have a field called "Iteration" where you specify in w
 
 You may use the following table template for your use cases. Copy-paste this table for each use case you will include in your document.
 
-| Use case # 1      |   |
-| ------------------ |--|
-| Name              |   |
-| Users             |   |
-| Rationale         |   |
-| Triggers          |   |
-| Preconditions     |   |
-| Actions           |   |
-| Alternative paths |   |
-| Postconditions    |   |
-| Acceptance tests  |   |
-| Iteration         |   |
+| Create application framework code |  |
+| ------------------|---|
+| Name              | Create framework code for application |
+| Users             | N/A |
+| Rationale         | Get a base working framework started to build off of |
+| Triggers          | N/A |
+| Preconditions     | N/A |
+| Actions           | Refer to smile application to create framework to start our application with |
+| Alternative paths | N/A |
+| Postconditions    | N/A |
+| Acceptance tests  | Flask application successfully builds and runs and database is built properly |
+| Iteration         | Iteration-1 |
+
+| Create Account as a user without an account      |  |
+| ------------------|---|
+| Name              | Create Account |
+| Users             | Any non-logged in user |
+| Rationale         | To be able to use the site you need to be able to create an account to use the site |
+| Triggers          | You go to the registration page/click the button |
+| Preconditions     | User has a valie @wsu.edu email that is not already tied to an account. |
+| Actions           | User fills out form with required information, system validates email requirements, creates new account record, and user is sent to login page if successful |
+| Alternative paths | Error is posted and user needs to use a different email that is actually valid (not used and is @wsu.edu) |
+| Postconditions    | Account for user is created. |
+| Acceptance tests  | User account is stored by system with correct information to what user supplied. |
+| Iteration         | Iteration - 1 |rr
 
 **Include a swim-lane diagram that illustrates the message flow and activities for following scenario:**
 “A student applies to a research position; initially its status will appear as “Pending”. The faculty who created that position reviews the application and updates the application status to either “Approved for Interview”, or “Hired”, or “Not hired”. The updated status of the application is displayed on the student view.

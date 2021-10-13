@@ -1,8 +1,5 @@
-# Software Requirements Specification
+# WSU EECS Undergraduate Research Website - Software Requirements Specification
 
-## WSU EECS Undergraduate Research Website
-
---------
 Prepared by:
 
 * `Benjamin Michaelis`
@@ -20,8 +17,7 @@ Prepared by:
 
 ## Table of Contents
 
-* [Software Requirements Specification](#software-requirements-specification)
-  * [WSU EECS Undergraduate Research Website](#wsu-eecs-undergraduate-research-website)
+* [WSU EECS Undergraduate Research Website - Software Requirements Specification](#wsu-eecs-undergraduate-research-website---software-requirements-specification)
   * [Table of Contents](#table-of-contents)
   * [Document Revision History](#document-revision-history)
   * [1. Introduction](#1-introduction)
@@ -48,21 +44,21 @@ Prepared by:
 
 ## 1. Introduction
 
-This section should provide an overview of the entire document
+An overview as to what is expected to be built for the WSU EECS Undergraduate Research Website, and the requirements involved to accomplish that.
 
 --------
 
 ### 1.1 Document Purpose
 
-Describe the purpose of the Software Requirement Specification (SRS) document and its intended audience.
+The goal of this document is to have one central place to collect all the requirements of what this website must do so that all the developers can understand what is required of the software including what to design, implement, and test; so the customers can know what will be delivered and so any managers can know in what timeline progress is to be made at.
 
 ### 1.2 Product Scope
 
-Identify the product whose software requirements are specified in this document. Explain what the product that is covered by this SRS will do. Provide a short description of the software being specified and its purpose, including relevant benefits, objectives, and goals.
+This website will connect students and faculty together, allowing undergraduate students to find research opportunities and faculty to advertise research opportunities that they might have. This will allow students to also apply for research positions quickly and easily within this site, as well as allow faculty to follow up with students who are interested in their research opportunities.
 
 ### 1.3 Document Overview
 
-Describe what the rest of the document contains and how it is organized.
+From here on, different requirements will be covered, from expected use cases by users to the functionality that is expected both for the developer to implement and the customer to understand how the final product will function.
 
 --------
 

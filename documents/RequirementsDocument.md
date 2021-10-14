@@ -76,22 +76,7 @@ The customer for this site is Washington State University VCEA and the main user
 
 ### 2.2 Use Cases
 
-This section will include the specification for your project in the form of use cases. The section should start with a short description of the actors involved (e.g., regular user, administrator, etc.) and then follow with a list of the use cases.
-
-For each use case you should have the following:
-
-* Name,
-* Actors,
-* Triggers (what initiates the use case),
-* Preconditions (in what system state is this use case applicable),
-* Actions (what actions will the code take to implement the use case),
-* Alternative paths
-* Postconditions (what is the system state after the use case is done),
-* Acceptance tests (list one or more acceptance tests with concrete values for the parameters, and concrete assertions that you will make to verify the postconditions).
-
-Each use case should also have a field called "Iteration" where you specify in which iteration you plan to implement this feature.
-
-You may use the following table template for your use cases. Copy-paste this table for each use case you will include in your document.
+Users will be the main people (faculty and students) that we are focusing our cases on.
 
 | Create Account as a user without an account      |  |
 | ------------------|---|
@@ -99,7 +84,7 @@ You may use the following table template for your use cases. Copy-paste this tab
 | Users             | Any non-logged in user |
 | Rationale         | To be able to use the site you need to be able to create an account to use the site |
 | Triggers          | You go to the registration page/click the button |
-| Preconditions     | User has a valie @wsu.edu email that is not already tied to an account. |
+| Preconditions     | User has a valid @wsu.edu email that is not already tied to an account. |
 | Actions           | User fills out form with required information, system validates email requirements, creates new account record, and user is sent to login page if successful |
 | Alternative paths | Error is posted and user needs to use a different email that is actually valid (not used and is @wsu.edu) |
 | Postconditions    | Account for user is created. |
@@ -154,7 +139,7 @@ You may use the following table template for your use cases. Copy-paste this tab
 | Preconditions     | User is a logged in as a student and has already applied to the specific position, which has not been reviewed yet by the faculty member who posted it|
 | Actions           | User clicks on cancel application then hits confirm in the subsequent dialog box |
 | Alternative paths | Error is posted and user needs to try and cancel again |
-| Postconditions    | Research position is no longer displayed as applied to as student, and the application is no longer visiable to the faculty member |
+| Postconditions    | Research position is no longer displayed as applied to as student, and the application is no longer visible to the faculty member |
 | Acceptance tests  | Research position application for this student no longer exists |
 | Iteration         | Iteration - 1 |
 
@@ -184,6 +169,71 @@ You may use the following table template for your use cases. Copy-paste this tab
 | Acceptance tests  | Research position detail UI elements are visible on student homepage |
 | Iteration         | Iteration - 1 |
 
+| Apply to Research Position  |  |
+| ------------------|---|
+| Name              | Apply to Research Position |
+| Users             | Any student who is currently logged in |
+| Rationale         | Students should be able to apply to the research positions that faculty have posted |
+| Triggers          | Click the apply button on a research posting |
+| Preconditions     | User is a logged in as a student |
+| Actions           | User fills out form with a statement about the research topic and the name + email of a faculty member as a reference |
+| Alternative paths | Error is posted and user needs to fill out required fields |
+| Postconditions    | Research position is displayed as applied to student, and as pending to faculty who posted it |
+| Acceptance tests  | Student application is created and stored |
+| Iteration         | Iteration - 1 |
+
+| Create application framework code |  |
+| ------------------|---|
+| Name              | Create framework code for application |
+| Users             | N/A |
+| Rationale         | Get a base working framework started to build off of |
+| Triggers          | N/A |
+| Preconditions     | N/A |
+| Actions           | Refer to smile application to create framework to start our application with |
+| Alternative paths | N/A |
+| Postconditions    | N/A |
+| Acceptance tests  | Flask application successfully builds and runs and database is built properly |
+| Iteration         | Iteration-1 |
+
+| Faculty view list of students who applied for their positions |  |
+| ------------------|---|
+| Name              | Faculty view list of students who applied for their positions |
+| Users             | Faculty |
+| Rationale         | Faculty should be able to see the list of students who applied for their position |
+| Triggers          | Faculty selects applicants button on their course page |
+| Preconditions     | User is logged in as faculty |
+| Actions           | System validates that it is a faculty member logged in, then system lists students that applied for a course when button is clicked. |
+| Alternative paths | Error if the user is not faculty or does not own the class trying to be accessed |
+| Postconditions    | List of students is displayed |
+| Acceptance tests  | Accurate list of students is show to faculty member |
+| Iteration         | Iteration-1 |
+
+| Faculty can see information about students that applied for position |  |
+| ------------------|---|
+| Name              | Faculty can see information about students that applied for position |
+| Users             | Faculty |
+| Rationale         | Faculty should be able to view the qualifications of students. |
+| Triggers          | From the list of students who applied, click on a student |
+| Preconditions     | User is a faculty member |
+| Actions           | When student from list is clicked, information about them is displayed including whether or not they have other offers, their GPS, courses taken, interests, program language experience, and prior research experience |
+| Alternative paths | Error if user is not faculty |
+| Postconditions    | Information about the student is displayed |
+| Acceptance tests  | Accurate information from database is displayed |
+| Iteration         | Iteration-2 |
+
+| Faculty can update student application status |  |
+| ------------------|---|
+| Name              | Faculty can update student application status |
+| Users             | Faculty |
+| Rationale         | Faculty should be able to approve students for interview, hire them or update as not hired. |
+| Triggers          | Select dropdown menu on student |
+| Preconditions     | User is a faculty member |
+| Actions           | When student from list is clicked, you can choose whether to approve them for interview, hire them, or deny them |
+| Alternative paths | Error if user is not faculty |
+| Postconditions    | System is updated with new student status |
+| Acceptance tests  | Information is accurately updated in database |
+| Iteration         | Iteration-2 |
+
 **Include a swim-lane diagram that illustrates the message flow and activities for following scenario:**
 “A student applies to a research position; initially its status will appear as “Pending”. The faculty who created that position reviews the application and updates the application status to either “Approved for Interview”, or “Hired”, or “Not hired”. The updated status of the application is displayed on the student view.
 The student may delete the pending applications (i.e., whose status is still “Pending”. )”
@@ -196,19 +246,19 @@ The student may delete the pending applications (i.e., whose status is still “
 
 List the non-functional requirements in this section.
 
-1. Security: Since we are login/logout methods, this means there will be private information in our databases, such as emails, passwords, addresses, course work, and other contact information. Since these will be present, we need to make sure that all of our user's private information is stored securily and not possible to access for unauthorized users. 
+1. Security: Since we are login/logout methods, this means there will be private information in our databases, such as emails, passwords, addresses, course work, and other contact information. Since these will be present, we need to make sure that all of our user's private information is stored securely and not possible to access for unauthorized users.
 
-2. Scalability: This web application will have many get and posts requests all firing at the same time. With it being a platform for both faculty and students, we can expect a few hundred of users at least accessing the platform at a time. The webapp needs to be scalable and be able to handle many users at once. 
+2. Scalability: This web application will have many get and posts requests all firing at the same time. With it being a platform for both faculty and students, we can expect a few hundred of users at least accessing the platform at a time. The webapp needs to be scalable and be able to handle many users at once.
 
-3. Availability: There shouldn't be any time constraints on when user could access this application. Since everyone has a different schedule, some students may be wanting to post some research applications or upload some of their old coursework to update their account. Additionally, a professor may need to check on research progress early in the morning as well to plan for their day. That being said, this should be a 24/7 platform that is available for all users at all times. 
+3. Availability: There shouldn't be any time constraints on when user could access this application. Since everyone has a different schedule, some students may be wanting to post some research applications or upload some of their old coursework to update their account. Additionally, a professor may need to check on research progress early in the morning as well to plan for their day. That being said, this should be a 24/7 platform that is available for all users at all times.
 
-4. Performance: Given that this platform is only used for WSU EECS students and faculty, it shouldn't be very taxing on performance when compared to websites or platforms that are open to the whole country or even the whole world. Therefore, the platform should perform quickly since it's a first come first serve sort of service when it comes to features like accepting research applications, or posting research applications. Since these are time senstive tasks, our application should be able to process requests quickly with little latency and not take longer than a few seconds for the application to load.
+4. Performance: Given that this platform is only used for WSU EECS students and faculty, it shouldn't be very taxing on performance when compared to websites or platforms that are open to the whole country or even the whole world. Therefore, the platform should perform quickly since it's a first come first serve sort of service when it comes to features like accepting research applications, or posting research applications. Since these are time sensitive tasks, our application should be able to process requests quickly with little latency and not take longer than a few seconds for the application to load.
 
-5. Capacity: This application should expect a few thousand users at a time. Giving us that buffer will be helpful for cleaning out old unused accounts to students who have graduated or switched majors or some other form of resignition. Adding to that number would also be the faculty in the EECS college. So having a large enough capacity to handle a few thousand users and multiple thousand research projects is crucial for this platform or else we won't have enough capacity to handle all of our users needs.
+5. Capacity: This application should expect a few thousand users at a time. Giving us that buffer will be helpful for cleaning out old unused accounts to students who have graduated or switched majors or some other form of resignation. Adding to that number would also be the faculty in the EECS college. So having a large enough capacity to handle a few thousand users and multiple thousand research projects is crucial for this platform or else we won't have enough capacity to handle all of our users needs.
 
-6. Compatability: Our application should be compatable for any sort of web browser or operating system, however it will be ok if we have it centralized around one broswer or service like google chrome. So long as it still works on other browsers, its ok for it work better on one particular one. 
+6. Compatibility: Our application should be compatible for any sort of web browser or operating system, however it will be ok if we have it centralized around one browser or service like google chrome. So long as it still works on other browsers, its ok for it work better on one particular one.
 
-7. Usability: The application isn't all too complex or confusing, meaning it should be very intuitive on how to use it and it must have a clean UI that's not convoluted or clunky. A HUGE indicator of a good web application is it's UI and our's shouldn't fall short in this department. Any student should be able to update their account or post/accept research projects with ease and in only a few webpages, and faculty should be able to monitor and change their research postitions only in a couple webpages as well. Nothing about this platform should be confusing since all the functionality in it is straight-forward and easily understood. 
+7. Usability: The application isn't all too complex or confusing, meaning it should be very intuitive on how to use it and it must have a clean UI that's not convoluted or clunky. A HUGE indicator of a good web application is it's UI and our's shouldn't fall short in this department. Any student should be able to update their account or post/accept research projects with ease and in only a few webpages, and faculty should be able to monitor and change their research positions only in a couple webpages as well. Nothing about this platform should be confusing since all the functionality in it is straight-forward and easily understood.
 
 --------
 

@@ -123,6 +123,7 @@ You may use the following table template for your use cases. Copy-paste this tab
 “A student applies to a research position; initially its status will appear as “Pending”. The faculty who created that position reviews the application and updates the application status to either “Approved for Interview”, or “Hired”, or “Not hired”. The updated status of the application is displayed on the student view.
 The student may delete the pending applications (i.e., whose status is still “Pending”. )”
 
+![](SwimLane.png)
 --------
 
 ### 2.3 Non-Functional Requirements

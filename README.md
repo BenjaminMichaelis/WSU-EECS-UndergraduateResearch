@@ -1,1 +1,1 @@
-# 322TermProject
+# WSU EECS Undergraduate Research Website

@@ -150,6 +150,8 @@ For the papers you cite give the authors, the title of the article, the journal 
 
 For the websites, give the title, author (if applicable) and the website URL.
 
+1. What is a Swimlane Diagram https://www.lucidchart.com/pages/tutorial/swimlane-diagram
+
 --------
 --------
 

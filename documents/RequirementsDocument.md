@@ -93,19 +93,6 @@ Each use case should also have a field called "Iteration" where you specify in w
 
 You may use the following table template for your use cases. Copy-paste this table for each use case you will include in your document.
 
-| Create application framework code |  |
-| ------------------|---|
-| Name              | Create framework code for application |
-| Users             | N/A |
-| Rationale         | Get a base working framework started to build off of |
-| Triggers          | N/A |
-| Preconditions     | N/A |
-| Actions           | Refer to smile application to create framework to start our application with |
-| Alternative paths | N/A |
-| Postconditions    | N/A |
-| Acceptance tests  | Flask application successfully builds and runs and database is built properly |
-| Iteration         | Iteration-1 |
-
 | Create Account as a user without an account      |  |
 | ------------------|---|
 | Name              | Create Account |
@@ -117,6 +104,84 @@ You may use the following table template for your use cases. Copy-paste this tab
 | Alternative paths | Error is posted and user needs to use a different email that is actually valid (not used and is @wsu.edu) |
 | Postconditions    | Account for user is created. |
 | Acceptance tests  | User account is stored by system with correct information to what user supplied. |
+| Iteration         | Iteration - 1 |
+
+| Log in as a user  |  |
+| ------------------|---|
+| Name              | Log into Account |
+| Users             | Any user with proper credentials |
+| Rationale         | Users should be able to log back in and have their information and applications/positions saved |
+| Triggers          | Go to the homepage and click on returning user |
+| Preconditions     | User has a valid @wsu.edu email with a valid password |
+| Actions           | User fills out form with email and password, and user is sent to login page if successful |
+| Alternative paths | Error is posted and user needs to enter valid credentials |
+| Postconditions    | User is logged into their account and taken to their homepage |
+| Acceptance tests  | User account is now logged in. |
+| Iteration         | Iteration - 1 |
+
+| Create Research Position  |  |
+| ------------------|---|
+| Name              | Create Research position |
+| Users             | Any faculty member who is currently logged in |
+| Rationale         | Faculty members should be able to create Research positions for students to apply to |
+| Triggers          | Go to the homepage and click on create research position |
+| Preconditions     | User is a logged in faculty member |
+| Actions           | User fills out form with details about the research position, and it is posted when successful |
+| Alternative paths | Error is posted and user needs to fill out required fields |
+| Postconditions    | Research position is posted to the site |
+| Acceptance tests  | Research position appears in database of currently open positions |
+| Iteration         | Iteration - 1 |
+
+| Apply to Research Position  |  |
+| ------------------|---|
+| Name              | Apply to Research Position |
+| Users             | Any student who is currently logged in |
+| Rationale         | Students should be able to apply to the research positions that faculty have posted |
+| Triggers          | Click the apply button on a research posting |
+| Preconditions     | User is a logged in as a student |
+| Actions           | User fills out form with a statement about the research topic and the name + email of a faculty member as a reference |
+| Alternative paths | Error is posted and user needs to fill out required fields |
+| Postconditions    | Research position is displayed as applied to student, and as pending to faculty who posted it |
+| Acceptance tests  | Student application is created and stored |
+| Iteration         | Iteration - 1 |
+
+| Cancel Research Position Application |  |
+| ------------------|---|
+| Name              | Cancel Research Position Application |
+| Users             | Any student who has already applied to a research position and is logged in |
+| Rationale         | Students should be able to cancel any applications if they change their mind |
+| Triggers          | Click the x button on a research posting |
+| Preconditions     | User is a logged in as a student and has already applied to the specific position, which has not been reviewed yet by the faculty member who posted it|
+| Actions           | User clicks on cancel application then hits confirm in the subsequent dialog box |
+| Alternative paths | Error is posted and user needs to try and cancel again |
+| Postconditions    | Research position is no longer displayed as applied to as student, and the application is no longer visiable to the faculty member |
+| Acceptance tests  | Research position application for this student no longer exists |
+| Iteration         | Iteration - 1 |
+
+| View Open Research Positions |  |
+| ------------------|---|
+| Name              | View Open Research Positions  |
+| Users             | Any student who is currently logged in |
+| Rationale         | Students should be able view open applications and choose a research topic that interests them |
+| Triggers          | User logs in as student, then is taken to home page where research position are displayed |
+| Preconditions     | User is a logged in as a student |
+| Actions           | User logs in as student, then is taken to home page where research positions are displayed |
+| Alternative paths | Error is posted and user needs to try and log in again |
+| Postconditions    | Research position are displayed on student homepage |
+| Acceptance tests  | Research position UI elements are visible on student homepage |
+| Iteration         | Iteration - 1 |
+
+| Expand Research Position |  |
+| ------------------|---|
+| Name              | Expand Research Position  |
+| Users             | Any student or faculty member who is currently logged in |
+| Rationale         | Students should be able to click on a research position and get more information about it, like a brief description, start/end date, required time commitment, research fields, required qualifications, and faculty name + contact information |
+| Triggers          | User clicks on a research position on the home page |
+| Preconditions     | User is a logged in as a student |
+| Actions           | User clicks on a position, then is taken to a page where all relevant information about the posting is displayed |
+| Alternative paths | Error is posted and user needs to try again |
+| Postconditions    | Research position details are displayed |
+| Acceptance tests  | Research position detail UI elements are visible on student homepage |
 | Iteration         | Iteration - 1 |
 
 **Include a swim-lane diagram that illustrates the message flow and activities for following scenario:**

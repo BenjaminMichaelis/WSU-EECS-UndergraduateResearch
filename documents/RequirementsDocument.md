@@ -17,20 +17,21 @@ Prepared by:
 
 ## Table of Contents
 
-* [WSU EECS Undergraduate Research Website - Software Requirements Specification](#wsu-eecs-undergraduate-research-website---software-requirements-specification)
-  * [Table of Contents](#table-of-contents)
-  * [Document Revision History](#document-revision-history)
-  * [1. Introduction](#1-introduction)
-    * [1.1 Document Purpose](#11-document-purpose)
-    * [1.2 Product Scope](#12-product-scope)
-    * [1.3 Document Overview](#13-document-overview)
-  * [2. Requirements Specification](#2-requirements-specification)
-    * [2.1 Customer, Users, and Stakeholders](#21-customer-users-and-stakeholders)
-    * [2.2 Use Cases](#22-use-cases)
-    * [2.3 Non-Functional Requirements](#23-non-functional-requirements)
-  * [3. User Interface](#3-user-interface)
-  * [4. References](#4-references)
-  * [Appendix: Grading Rubric](#appendix-grading-rubric)
+- [WSU EECS Undergraduate Research Website - Software Requirements Specification](#wsu-eecs-undergraduate-research-website---software-requirements-specification)
+  - [Table of Contents](#table-of-contents)
+  - [Document Revision History](#document-revision-history)
+  - [1. Introduction](#1-introduction)
+    - [1.1 Document Purpose](#11-document-purpose)
+    - [1.2 Product Scope](#12-product-scope)
+    - [1.3 Document Overview](#13-document-overview)
+  - [2. Requirements Specification](#2-requirements-specification)
+    - [2.1 Customer, Users, and Stakeholders](#21-customer-users-and-stakeholders)
+    - [2.2 Use Cases](#22-use-cases)
+  - [!](#)
+    - [2.3 Non-Functional Requirements](#23-non-functional-requirements)
+  - [3. User Interface](#3-user-interface)
+  - [4. References](#4-references)
+  - [Appendix: Grading Rubric](#appendix-grading-rubric)
 
 ## Document Revision History
 
@@ -138,7 +139,13 @@ You may use the following template for non-functional requirements.
 
 ## 3. User Interface
 
-Here you should include the sketches or mockups for the main parts of the interface.
+Student Sign Up page: ![](Student_signup.png)
+Student main page: ![](Student_main.png)
+Student apply position page: ![](Student_apply.png)
+Faculty main page: ![](Faculty_main.png)
+Faculty create position page: ![](Create_position.png)
+
+
 
 --------
 

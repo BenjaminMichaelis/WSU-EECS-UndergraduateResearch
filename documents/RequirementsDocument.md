@@ -196,9 +196,19 @@ The student may delete the pending applications (i.e., whose status is still “
 
 List the non-functional requirements in this section.
 
-You may use the following template for non-functional requirements.
+1. Security: Since we are login/logout methods, this means there will be private information in our databases, such as emails, passwords, addresses, course work, and other contact information. Since these will be present, we need to make sure that all of our user's private information is stored securily and not possible to access for unauthorized users. 
 
-1. [Enter a Concise Requirement Name]:  [provide a concise description, in clear and easily understandable language to specify the requirement]
+2. Scalability: This web application will have many get and posts requests all firing at the same time. With it being a platform for both faculty and students, we can expect a few hundred of users at least accessing the platform at a time. The webapp needs to be scalable and be able to handle many users at once. 
+
+3. Availability: There shouldn't be any time constraints on when user could access this application. Since everyone has a different schedule, some students may be wanting to post some research applications or upload some of their old coursework to update their account. Additionally, a professor may need to check on research progress early in the morning as well to plan for their day. That being said, this should be a 24/7 platform that is available for all users at all times. 
+
+4. Performance: Given that this platform is only used for WSU EECS students and faculty, it shouldn't be very taxing on performance when compared to websites or platforms that are open to the whole country or even the whole world. Therefore, the platform should perform quickly since it's a first come first serve sort of service when it comes to features like accepting research applications, or posting research applications. Since these are time senstive tasks, our application should be able to process requests quickly with little latency and not take longer than a few seconds for the application to load.
+
+5. Capacity: This application should expect a few thousand users at a time. Giving us that buffer will be helpful for cleaning out old unused accounts to students who have graduated or switched majors or some other form of resignition. Adding to that number would also be the faculty in the EECS college. So having a large enough capacity to handle a few thousand users and multiple thousand research projects is crucial for this platform or else we won't have enough capacity to handle all of our users needs.
+
+6. Compatability: Our application should be compatable for any sort of web browser or operating system, however it will be ok if we have it centralized around one broswer or service like google chrome. So long as it still works on other browsers, its ok for it work better on one particular one. 
+
+7. Usability: The application isn't all too complex or confusing, meaning it should be very intuitive on how to use it and it must have a clean UI that's not convoluted or clunky. A HUGE indicator of a good web application is it's UI and our's shouldn't fall short in this department. Any student should be able to update their account or post/accept research projects with ease and in only a few webpages, and faculty should be able to monitor and change their research postitions only in a couple webpages as well. Nothing about this platform should be confusing since all the functionality in it is straight-forward and easily understood. 
 
 --------
 

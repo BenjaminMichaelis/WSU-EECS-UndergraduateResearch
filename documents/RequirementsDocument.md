@@ -117,7 +117,7 @@ You may use the following table template for your use cases. Copy-paste this tab
 | Alternative paths | Error is posted and user needs to use a different email that is actually valid (not used and is @wsu.edu) |
 | Postconditions    | Account for user is created. |
 | Acceptance tests  | User account is stored by system with correct information to what user supplied. |
-| Iteration         | Iteration - 1 |rr
+| Iteration         | Iteration - 1 |
 
 **Include a swim-lane diagram that illustrates the message flow and activities for following scenario:**
 “A student applies to a research position; initially its status will appear as “Pending”. The faculty who created that position reviews the application and updates the application status to either “Approved for Interview”, or “Hired”, or “Not hired”. The updated status of the application is displayed on the student view.

@@ -1,0 +1,41 @@
+<html>
+    <head>
+       {% if title %}
+          <title>{{ title }} - Smile </title>
+       {% else %}
+          <title> Welcome to Smile Portal! </title>
+       {% endif %}
+       <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+       {{ moment.include_moment() }}
+
+    </head>
+
+    <body>
+        <div class ="nav-container">
+        <table>
+            <tr>
+                <td><a href="{{ url_for('routes.index') }}" class = "button">Smiles</a></td>
+                <td><a href="{{ url_for('routes.postsmile') }}" class = "button"> Post Smile </a></td>
+                {%if current_user.is_anonymous %}
+                <td><a href="{{ url_for('auth.login') }}" class = "button">Login</a></td>
+                {% else %}
+                <td><a href="{{ url_for('auth.logout') }}" class = "button">Logout</a></td>
+                <td> Current user is: <span class="useritem">{{ current_user.username }} </span></td>
+                {% endif %}
+            </tr>
+        </table>
+        </div>
+        <div>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="flash-container"> {{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            {% block content %} {% endblock %}
+        </div>
+
+    </body>
+</html>

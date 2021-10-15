@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Sign In</h1>
+    {% if form %}
+        <form action="" method="POST">
+            {{ form.hidden_tag() }}
+
+                <p> {{form.username.label}}</p>
+                <p> {{form.username(class='textinput')}}</p>
+
+                {% for error in form.username.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
+                <p> {{ form.password.label }}</p>
+                <p> {{ form.password(class='textinput')}}</p>
+
+                {% for error in form.password.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
+                <p> {{ form.remember_me() }} {{form.remember_me.label}}</p>
+
+            <p>{{ form.submit(class='button') }}</p>
+
+            <p> New User? <a href="{{ url_for('auth.register') }}"> Click to Register! </a></p>
+        </form>
+
+    {% endif %}
+{% endblock %}
+

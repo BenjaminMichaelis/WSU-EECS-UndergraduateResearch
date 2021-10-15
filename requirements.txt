@@ -3,3 +3,11 @@
 flask
 flask-sqlalchemy
 flask-wtf
+flask-bootstrap
+flask-login
+flask-moment
+email-validator
+wtforms
+wtforms-sqlalchemy
+python-dotenv
+pytest

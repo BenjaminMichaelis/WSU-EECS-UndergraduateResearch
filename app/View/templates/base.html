@@ -14,8 +14,7 @@
         <div class ="nav-container">
         <table>
             <tr>
-                <td><a href="{{ url_for('routes.index') }}" class = "button">Smiles</a></td>
-                <td><a href="{{ url_for('routes.postsmile') }}" class = "button"> Post Smile </a></td>
+                <td><a href="{{ url_for('routes.index') }}" class = "button">Home</a></td>
                 {%if current_user.is_anonymous %}
                 <td><a href="{{ url_for('auth.login') }}" class = "button">Login</a></td>
                 {% else %}

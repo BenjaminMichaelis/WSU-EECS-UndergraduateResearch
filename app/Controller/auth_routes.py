@@ -14,8 +14,6 @@ from app import db
 bp_auth = Blueprint('auth', __name__)
 bp_auth.template_folder = Config.TEMPLATE_FOLDER 
 
-# @bp_auth.route('/register', methods=['GET', 'POST'])
-# def register():
 @bp_auth.route('/register', methods=['POST','GET'])
 def register():
     if current_user.is_authenticated:

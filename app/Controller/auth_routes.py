@@ -14,7 +14,7 @@ from app import db
 bp_auth = Blueprint('auth', __name__)
 bp_auth.template_folder = Config.TEMPLATE_FOLDER 
 
-@bp_auth.route('/register', methods=['POST','GET'])
+@bp_auth.route('/register/', methods=['POST','GET'])
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('routes.index'))
@@ -29,7 +29,7 @@ def register():
             return redirect(url_for('routes.index'))
     return render_template('register.html', form = registrationform)
 
-@bp_auth.route('/login', methods=['GET', 'POST'])
+@bp_auth.route('/login/', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('routes.index'))
@@ -44,7 +44,7 @@ def login():
         return redirect(url_for('routes.index'))
     return render_template('login.html', title="Sign In", form = lform)
 
-@bp_auth.route('/logout', methods=['GET'])
+@bp_auth.route('/logout/', methods=['GET'])
 @login_required
 def logout():
     logout_user()

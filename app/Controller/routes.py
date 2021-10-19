@@ -15,7 +15,7 @@ bp_routes.template_folder = Config.TEMPLATE_FOLDER #'..\\View\\templates'
 
 
 @bp_routes.route('/', methods=['GET','POST'])
-@bp_routes.route('/index', methods=['GET','POST'])
+@bp_routes.route('/index/', methods=['GET','POST'])
 @login_required
 def index():
             # print(selectdata, type(sortform.select.data).__name__)

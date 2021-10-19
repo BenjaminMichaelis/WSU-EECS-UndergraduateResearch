@@ -21,10 +21,10 @@ class PostForm(FlaskForm):
       option_widget=CheckboxInput() )
     submit = SubmitField('Post')
 
-class SortForm(FlaskForm):
-    select = SelectField('Select',choices = [(3,'Date'),(2,'Title'),(1,'# of likes'),(0,'Happiness level')])
-    usersposts = BooleanField('Display my posts only.')
-    submit = SubmitField('Refresh')
+# class SortForm(FlaskForm):
+#     select = SelectField('Select',choices = [(3,'Date'),(2,'Title'),(1,'# of likes'),(0,'Happiness level')])
+#     usersposts = BooleanField('Display my posts only.')
+#     submit = SubmitField('Refresh')
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -37,8 +37,3 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(username=username.data).first()
         if user is not None:
             raise ValidationError('The username already exists! Please use a different username.')
-
-    # def validate_email(self,email):
-    #     user = User.query.filter_by(email=email.data).first()
-    #     if user is not None:
-    #         raise ValidationError('The email already exists! Please use a different email address.')

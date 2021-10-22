@@ -6,8 +6,7 @@ from flask_sqlalchemy import sqlalchemy
 from app.Model.models import User
 from config import Config
 from flask_login import current_user, login_user, logout_user, login_required
-from app.Controller.auth_forms import LoginForm
-from app.Controller.forms import RegistrationForm
+from app.Controller.auth_forms import LoginForm, RegistrationForm
 
 from app import db
 
@@ -21,12 +20,12 @@ def register():
     registrationform = RegistrationForm()
     if request.method == 'POST':
         if registrationform.validate_on_submit():
-            user = User(username = registrationform.username.data, email = registrationform.email.data)
-            user.set_password(registrationform.password.data)
-            db.session.add(user)
-            db.session.commit()
-            flash('Congratulations, you are now a registered user!')
-            return redirect(url_for('routes.index'))
+                user = User(username = registrationform.username.data, email = registrationform.email.data)
+                user.set_password(registrationform.password.data)
+                db.session.add(user)
+                db.session.commit()
+                flash('Congratulations, you are now a registered user!')
+                return redirect(url_for('routes.index'))
     return render_template('register.html', form = registrationform)
 
 @bp_auth.route('/login/', methods=['GET', 'POST'])

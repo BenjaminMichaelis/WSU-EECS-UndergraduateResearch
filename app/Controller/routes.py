@@ -3,13 +3,11 @@ import sys
 from flask import Blueprint
 from flask import render_template, flash, redirect, url_for, request
 from config import Config
-from app.Controller.forms import RegistrationForm
 
 from app import db
-from app.Model.models import User
 from app.Controller.forms import PostForm
 from flask_login import current_user, login_user, logout_user, login_required
-from app.Controller.auth_forms import LoginForm
+from app.Controller.auth_forms import LoginForm, RegistrationForm
 bp_routes = Blueprint('routes', __name__)
 bp_routes.template_folder = Config.TEMPLATE_FOLDER #'..\\View\\templates'
 

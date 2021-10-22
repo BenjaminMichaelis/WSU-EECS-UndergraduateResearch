@@ -33,6 +33,7 @@ class RegistrationForm(FlaskForm):
             return 'not a domain'
 
     def validate_username(self,username):
+        username.data = (username.data).strip()
         user = User.query.filter_by(username=username.data).first()
         if user is not None:
             raise ValidationError('This email or username is already registered!')

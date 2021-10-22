@@ -25,15 +25,3 @@ class PostForm(FlaskForm):
 #     select = SelectField('Select',choices = [(3,'Date'),(2,'Title'),(1,'# of likes'),(0,'Happiness level')])
 #     usersposts = BooleanField('Display my posts only.')
 #     submit = SubmitField('Refresh')
-
-class RegistrationForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    password2 = PasswordField('Repeat Password', validators=[DataRequired(), EqualTo('password')])
-    submit = SubmitField('Register')
-
-    def validate_username(self,username):
-        user = User.query.filter_by(username=username.data).first()
-        if user is not None:
-            raise ValidationError('The username already exists! Please use a different username.')

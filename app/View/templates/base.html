@@ -15,11 +15,14 @@
         <table>
             <tr>
                 <td><a href="{{ url_for('routes.index') }}" class = "button">Home</a></td>
+                {%if current_user.faculty == True %}
+                <td><a href="{{ url_for('routes.post') }}" class = "button">Post New Position</a></td>
+                {% endif %}
                 {%if current_user.is_anonymous %}
                 <td><a href="{{ url_for('auth.login') }}" class = "button">Login</a></td>
                 {% else %}
                 <td><a href="{{ url_for('auth.logout') }}" class = "button">Logout</a></td>
-                <td> Current user is: <span class="useritem">{{ current_user.username }} </span></td>
+                <td> Welcome <span class="useritem">{{ current_user.username }} </span></td>
                 {% endif %}
             </tr>
         </table>

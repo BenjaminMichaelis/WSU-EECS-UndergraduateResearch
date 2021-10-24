@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <h1>Post New Smile</h1>
+    <h1>Post New Research Opportunity</h1>
 
     {% if form %}
 
@@ -21,9 +21,6 @@
                 <span style="color: red;">[{{ error }}]</span>
                 <br>
                 {% endfor %}
-
-                {{ form.happiness_level.label }}<br>
-                {{ form.happiness_level (class="formselect")}}<br>
             
                 {{ form.tag.label }}<br>
                 {{ form.tag (class="formselect")}}<br>

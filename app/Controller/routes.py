@@ -62,7 +62,7 @@ def edit_profile():
             db.session.add(current_user)
             db.session.commit()
             flash("Your changes have been saved")
-            return redirect(url_for('display_profile'))
+            return redirect(url_for('routes.display_profile'))
         pass
     elif request.method == 'GET':
         # populate the user data from DB

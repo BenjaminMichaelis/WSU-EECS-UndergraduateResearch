@@ -14,6 +14,20 @@
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
 
+                <p> {{form.firstname.label}}</p>
+                <p> {{form.firstname(class='forminput')}}</p>
+
+                {% for error in form.firstname.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
+                <p> {{form.lastname.label}}</p>
+                <p> {{form.lastname(class='forminput')}}</p>
+
+                {% for error in form.lastname.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
                 <p> {{ form.email.label }}</p>
                 <p> {{ form.email(class='forminput')}}</p>
 

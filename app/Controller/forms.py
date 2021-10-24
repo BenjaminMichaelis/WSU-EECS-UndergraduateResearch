@@ -25,6 +25,13 @@ class PostForm(FlaskForm):
     qualifications = TextAreaField('Required Qualifications', [Length(min=1, max=1500)])
     submit = SubmitField('Post')
 
+class EditForm(FlaskForm):
+    firstname = StringField('First Name', validators=[DataRequired()])
+    lastname = StringField('Last Name', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired(), EqualTo('password2', message='Passwords must match')])
+    password2 = PasswordField('Repeat Password', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
 # class SortForm(FlaskForm):
 #     select = SelectField('Select',choices = [(3,'Date'),(2,'Title'),(1,'# of likes'),(0,'Happiness level')])
 #     usersposts = BooleanField('Display my posts only.')

@@ -1,6 +1,6 @@
 from enum import unique
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField, TextAreaField, PasswordField, BooleanField, DateField
+from wtforms import StringField, SubmitField, SelectField, TextAreaField, PasswordField, BooleanField, IntegerField, FormField, DateField
 from wtforms.fields.core import IntegerField
 from wtforms.validators import  DataRequired, Length, ValidationError, EqualTo, Email, Optional
 from wtforms_sqlalchemy.fields import QuerySelectMultipleField
@@ -26,11 +26,21 @@ class PostForm(FlaskForm):
     submit = SubmitField('Post')
 
 class EditForm(FlaskForm):
-    firstname = StringField('First Name', validators=[DataRequired()])
-    lastname = StringField('Last Name', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired(), EqualTo('password2', message='Passwords must match')])
-    password2 = PasswordField('Repeat Password', validators=[DataRequired()])
+    firstname = StringField('First Name')
+    lastname = StringField('Last Name')
+    wsuid = IntegerField('WSUID', [Length(min=8, max=9)])
+    major = StringField('Major')
+    gpa = StringField('GPA', validators=[Length(max=4)])
+    graduationDate = DateField('Expected Graduation')
+    phone = FormField(TelephoneForm)
+    password = PasswordField('Password', validators=[EqualTo('password2', message='Passwords must match')])
+    password2 = PasswordField('Repeat Password')
     submit = SubmitField('Submit')
+
+class TelephoneForm(FlaskForm):
+    country_code = IntegerField('Country Code', validators=[DataRequired()])
+    area_code    = IntegerField('Area Code/Exchange', validators=[DataRequired()])
+    number       = StringField('Number')
 
 # class SortForm(FlaskForm):
 #     select = SelectField('Select',choices = [(3,'Date'),(2,'Title'),(1,'# of likes'),(0,'Happiness level')])

@@ -11,3 +11,4 @@ wtforms
 wtforms-sqlalchemy
 python-dotenv
 pytest
+phonenumbers

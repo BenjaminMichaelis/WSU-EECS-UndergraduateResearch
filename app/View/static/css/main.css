@@ -14,7 +14,7 @@ body {
     text-decoration: aquamarine;
 }
 a:hover {
-	color:#2387D9;
+    color:#2387D9;
 }
 
 .button {
@@ -50,16 +50,44 @@ a:hover {
     font-size: medium;
 }
 
+.postline {
+    font-family: sans-serif;
+    padding: 2px;
+    font-size: medium;
+}
+
 .posttimestamp {
     font-family: 'Times New Roman', Times, serif;
     padding: 2px;
     font-size: small;
     font-weight: bold;
-
 }
 
 .useritem{
     text-align: center;
+    padding: 3px;
+    margin: 4px 3px 4px 3px;
+    color: blue; 
+    text-transform: uppercase;
+}
+
+.username{
+    text-align: left;
+    padding: 2px;
+    margin: 1px 1px 1px 1px;
+    color: blue;
+    text-transform: uppercase;
+}
+
+.useremail{
+    text-align: left;
+    padding: 2px;
+    margin: 1px 1px 1px 1px;
+    color: blue; 
+}
+
+.pagetitle{
+    text-align: right;
     padding: 3px;
     margin: 4px 3px 4px 3px;
     color: crimson; 

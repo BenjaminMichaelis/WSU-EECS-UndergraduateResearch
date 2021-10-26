@@ -4,79 +4,54 @@
             </td>
         </tr>
         <tr>
-            <td width="10%" >
-                {% if post.happiness_level == 1 %}
-                    <img src="{{ url_for('static', filename = '../static/img/happiness-level-1.png' )}}" width="40px">
-                {% endif %}
-                {% if post.happiness_level == 2 %}
-                    <img src="{{ url_for('static', filename = '../static/img/happiness-level-2.png' )}}" width="40px">
-                {% endif %}
-                {% if post.happiness_level == 3 %}
-                    <img src="{{ url_for('static', filename = '../static/img/happiness-level-3.png' )}}" width="40px">
-                {% endif %}
-                <!--  (milestone1) TODO: include happiness-level image according to the `cost`s happiness_level .
-                For example : <img src="{{ url_for('static', filename = 'img//happiness-level-1.png' )}}"-->  
-
-            </td>
-
             <td width="80%" >
                 <div class="postmessage">
-                  {{ post.body }}
+                    Description: {{ post.description }}
                </div>
-               <div class="posttimestamp"> 
-                  <!-- (milestone3) TODO: format the timestamp; display as local date/time-->
-                  Posted at: {{ moment(post.timestamp).format('LLL') }}
-               </div> 
-            </td> 
 
-            <td width = "5%"> 
-                <form action="{{url_for('routes.like', postid=post.id)}}" method="post">
-                    <input type="submit" value="like" class="likebtn">
-                </form>
-                <div class="likecount">
-                    <!-- (milestone1)  add "like" button
-                                       TODO: Define an HTML `post` form with a submit button. The form action should redirect to `routes.like` route.
-                                       Style the submit button using `likebtn` CCS class selector. -->
-                    Likes: {{ post.likes }}
-                    <br>
-                    <!-- (milestone1) TODO: include the likes count-->
-                    
-                </div>
-                <br> 
-                {% if post.writer == current_user %}
-                    <form action="{{url_for('routes.delete', postid=post.id)}}" method="post">
-                        <input type="submit" value="Delete" class="button" >
-                    </form>
-                {% endif %}
-                 <!-- (milestone3) TODO: if the post is posted by the logged in user, include the "delete" button.  
-                                   Define an HTML `post` form with a submit button. The form action should redirect to `routes.deletepost` route.
-                                   Style the submit button using `button` CCS class selector. -->
-                
+               <div class="postline">
+                   Position begins {{ post.startdate }} and ends on {{ post.enddate }}
+               </div>
 
-            </td>
+               <div class="postline">
+                   The time commitment is expected to be about {{ post.timecommitment }} hours per week.
+               </div>
+
+               <div class="postmessage">
+                   Required qualifications: {{ post.qualifications }}
+               </div>
+               
         </tr>
-        
-        <tr> 
-            <td colspan="3" style = "text-align:center" valign="bottom">  
-                <br>
-                {% for tag in post.get_tags().all(): %}
-                <span class="tagitem">
-                    {{ tag.name }}
-                </span>
-                <!-- (milestone2) TODO: include all the tags associated with the post-->
-                {% endfor %}
-            </td>
+        <tr>
+        </td>
+        <br>
+        <td colspan="3" style = "text-align:center" valign="bottom">  
+            <br>
+            {% for ResearchField in post.get_ResearchFields().all(): %}
+            <span class="tagitem">
+                {{ ResearchField.name }}
+            </span>
+            {% endfor %}
         </tr>
 
         <tr>
             <td colspan="3" style = "text-align:center" valign="bottom">  
                 <br>
             <span class="postuser">
-                Posted by:</span><span class="useritem"> {{ post.writer.username }}</span>
+                Posted by:<span class="username"> {{ post.writer.username }}</span>
+                - Email:</span><span class="useremail"> {{ post.writer.email }}</span>
             </span>
-                <!-- (milestone3) TODO: include username who posted the post-->
 
               </td>
-            </tr>
+        </tr>
+
+        <tr>
+            <td colspan="3" style = "text-align:center" valign="bottom">  
+            <div class="posttimestamp"> 
+                Posted at: {{ moment(post.timestamp).format('LLL') }}
+             </div>
+             </td>
+        </tr>
+        
         </tr>
     </table>

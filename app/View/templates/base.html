@@ -1,9 +1,9 @@
 <html>
     <head>
        {% if title %}
-          <title>{{ title }} - Smile </title>
+          <title>{{ title }}</title>
        {% else %}
-          <title> Welcome to Smile Portal! </title>
+          <title> Welcome to the WSU VCEA Undergraduate Research Portal! </title>
        {% endif %}
        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
        {{ moment.include_moment() }}
@@ -22,7 +22,8 @@
                 <td><a href="{{ url_for('auth.login') }}" class = "button">Login</a></td>
                 {% else %}
                 <td><a href="{{ url_for('auth.logout') }}" class = "button">Logout</a></td>
-                <td> Welcome <span class="useritem">{{ current_user.username }} </span></td>
+                <td> User: <span class="useritem">{{ current_user.username }} </span></td>
+                <td> <span class="pagetitle"> Welcome to the WSU VCEA Undergraduate Research Portal! </span></td>
                 {% endif %}
             </tr>
         </table>

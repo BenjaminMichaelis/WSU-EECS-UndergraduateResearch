@@ -1,7 +1,8 @@
 from enum import unique
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField, TextAreaField, PasswordField, BooleanField
-from wtforms.validators import  DataRequired, Length, ValidationError, EqualTo, Email
+from wtforms import StringField, SubmitField, SelectField, TextAreaField, PasswordField, BooleanField, DateField
+from wtforms.fields.core import IntegerField
+from wtforms.validators import  DataRequired, Length, ValidationError, EqualTo, Email, Optional
 from wtforms_sqlalchemy.fields import QuerySelectMultipleField
 from wtforms.widgets import CheckboxInput, ListWidget
 
@@ -16,8 +17,12 @@ def get_taglabel(thetag):
 class PostForm(FlaskForm):
     title = StringField('Position Title', validators=[DataRequired()])
     body = TextAreaField('Position Details', [Length(min=1, max=1500)])
+    startdate = DateField('Start Date', format='%m-%d-%Y', validators=[DataRequired()])
+    enddate = DateField('End Date', format='%m-%d-%Y', validators=[DataRequired()])
+    timecommit = IntegerField('Time Commitment', validators=[DataRequired()])
     tag = QuerySelectMultipleField( 'Major', query_factory=get_tags , get_label=get_taglabel, widget=ListWidget(prefix_label=False), 
       option_widget=CheckboxInput() )
+    qualifications = TextAreaField('Required Qualifications', [Length(min=1, max=1500)])
     submit = SubmitField('Post')
 
 # class SortForm(FlaskForm):

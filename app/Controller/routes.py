@@ -25,7 +25,7 @@ def index():
 @login_required
 def post():
     # only faculty can create new research positions
-    if current_user.faculty is True:
+    if current_user.faculty is False:
         # handle the form submission
         sform = PostForm()
         if request.method == 'POST':

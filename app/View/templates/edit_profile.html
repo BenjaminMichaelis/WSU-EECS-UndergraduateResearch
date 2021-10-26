@@ -24,12 +24,6 @@
                 gpa = StringField('GPA' [Length(max=4)])
                 graduationDate = DateField('Expected Graduation')
                 phone = FormField(TelephoneForm) -->
-                <p> {{ form.wsuid.label }}</p>
-                <p> {{ form.wsuid(class='textinput')}}</p>
-
-                {% for error in form.wsuid.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
 
                 <p> {{ form.major.label }}</p>
                 <p> {{ form.major(class='textinput')}}</p>
@@ -56,13 +50,6 @@
                 <p> {{ form.phone(class='textinput')}}</p>
 
                 {% for error in form.phone.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-
-                <p> {{ form.password.label }}</p>
-                <p> {{ form.password(class='textinput')}}</p>
-
-                {% for error in form.password.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
 

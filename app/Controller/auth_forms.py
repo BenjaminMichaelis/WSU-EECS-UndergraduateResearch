@@ -1,7 +1,9 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, BooleanField, PasswordField
-from wtforms.validators import  ValidationError, DataRequired, EqualTo, Length,Email
+from wtforms import StringField, SubmitField, BooleanField, PasswordField, IntegerField
+from wtforms.validators import  NumberRange, ValidationError, DataRequired, EqualTo, Length,Email
 from app.Model.models import User
+
+import math
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -14,9 +16,29 @@ class RegistrationForm(FlaskForm):
     firstname = StringField('First Name', validators=[DataRequired()])
     lastname = StringField('Last Name', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
+    phone = IntegerField('Phone Number') 
+    wsuid = IntegerField('WSUID') 
     password = PasswordField('Password', validators=[DataRequired(), EqualTo('password2', message='Passwords must match')])
     password2 = PasswordField('Repeat Password', validators=[DataRequired()])
     submit = SubmitField('Register')
+
+    def validate_phone(form, phone): 
+        number = form.phone.data 
+        count = 0 
+        while (number > 0): 
+            number = number//10 
+            count = count + 1 
+        if count < 10 or count > 11: 
+            raise ValidationError('Not a valid phone number') 
+ 
+    def validate_wsuid(form, wsuid): 
+        id = form.wsuid.data 
+        count = 0 
+        while (id > 0): 
+            id = id//10 
+            count = count + 1 
+        if count < 8 or count > 9: 
+            raise ValidationError('Not a valid WSU ID') 
 
     def validate_email(form, email):
         valid_domain = str('wsu.edu')

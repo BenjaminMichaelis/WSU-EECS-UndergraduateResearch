@@ -1,11 +1,12 @@
 from enum import unique
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField, TextAreaField, PasswordField, BooleanField, IntegerField, FormField, DateField
+from wtforms import DecimalField, StringField, SubmitField, SelectField, TextAreaField, PasswordField, BooleanField, IntegerField, FormField, DateField
 from wtforms.fields.core import IntegerField
 from wtforms.validators import  DataRequired, Length, ValidationError, EqualTo, Email, Optional
 from wtforms_sqlalchemy.fields import QuerySelectMultipleField
 from wtforms.widgets import CheckboxInput, ListWidget
 
+import math
 from app.Model.models import Post, Field, User
 
 def get_fields():
@@ -28,20 +29,31 @@ class PostForm(FlaskForm):
 class EditForm(FlaskForm):
     firstname = StringField('First Name')
     lastname = StringField('Last Name')
-    wsuid = IntegerField('WSUID', [Length(min=8, max=9)])
     major = StringField('Major')
-    gpa = StringField('GPA', validators=[Length(max=4)])
-    graduationDate = DateField('Expected Graduation')
-    phone = FormField(TelephoneForm)
+    gpa = DecimalField('GPA', validators=[Optional()]) 
+    graduationDate = DateField('Expected Graduation', validators=[Optional()]) 
+    phone = IntegerField('Phone Number') 
     password = PasswordField('Password', validators=[EqualTo('password2', message='Passwords must match')])
     password2 = PasswordField('Repeat Password')
-    submit = SubmitField('Submit')
+    submit = SubmitField('Save')
 
-class TelephoneForm(FlaskForm):
-    country_code = IntegerField('Country Code', validators=[DataRequired()])
-    area_code    = IntegerField('Area Code/Exchange', validators=[DataRequired()])
-    number       = StringField('Number')
+    def validate_phone(form, phone): 
+        number = form.phone.data 
+        count = 0 
+        while (number > 0): 
+            number = number//10 
+            count = count + 1 
+        if count < 10 or count > 11: 
+            raise ValidationError('Not a valid phone number') 
 
+    def validate_wsuid(form, wsuid): 
+        id = form.wsuid.data 
+        count = 0 
+        while (id > 0): 
+            id = id//10 
+            count = count + 1 
+        if count < 8 or count > 9: 
+            raise ValidationError('Not a valid WSU ID') 
 # class SortForm(FlaskForm):
 #     select = SelectField('Select',choices = [(3,'Date'),(2,'Title'),(1,'# of likes'),(0,'Happiness level')])
 #     usersposts = BooleanField('Display my posts only.')

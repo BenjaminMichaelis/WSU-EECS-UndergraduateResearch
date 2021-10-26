@@ -59,6 +59,10 @@ def edit_profile():
             current_user.firstname = eform.firstname.data
             current_user.lastname = eform.lastname.data
             current_user.set_password(eform.password.data)
+            current_user.phone = eform.phone.data 
+            current_user.major = eform.major.data 
+            current_user.gpa = eform.gpa.data 
+            current_user.graduationDate = eform.graduationDate.data 
             db.session.add(current_user)
             db.session.commit()
             flash("Your changes have been saved")
@@ -68,6 +72,14 @@ def edit_profile():
         # populate the user data from DB
         eform.firstname.data = current_user.firstname
         eform.lastname.data = current_user.lastname
+        eform.phone.data = current_user.phone 
+        eform.major.data = current_user.major 
+        eform.gpa.data = current_user.gpa 
+        if current_user.graduationDate == None: 
+            # eform.graduationDate.data =  
+            pass 
+        else: 
+            eform.graduationDate.data = current_user.graduationDate 
     else:
         pass 
     return render_template('edit_profile.html', title='Edit Profile', form = eform)

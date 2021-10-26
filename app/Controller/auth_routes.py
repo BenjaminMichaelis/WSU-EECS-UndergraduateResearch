@@ -20,7 +20,7 @@ def register():
     registrationform = RegistrationForm()
     if request.method == 'POST':
         if registrationform.validate_on_submit():
-            user = User(username = registrationform.username.data, firstname = registrationform.firstname.data, lastname = registrationform.lastname.data, email = registrationform.email.data)
+            user = User(username = registrationform.username.data, firstname = registrationform.firstname.data, lastname = registrationform.lastname.data, email = registrationform.email.data, phone = registrationform.phone.data, wsuid = registrationform.wsuid.data)
             user.set_password(registrationform.password.data)
             db.session.add(user)
             db.session.commit()

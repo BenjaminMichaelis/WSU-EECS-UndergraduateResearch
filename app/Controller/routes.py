@@ -17,9 +17,8 @@ bp_routes.template_folder = Config.TEMPLATE_FOLDER #'..\\View\\templates'
 @bp_routes.route('/index/', methods=['GET','POST'])
 @login_required
 def index():
-            # print(selectdata, type(sortform.select.data).__name__)
-            # print(booleandata, type(sortform.usersposts.data).__name__)
-    return render_template('index.html', title="Undergraduate Research Portal")
+    posts = Post.query.order_by(Post.timestamp.desc())
+    return render_template('index.html', title="WSU Undergraduate Research Portal", posts=posts.all())
 
 @bp_routes.route('/post/', methods=['POST','GET'])
 @login_required

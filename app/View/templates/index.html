@@ -2,8 +2,14 @@
 
 {% block content %}
 
-    <h1>Welcome to Smile Portal!</h1>
-
-    <h2>Number of smiles:  </h2>
+    <div class="postlist">
+    {% for post in posts %}
+    {% if ((post.writer.id == current_user.id) or (current_user.faculty == False)) %}
+    <div class="post-box">
+        {% include '_post.html' %} 
+    </div>
+    {% endif %}
+    {% endfor %}
+    </div>
 
 {% endblock %}

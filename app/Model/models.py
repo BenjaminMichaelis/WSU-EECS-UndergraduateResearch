@@ -23,10 +23,11 @@ class Post(db.Model):
         primaryjoin=(postTags.c.post_id == id), backref=db.backref('postTags', lazy='dynamic')
         , lazy='dynamic')
     user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     db.relationship('User', backref="Userid", lazy='dynamic')
 
-    def get_tags(self):
-        return self.tags
+    def get_ResearchFields(self):
+        return self.ResearchFields
 
 class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)

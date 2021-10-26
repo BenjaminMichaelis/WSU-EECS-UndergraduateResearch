@@ -5,9 +5,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from app import login
 
-postTags = db.Table('postTags',
+postFields = db.Table('postFields',
     db.Column('post_id', db.Integer, db.ForeignKey('post.id')),
-    db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'))
+    db.Column('field_id', db.Integer, db.ForeignKey('field.id'))
 )
 
 class Post(db.Model):
@@ -18,9 +18,9 @@ class Post(db.Model):
     enddate = db.Column(db.Date)
     timecommitment = db.Column(db.Integer)
     qualifications = db.Column(db.String(1500))
-    ResearchFields = db.relationship(
-        'Tag',  secondary = postTags,
-        primaryjoin=(postTags.c.post_id == id), backref=db.backref('postTags', lazy='dynamic')
+    Fields = db.relationship(
+        'Field',  secondary = postFields,
+        primaryjoin=(postFields.c.post_id == id), backref=db.backref('postFields', lazy='dynamic')
         , lazy='dynamic')
     user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
@@ -29,12 +29,12 @@ class Post(db.Model):
     def get_ResearchFields(self):
         return self.ResearchFields
 
-class Tag(db.Model):
+class Field(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20))
     
     def __repr__(self):
-        return '<Tag name: {} Tag id: {}'.format(self.name,self.id)
+        return '<Field name: {} Field id: {}'.format(self.name,self.id)
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key = True)

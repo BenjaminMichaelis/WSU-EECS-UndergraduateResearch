@@ -26,8 +26,8 @@ class Post(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     db.relationship('User', backref="Userid", lazy='dynamic')
 
-    def get_ResearchFields(self):
-        return self.ResearchFields
+    def get_fields(self):
+        return self.Fields
 
 class Field(db.Model):
     id = db.Column(db.Integer, primary_key=True)

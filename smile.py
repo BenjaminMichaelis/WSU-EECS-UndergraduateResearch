@@ -7,7 +7,7 @@ app = create_app()
 def initDB(*args, **kwargs):
     db.create_all()
     if Tag.query.count() == 0:
-        tags = ['funny','inspiring', 'true-story', 'heartwarming', 'friendship']
+        tags = ['CPTS_321','CPTS_421', 'CPTS_355', 'CPTS_350', 'CPTS_322']
         for t in tags:
             db.session.add(Tag(name=t))
         db.session.commit()

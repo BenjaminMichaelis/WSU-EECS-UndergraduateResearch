@@ -16,7 +16,6 @@ class RegistrationForm(FlaskForm):
     password2 = PasswordField('Repeat Password', validators=[DataRequired()])
     submit = SubmitField('Register')
 
-
     def validate_email(form, email):
         valid_domain = str('wsu.edu')
         domain = form.domainsplit(email.data).lower()
@@ -25,7 +24,7 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('This email or username is already registered!')
-    
+
     def domainsplit(self,email):
         try:
             return email.split('@')[1]

@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <h1>Post New Smile</h1>
+    <h1>Post New Research Opportunity</h1>
 
     {% if form %}
 
@@ -15,18 +15,44 @@
                 {% for error in form.title.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
-                {{ form.body.label }}<br>
-                {{ form.body(class="formbody") }}<br>
-                {% for error in form.body.errors %}
+
+                {{ form.description.label }}<br>
+                {{ form.description(class="formbody") }}<br>
+                {% for error in form.description.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 <br>
                 {% endfor %}
 
-                {{ form.happiness_level.label }}<br>
-                {{ form.happiness_level (class="formselect")}}<br>
+                {{ form.startdate.label }}<br>
+                {{ form.startdate(class="forminput") }}<br>
+                {% for error in form.startdate.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                <br>
+                {% endfor %}
+
+                {{ form.enddate.label }}<br>
+                {{ form.enddate(class="forminput") }}<br>
+                {% for error in form.enddate.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                <br>
+                {% endfor %}
+
+                {{ form.timecommitment.label }}<br>
+                {{ form.timecommitment(class="forminput") }}<br>
+                {% for error in form.timecommitment.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                <br>
+                {% endfor %}
+
+                {{ form.qualifications.label }}<br>
+                {{ form.qualifications(class="formbody") }}<br>
+                {% for error in form.qualifications.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                <br>
+                {% endfor %}
             
-                {{ form.tag.label }}<br>
-                {{ form.tag (class="formselect")}}<br>
+                {{ form.ResearchFields.label }}<br>
+                {{ form.ResearchFields (class="formselect")}}<br>
             </div>
 
             <br>

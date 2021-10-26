@@ -25,14 +25,16 @@ def index():
 @login_required
 def post():
     # only faculty can create new research positions
-    if current_user.faculty is False:
+    if current_user.faculty is True:
         # handle the form submission
         sform = PostForm()
         if request.method == 'POST':
             if sform.validate_on_submit():
-                newPost = Post(title = sform.title.data, body = sform.body.data, user_id = current_user.id)
-                for tag in sform.tag.data:
-                    newPost.tags.append(tag)
+                newPost = Post(title = sform.title.data, description = sform.description.data, user_id = current_user.id, 
+                startdate = sform.startdate.data, enddate = sform.enddate.data, timecommitment = sform.timecommitment.data,
+                qualifications = sform.qualifications.data)
+                for ResearchFields in sform.ResearchFields.data:
+                    newPost.ResearchFields.append(ResearchFields)
                 print(newPost)
                 db.session.add(newPost)
                 db.session.commit()
@@ -40,4 +42,5 @@ def post():
                 return redirect(url_for('routes.index'))
             pass
         return render_template('create.html', form = sform)
+    flash('Error: No faculty permissions discovered')
     return redirect(url_for('routes.index'))

@@ -16,11 +16,11 @@ def get_taglabel(thetag):
 
 class PostForm(FlaskForm):
     title = StringField('Position Title', validators=[DataRequired()])
-    body = TextAreaField('Position Details', [Length(min=1, max=1500)])
-    startdate = DateField('Start Date', format='%m-%d-%Y', validators=[DataRequired()])
-    enddate = DateField('End Date', format='%m-%d-%Y', validators=[DataRequired()])
-    timecommit = IntegerField('Time Commitment', validators=[DataRequired()])
-    tag = QuerySelectMultipleField( 'Major', query_factory=get_tags , get_label=get_taglabel, widget=ListWidget(prefix_label=False), 
+    description = TextAreaField('Position Details', [Length(min=1, max=1500)])
+    startdate = DateField('Start Date MM-DD-YYYY', format='%m-%d-%Y', validators=[DataRequired(message="Required, must be in MM-DD-YYYY")])
+    enddate = DateField('End Date MM-DD-YYYY', format='%m-%d-%Y', validators=[DataRequired(message="Required, must be in MM-DD-YYYY")])
+    timecommitment = IntegerField('Time Commitment (in Hours Per Week)', validators=[DataRequired()])
+    ResearchFields = QuerySelectMultipleField( 'Major', query_factory=get_tags , get_label=get_taglabel, widget=ListWidget(prefix_label=False), 
       option_widget=CheckboxInput() )
     qualifications = TextAreaField('Required Qualifications', [Length(min=1, max=1500)])
     submit = SubmitField('Post')

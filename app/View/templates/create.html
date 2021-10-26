@@ -16,9 +16,9 @@
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
 
-                {{ form.body.label }}<br>
-                {{ form.body(class="formbody") }}<br>
-                {% for error in form.body.errors %}
+                {{ form.description.label }}<br>
+                {{ form.description(class="formbody") }}<br>
+                {% for error in form.description.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 <br>
                 {% endfor %}
@@ -36,9 +36,23 @@
                 <span style="color: red;">[{{ error }}]</span>
                 <br>
                 {% endfor %}
+
+                {{ form.timecommitment.label }}<br>
+                {{ form.timecommitment(class="forminput") }}<br>
+                {% for error in form.timecommitment.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                <br>
+                {% endfor %}
+
+                {{ form.qualifications.label }}<br>
+                {{ form.qualifications(class="formbody") }}<br>
+                {% for error in form.qualifications.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                <br>
+                {% endfor %}
             
-                {{ form.tag.label }}<br>
-                {{ form.tag (class="formselect")}}<br>
+                {{ form.ResearchFields.label }}<br>
+                {{ form.ResearchFields (class="formselect")}}<br>
             </div>
 
             <br>

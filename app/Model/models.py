@@ -13,11 +13,12 @@ postTags = db.Table('postTags',
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(150))
-    body = db.Column(db.String(1500))
+    description = db.Column(db.String(1500))
     startdate = db.Column(db.Date)
     enddate = db.Column(db.Date)
-    timecommit = db.Column(db.Integer)
-    tags = db.relationship(
+    timecommitment = db.Column(db.Integer)
+    qualifications = db.Column(db.String(1500))
+    ResearchFields = db.relationship(
         'Tag',  secondary = postTags,
         primaryjoin=(postTags.c.post_id == id), backref=db.backref('postTags', lazy='dynamic')
         , lazy='dynamic')

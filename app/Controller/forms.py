@@ -6,13 +6,13 @@ from wtforms.validators import  DataRequired, Length, ValidationError, EqualTo, 
 from wtforms_sqlalchemy.fields import QuerySelectMultipleField
 from wtforms.widgets import CheckboxInput, ListWidget
 
-from app.Model.models import Post, Tag, User
+from app.Model.models import Post, Field, User
 
-def get_tags():
-    return Tag.query.all()
+def get_fields():
+    return Field.query.all()
 
-def get_taglabel(thetag):
-    return thetag.name
+def get_fieldlabel(thefield):
+    return thefield.name
 
 class PostForm(FlaskForm):
     title = StringField('Position Title', validators=[DataRequired()])
@@ -20,7 +20,7 @@ class PostForm(FlaskForm):
     startdate = DateField('Start Date MM-DD-YYYY', format='%m-%d-%Y', validators=[DataRequired(message="Required, must be in MM-DD-YYYY")])
     enddate = DateField('End Date MM-DD-YYYY', format='%m-%d-%Y', validators=[DataRequired(message="Required, must be in MM-DD-YYYY")])
     timecommitment = IntegerField('Time Commitment (in Hours Per Week)', validators=[DataRequired()])
-    ResearchFields = QuerySelectMultipleField( 'Major', query_factory=get_tags , get_label=get_taglabel, widget=ListWidget(prefix_label=False), 
+    ResearchFields = QuerySelectMultipleField( 'Research Fields', query_factory=get_fields , get_label=get_fieldlabel, widget=ListWidget(prefix_label=False), 
       option_widget=CheckboxInput() )
     qualifications = TextAreaField('Required Qualifications', [Length(min=1, max=1500)])
     submit = SubmitField('Post')

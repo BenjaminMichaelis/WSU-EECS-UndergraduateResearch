@@ -53,6 +53,13 @@
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
 
+                <p> {{ form.experience.label }}</p>
+                <p> {{ form.experience(class='textinput')}}</p>
+
+                {% for error in form.experience.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
                 <p> {{ form.password.label }}</p>
                 <p> {{ form.password(class='textinput')}}</p>
 

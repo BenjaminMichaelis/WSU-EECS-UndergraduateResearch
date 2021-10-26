@@ -48,6 +48,7 @@ class User(UserMixin, db.Model):
     graduationDate = db.Column(db.Date)
     email = db.Column(db.String(120), unique=True)
     password_hash = db.Column(db.String(128))
+    experience = db.Column(db.Text)
     posts = db.relationship('Post', backref='writer', lazy='dynamic')
     faculty = db.Column(db.Boolean, default=False)
     admin = db.Column(db.Boolean, default=False)

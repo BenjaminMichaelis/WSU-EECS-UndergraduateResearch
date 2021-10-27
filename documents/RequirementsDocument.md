@@ -5,7 +5,7 @@ Prepared by:
 * `Benjamin Michaelis`
 * `Blake Thomas`
 * `Eric Song`
-* `Zach G`
+* `Zach Griswold`
 
 --------
 

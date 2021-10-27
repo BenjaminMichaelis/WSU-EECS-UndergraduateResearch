@@ -1,6 +1,5 @@
 from app import create_app, db
-from app.Model.models import Post, Field
-from app.Model.models import Post, Tag, Language
+from app.Model.models import Post, Field, Language
 
 app = create_app()
 

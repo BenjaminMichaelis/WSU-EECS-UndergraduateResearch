@@ -7,17 +7,13 @@ from wtforms_sqlalchemy.fields import QuerySelectMultipleField
 from wtforms.widgets import CheckboxInput, ListWidget
 
 import math
-from app.Model.models import Post, Field, User
 
-from app.Model.models import Language, Post, Tag, User
+from app.Model.models import Language, Post, User, Field
 def get_fields():
     return Field.query.all()
 
 def get_fieldlabel(thefield):
     return thefield.name
-
-def get_taglabel(thetag):
-    return thetag.name
 
 def get_languages():
     return Language.query.all()

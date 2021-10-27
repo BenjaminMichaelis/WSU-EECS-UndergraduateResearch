@@ -50,13 +50,20 @@
                 <span style="color: red;">[{{ error }}]</span>
                 <br>
                 {% endfor %}
-
-                {{ form.ResearchFields.label }}<br>
-                {{ form.ResearchFields (class="formselect")}}<br>
+                <table>
+                <tr>
+                    <td>
+                    {{ form.ResearchFields.label }}
+                    {{ form.ResearchFields (class="formselect")}}
+                    </td>
+                    <td>
+                    {{ form.submit(class="button") }}
+                    </td>
+                </tr>
+                </table>
             </div>
 
-            <br>
-            <div>{{ form.submit(class="button") }}</div>
+            
         </form>
     {% endif %}
 

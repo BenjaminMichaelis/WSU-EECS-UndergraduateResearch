@@ -12,6 +12,12 @@
     <p> <b>Graduation Date:</b> {{user.graduationDate}}</p>
     <p> <b>Experience:</b> {{user.experience}}</p>
 
+    {% for Language in user.get_Languages().all(): %}
+        <span class="tagitem">
+            {{ Language.name }}
+        </span>
+    {% endfor %}
+
     {% if user == current_user %}
     <p><a href="{{ url_for('routes.edit_profile')}}""> Edit your profile</a></p>
     {% endif %}

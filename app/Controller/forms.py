@@ -9,11 +9,21 @@ from wtforms.widgets import CheckboxInput, ListWidget
 import math
 from app.Model.models import Post, Field, User
 
+from app.Model.models import Language, Post, Tag, User
 def get_fields():
     return Field.query.all()
 
 def get_fieldlabel(thefield):
     return thefield.name
+
+def get_taglabel(thetag):
+    return thetag.name
+
+def get_languages():
+    return Language.query.all()
+
+def get_languageLabel(thelanguage):
+    return thelanguage.name
 
 class PostForm(FlaskForm):
     title = StringField('Position Title', validators=[DataRequired()])
@@ -34,6 +44,7 @@ class EditForm(FlaskForm):
     graduationDate = DateField('Expected Graduation MM-DD-YYYY', format='%m-%d-%Y', validators=[Optional()]) 
     phone = IntegerField('Phone Number') 
     experience = TextAreaField('Describe any prior experience you may have')
+    languages = QuerySelectMultipleField('Languages you have experience in', query_factory=get_languages, get_label=get_languageLabel, widget=ListWidget(prefix_label=False), option_widget=CheckboxInput())
     password = PasswordField('Password', validators=[EqualTo('password2', message='Passwords must match')])
     password2 = PasswordField('Repeat Password')
     submit = SubmitField('Save')

@@ -10,6 +10,11 @@ postFields = db.Table('postFields',
     db.Column('field_id', db.Integer, db.ForeignKey('field.id'))
 )
 
+userLanguages = db.Table('userLanguages',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('language_id', db.Integer, db.ForeignKey('language.id'))
+)
+
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(150))
@@ -49,6 +54,9 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(120), unique=True)
     password_hash = db.Column(db.String(128))
     experience = db.Column(db.Text)
+
+    LanguagesKnown = db.relationship('Language',  secondary = userLanguages, primaryjoin=(userLanguages.c.language_id == id), backref=db.backref('userLanguages', lazy='dynamic'), lazy='dynamic')
+
     posts = db.relationship('Post', backref='writer', lazy='dynamic')
     faculty = db.Column(db.Boolean, default=False)
     admin = db.Column(db.Boolean, default=False)
@@ -64,6 +72,16 @@ class User(UserMixin, db.Model):
 
     def get_user_posts(self):
         return self.posts
+    
+    def get_Languages(self):
+        return self.LanguagesKnown
+
+class Language(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(20))
+    
+    def __repr__(self):
+        return '<Language name: {} Language id: {}'.format(self.name,self.id)
 
 @login.user_loader
 def load_user(username):

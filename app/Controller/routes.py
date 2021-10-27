@@ -64,6 +64,8 @@ def edit_profile():
             current_user.gpa = eform.gpa.data 
             current_user.graduationDate = eform.graduationDate.data 
             current_user.experience = eform.experience.data
+            for Languages in eform.languages.data:
+                current_user.LanguagesKnown.append(Languages)
             db.session.add(current_user)
             db.session.commit()
             flash("Your changes have been saved")

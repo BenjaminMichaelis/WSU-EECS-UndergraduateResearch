@@ -5,6 +5,7 @@
     {% if form %}
         <form action="" method="POST">
             {{ form.hidden_tag() }}
+            <div>
                 <p> {{ form.firstname.label }}</p>
                 <p> {{ form.firstname(class='textinput')}}</p>
 
@@ -74,7 +75,14 @@
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
 
-            <p>{{ form.submit(class='button') }}</p>
+                {{ form.languages.label }}
+                <div>
+                    {{ form.languages(class="formselect")}}
+                </div>
+
+            </div>
+
+            {{ form.submit(class='button') }}
         </form>
 
     {% endif %}

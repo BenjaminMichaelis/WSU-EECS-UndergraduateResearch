@@ -14,12 +14,40 @@
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
 
+                <p> {{form.firstname.label}}</p>
+                <p> {{form.firstname(class='forminput')}}</p>
+
+                {% for error in form.firstname.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
+                <p> {{form.lastname.label}}</p>
+                <p> {{form.lastname(class='forminput')}}</p>
+
+                {% for error in form.lastname.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
                 <p> {{ form.email.label }}</p>
                 <p> {{ form.email(class='forminput')}}</p>
 
                 {% for error in form.email.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
+
+                <p> {{ form.phone.label }}</p> 
+                <p> {{ form.phone(class='forminput')}}</p> 
+ 
+                {% for error in form.phone.errors %} 
+                <span style="color: red;">[{{ error }}]</span> 
+                {% endfor %} 
+ 
+                <p> {{ form.wsuid.label }}</p> 
+                <p> {{ form.wsuid(class='forminput')}}</p> 
+ 
+                {% for error in form.wsuid.errors %} 
+                <span style="color: red;">[{{ error }}]</span> 
+                {% endfor %} 
 
                 <p> {{ form.password.label }}</p>
                 <p> {{ form.password(class='forminput')}}</p>

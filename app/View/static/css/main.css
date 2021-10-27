@@ -3,8 +3,12 @@ body {
     padding: 1px;
     font-family: Tahoma;
     text-align: left;
-  
 }
+
+.form-container {
+    min-height: 1200px;
+}
+
 .nav-container {
     background:#f6f6f6;
     font-family: Tahoma;

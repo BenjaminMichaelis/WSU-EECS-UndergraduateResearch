@@ -20,12 +20,12 @@ def register():
     registrationform = RegistrationForm()
     if request.method == 'POST':
         if registrationform.validate_on_submit():
-                user = User(username = registrationform.username.data, email = registrationform.email.data)
-                user.set_password(registrationform.password.data)
-                db.session.add(user)
-                db.session.commit()
-                flash('Congratulations, you are now a registered user!')
-                return redirect(url_for('routes.index'))
+            user = User(username = registrationform.username.data, firstname = registrationform.firstname.data, lastname = registrationform.lastname.data, email = registrationform.email.data, phone = registrationform.phone.data, wsuid = registrationform.wsuid.data)
+            user.set_password(registrationform.password.data)
+            db.session.add(user)
+            db.session.commit()
+            flash('Congratulations, you are now a registered user!')
+            return redirect(url_for('routes.index'))
     return render_template('register.html', form = registrationform)
 
 @bp_auth.route('/login/', methods=['GET', 'POST'])

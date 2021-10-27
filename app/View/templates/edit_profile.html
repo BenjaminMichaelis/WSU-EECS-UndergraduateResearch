@@ -3,88 +3,89 @@
 {% block content %}
     <h1>Edit Profile</h1>
     {% if form %}
-        <form action="" method="POST">
-            {{ form.hidden_tag() }}
-            <div>
-                <p> {{ form.firstname.label }}</p>
-                <p> {{ form.firstname(class='textinput')}}</p>
+        <div class="form-container">
+            <form action="" method="POST">
+                {{ form.hidden_tag() }}
+                    <p> {{ form.firstname.label }}</p>
+                    <p> {{ form.firstname(class='textinput')}}</p>
 
-                {% for error in form.firstname.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
+                    {% for error in form.firstname.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
 
-                <p> {{ form.lastname.label }}</p>
-                <p> {{ form.lastname(class='textinput')}}</p>
+                    <p> {{ form.lastname.label }}</p>
+                    <p> {{ form.lastname(class='textinput')}}</p>
 
-                {% for error in form.lastname.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-<!-- 
-                wsuid = IntegerField('WSUID', [Length(min=8, max=9)])
-                major = StringField('Major')
-                gpa = StringField('GPA' [Length(max=4)])
-                graduationDate = DateField('Expected Graduation')
-                phone = FormField(TelephoneForm) -->
+                    {% for error in form.lastname.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+    <!-- 
+                    wsuid = IntegerField('WSUID', [Length(min=8, max=9)])
+                    major = StringField('Major')
+                    gpa = StringField('GPA' [Length(max=4)])
+                    graduationDate = DateField('Expected Graduation')
+                    phone = FormField(TelephoneForm) -->
 
-                <p> {{ form.major.label }}</p>
-                <p> {{ form.major(class='textinput')}}</p>
+                    <p> {{ form.major.label }}</p>
+                    <p> {{ form.major(class='textinput')}}</p>
 
-                {% for error in form.major.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
+                    {% for error in form.major.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
 
-                <p> {{ form.gpa.label }}</p>
-                <p> {{ form.gpa(class='textinput')}}</p>
+                    <p> {{ form.gpa.label }}</p>
+                    <p> {{ form.gpa(class='textinput')}}</p>
 
-                {% for error in form.gpa.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
+                    {% for error in form.gpa.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
 
-                <p> {{ form.graduationDate.label }}</p>
-                <p> {{ form.graduationDate(class='textinput')}}</p>
+                    <p> {{ form.graduationDate.label }}</p>
+                    <p> {{ form.graduationDate(class='textinput')}}</p>
 
-                {% for error in form.graduationDate.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
+                    {% for error in form.graduationDate.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
 
-                <p> {{ form.phone.label }}</p>
-                <p> {{ form.phone(class='textinput')}}</p>
+                    <p> {{ form.phone.label }}</p>
+                    <p> {{ form.phone(class='textinput')}}</p>
 
-                {% for error in form.phone.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
+                    {% for error in form.phone.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
 
-                <p> {{ form.experience.label }}</p>
-                <p> {{ form.experience(class='textinput')}}</p>
+                    <p> {{ form.experience.label }}</p>
+                    <p> {{ form.experience(class='textinput')}}</p>
 
-                {% for error in form.experience.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
+                    {% for error in form.experience.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
 
-                <p> {{ form.password.label }}</p>
-                <p> {{ form.password(class='textinput')}}</p>
+                    <p> {{ form.password.label }}</p>
+                    <p> {{ form.password(class='textinput')}}</p>
 
-                {% for error in form.password.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
+                    {% for error in form.password.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
 
-                <p> {{ form.password2.label }}</p>
-                <p> {{ form.password2(class='textinput')}}</p>
+                    <p> {{ form.password2.label }}</p>
+                    <p> {{ form.password2(class='textinput')}}</p>
 
-                {% for error in form.password2.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
+                    {% for error in form.password2.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
 
-                {{ form.languages.label }}
-                <div>
-                    {{ form.languages(class="formselect")}}
+                    
+                    {{ form.languages.label }}
+                    <ul>
+                        {{ form.languages(class="formselect")}}
+                    </ul>
+
                 </div>
 
-            </div>
-
-            {{ form.submit(class='button') }}
-        </form>
-
+                {{ form.submit(class='button') }}
+            </form>
+        </div>
     {% endif %}
 
 {% endblock %}

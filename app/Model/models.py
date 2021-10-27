@@ -55,7 +55,7 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     experience = db.Column(db.Text)
 
-    LanguagesKnown = db.relationship('Language',  secondary = userLanguages, primaryjoin=(userLanguages.c.language_id == id), backref=db.backref('userLanguages', lazy='dynamic'), lazy='dynamic')
+    LanguagesKnown = db.relationship('Language',  secondary = userLanguages, primaryjoin=(userLanguages.c.user_id == id), backref=db.backref('userLanguages', lazy='dynamic'), lazy='dynamic')
 
     posts = db.relationship('Post', backref='writer', lazy='dynamic')
     faculty = db.Column(db.Boolean, default=False)

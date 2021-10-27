@@ -55,7 +55,7 @@ going to be built and how it is expected to be build.
 
 Then provide a brief description of your project and state your project goal.
 
-The Project for which this document is for is the WSU EECS  Undergraduate
+The Project for which this document is for is the WSU EECS Undergraduate
 Research Website. The goal is to create a website that will connect
 students to faculty members who need undergraduate researchers.
 Faculty will be able to post research opportunities, and students will
@@ -120,8 +120,7 @@ to the user.
 |7. | timecommitment | how many hours a week | Integer | | |
 |8. | qualifications | expected qualifications from applicants | String | max 1500 characters | |
 |9. |  user_id       | id of who posted it | Integer | | |
-|10.|  timestamp     | What time post was created | DateTime | Default is current utc time |  
-         |
+|10.|  timestamp     | What time post was created | DateTime | Default is current utc time |
 
 * Field Table:
 
@@ -185,11 +184,11 @@ You can use the following table template to list your route specifications.
 
 |   | Methods           | URL Path   | Description  |
 |:--|:------------------|:-----------|:-------------|
-|1. |  Get, Post        | /register/ | For registering new users |
-|2. |  Get, Post        | /login/    | Logging in existing users |             
-|3. |  Get              | /logout/   | Log out current user |
-|4. |  Get, Post        | /index/    | Homepage of app |
-|5. |  Get, Post        | /post/     | For adding a new post to the site  |
+|1. |  Get, Post        | /register/ | To registering new users |
+|2. |  Get, Post        | /login/    | Logging in preexisting users |
+|3. |  Get              | /logout/   | Log out the current user |
+|4. |  Get, Post        | /index/    | Homepage of the site |
+|5. |  Get, Post        | /post/     | For faculty to add a new post to the site  |
 
 #### 2.2.3 View and User Interface Design
 
@@ -203,16 +202,12 @@ Provide a detailed description of user interface you have built so far. The info
 
 In this iteration, we focused on adding the basic features for the app. Users can now create
 accounts, as well as login and log out. Users can also edit the information on their profiles
-For the faculty users, the ability to postresearch positions was also added. Faculty users cancreate a research position, and all users can view open research positions. 
+For the faculty users, the ability to post research positions was also added. Faculty users can create a research position, and all users can view open research positions.
 
 ## 4. References
 
 Cite your references here.
 
-Title: Coupling and Cohesion Link: https://www.geeksforgeeks.org/software-engineering-coupling-and-cohesion/
-
-For the websites, give the title, author (if applicable) and the website URL.
-
-<https://www.geeksforgeeks.org/software-engineering-coupling-and-cohesion/>
+Title: Coupling and Cohesion Link: <https://www.geeksforgeeks.org/software-engineering-coupling-and-cohesion/>
 
 --------

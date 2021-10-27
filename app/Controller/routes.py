@@ -5,10 +5,10 @@ from flask import render_template, flash, redirect, url_for, request
 from config import Config
 
 from app import db
-from app.Controller.forms import PostForm, EditForm, EditPasswordForm
+from app.Controller.forms import PostForm, EditForm, EditPasswordForm, ApplyForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.Controller.auth_forms import LoginForm, RegistrationForm
-from app.Model.models import Post
+from app.Model.models import Post, Application
 bp_routes = Blueprint('routes', __name__)
 bp_routes.template_folder = Config.TEMPLATE_FOLDER #'..\\View\\templates'
 
@@ -43,60 +43,3 @@ def post():
         return render_template('create.html', form = sform)
     flash('Error: No faculty permissions discovered')
     return redirect(url_for('routes.index'))
-
-@bp_routes.route('/display_profile/', methods=['GET'])
-@login_required
-def display_profile():
-    return render_template('display_profile.html', title='Display Profile', user = current_user)
-
-@bp_routes.route('/edit_profile/', methods=['GET', 'POST'])
-@login_required
-def edit_profile():
-    eform = EditForm()
-    if request.method == 'POST':
-        # handle the form submission
-        if eform.validate_on_submit():
-            current_user.firstname = eform.firstname.data
-            current_user.lastname = eform.lastname.data
-            current_user.phone = eform.phone.data 
-            current_user.major = eform.major.data 
-            current_user.gpa = eform.gpa.data 
-            current_user.graduationDate = eform.graduationDate.data 
-            current_user.experience = eform.experience.data
-            current_user.electiveCourses = eform.electives.data
-            for language in eform.languages.data:
-                current_user.LanguagesKnown.append(language)
-            for field in eform.fields.data:
-                current_user.Fields.append(field)
-            db.session.add(current_user)
-            db.session.commit()
-            flash("Your changes have been saved")
-            return redirect(url_for('routes.display_profile'))
-        pass
-    elif request.method == 'GET':
-        # populate the user data from DB
-        eform.firstname.data = current_user.firstname
-        eform.lastname.data = current_user.lastname
-        eform.phone.data = current_user.phone 
-        eform.major.data = current_user.major 
-        eform.gpa.data = current_user.gpa 
-        eform.graduationDate.data = current_user.graduationDate
-        eform.experience.data = current_user.experience
-        eform.electives.data = current_user.electiveCourses
-    else:
-        pass 
-    return render_template('edit_profile.html', title='Edit Profile', form = eform)
-
-@bp_routes.route('/edit_password/', methods=['GET', 'POST'])
-@login_required
-def edit_password():
-    pform = EditPasswordForm()
-    if request.method == 'POST':
-        if pform.validate_on_submit():
-            current_user.set_password(pform.password.data)
-            db.session.add(current_user)
-            db.session.commit()
-            flash("Your password has been changed")
-            return redirect(url_for('routes.display_profile'))
-        pass
-    return render_template('edit_password.html', title='Edit Password', form = pform)

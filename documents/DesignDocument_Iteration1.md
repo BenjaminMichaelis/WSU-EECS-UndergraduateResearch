@@ -77,7 +77,7 @@ In this section:
 * Briefly explain the role of each subsystem in your architectural design and explain the dependencies between them.
 * Discuss the rationale for the proposed decomposition in terms of cohesion and coupling.
 
-![](images/UMLDiagram.JPG)
+![UMLDiagram](images/UMLDiagram.JPG)
 
 The View subsystem includes any visual representation of information to the user.
 The Model subsystem includes any logic that manages the data of the system.

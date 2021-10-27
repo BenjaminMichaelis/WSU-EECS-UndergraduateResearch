@@ -178,83 +178,30 @@ You can use the following table template to list your route specifications.
 
 |   | Methods           | URL Path   | Description  |
 |:--|:------------------|:-----------|:-------------|
-|1. |  Register         |            |              |
-|2. |                   |            |              |
-|3. |                   |            |              |
-|4. |                   |            |              |
-|5. |                   |            |              |
-|6. |                   |            |              |
-
-(***in iteration-2***) Revise your route specifications, add the missing routes to your list, and update the routes you modified. Make sure to provide sufficient detail for each route. In iteration-2, you will be deducted points if you don’t include all major routes needed for implementing the required use-cases or if you haven’t described them in detail.
-
-|   | Methods           | URL Path   | Description  |
-|:--|:------------------|:-----------|:-------------|
-|1. |                   |            |              |
-|2. |                   |            |              |
-|3. |                   |            |              |
-|4. |                   |            |              |
-|5. |                   |            |              |
-|6. |                   |            |              |
+|1. |  Get, Post        | /register/ | For registering new users |
+|2. |  Get, Post        | /login/    | Logging in existing users |             
+|3. |  Get              | /logout/   | Log out current user |
+|4. |  Get, Post        | /index/    | Homepage of app |
+|5. |  Get, Post        | /post/     | For adding a new post to the site  |
 
 #### 2.2.3 View and User Interface Design
 
-Briefly explain the role of the view. Explain how you will build the user interfaces. Mention the frameworks or the libraries you plan to use.  
-
 The role of the view component is to handle how to present the application to the user.
 It can access the data in the model, but it does not deal not interpret or manipulate this
-data. 
+data. We intend on using the bootstrap library to handle most of the design aspects of the app.
 
 Provide a detailed description of user interface you have built so far. The information in this section should be accompanied with proper images of your screenshots.  Make sure to mention which use-cases in your “Requirements Specification” document will utilize these interfaces for user interaction.
 
 ## 3. Progress Report
 
-Write a short paragraph summarizing your progress in iteration1.
+In this iteration, we focused on adding the basic features for the app. Users can now create
+accounts, as well as login and log out. Users can also edit the information on their profiles
+For the faculty users, the ability to postresearch positions was also added. Faculty users cancreate a research position, and all users can view open research positions. 
 
-## 4. Testing Plan
-
-(***in iteration 1***)
-Don't include this section.
-
-(***in iteration 2***)
-In this section , provide a brief description of how you plan to test the system. Thought should be given to  mostly how automatic testing can be carried out, so as to maximize the limited number of human hours you will have for testing your system. Consider the following kinds of testing:
-
-* *Unit Testing*: Explain for what modules you plan to write unit tests, and what framework you plan to use.  (Each team should write automated tests (at least) for testing the API routes)
-* *Functional Testing*: How will you test your system to verify that the use cases are implemented correctly? (Manual tests are OK)
-* *UI Testing*: How do you plan to test the user interface?  (Manual tests are OK)
-
-## 5. References
+## 4. References
 
 Cite your references here.
 
-For the papers you cite give the authors, the title of the article, the journal name, journal volume number, date of publication and inclusive page numbers. Giving only the URL for the journal is not appropriate.
-
-For the websites, give the title, author (if applicable) and the website URL.
-
-https://www.geeksforgeeks.org/software-engineering-coupling-and-cohesion/
+Title: Coupling and Cohesion Link: https://www.geeksforgeeks.org/software-engineering-coupling-and-cohesion/
 
 --------
-
-### Appendix: Grading Rubric
-
-(Please remove this part in your final submission)
-
-These is the grading rubric that we will use to evaluate your document.
-
-|**MaxPoints**| **Design** |
-|:---------:|:-------------------------------------------------------------------------|
-|           | Are all parts of the document in agreement with the product requirements? |
-| 10        | Is the architecture of the system described well, with the major components and their interfaces?  Is the rationale for the proposed decomposition in terms of cohesion and coupling explained well? |
-| 15        | Is the document making good use of semi-formal notation (i.e., UML diagrams)? Does the document provide a clear and complete UML component diagram illustrating the architecture of the system? |
-| 15        | Is the model (i.e., “database model”) explained well with sufficient detail? |
-| 10        | Is the controller explained in sufficient detail?  |
-| 20        | Are all major interfaces (i.e., the routes) listed? Are the routes explained in sufficient detail? |
-| 10        | Is the view and the user interfaces explained well? Did the team provide the screenshots of the interfaces they built so far.   |
-| 5         | Is there sufficient detail in the design to start Iteration 2?   |
-| 5         | Progress report  |
-|           |   |
-|           | **Clarity** |
-| 5         | Is the solution at a fairly consistent and appropriate level of detail? Is the solution clear enough to be turned over to an independent group for implementation and still be understood? |
-| 5         | Is the document carefully written, without typos and grammatical errors?  |
-|           |  |
-|           | **Total** |
-|           |  |

@@ -12,8 +12,14 @@
     <p> <b>Graduation Date:</b> {{user.graduationDate}}</p>
     <p> <b>Experience:</b> {{user.experience}}</p>
 
+    <p> <b>Language Experience:</b></p>
     {% for Language in user.get_Languages().all() %}
         <span class="tagitem">{{ Language.name }}</span>
+    {% endfor %}
+
+    <p> <b>Interested Research Topics:</b></p>
+    {% for Field in user.get_fields().all() %}
+        <span class="tagitem">{{ Field.name }}</span>
     {% endfor %}
 
     {% if user == current_user %}

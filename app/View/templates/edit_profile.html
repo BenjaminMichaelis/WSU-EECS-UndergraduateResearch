@@ -76,13 +76,25 @@
                     {% endfor %}
 
                     
-                    {{ form.languages.label }}
-                    <ul>
-                        {{ form.languages(class="formselect")}}
-                    </ul>
+                    <table>
+                    <tr>
+                        
+                        <p>{{ form.languages.label }}</p>
+                        <p>{{ form.languages(class="formselect")}}</p>
+
+                        
+                    </tr>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <tr>
+                        
+                        <span><p>{{ form.fields.label }}</p></span>
+                        <span><p>{{ form.fields(class="formselect")}}</p></span>
+                    
+                    </tr>
+                    </table>
 
                 </div>
-
+                <br><br><br><br>
                 {{ form.submit(class='button') }}
             </form>
         </div>

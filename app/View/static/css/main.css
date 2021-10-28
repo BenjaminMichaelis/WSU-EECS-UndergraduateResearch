@@ -9,6 +9,10 @@ body {
     min-height: 1200px;
 }
 
+.table-row {
+    min-height: 1300px;
+}
+
 .nav-container {
     background:#f6f6f6;
     font-family: Tahoma;

@@ -66,6 +66,8 @@ def edit_profile():
             current_user.experience = eform.experience.data
             for language in eform.languages.data:
                 current_user.LanguagesKnown.append(language)
+            for field in eform.fields.data:
+                current_user.Fields.append(field)
             db.session.add(current_user)
             db.session.commit()
             flash("Your changes have been saved")

@@ -61,6 +61,13 @@
                     <span style="color: red;">[{{ error }}]</span>
                     {% endfor %}
 
+                    <p> {{ form.electives.label }}</p>
+                    <p> {{ form.electives(class='textinput')}}</p>
+
+                    {% for error in form.electives.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+
                     <p> {{ form.password.label }}</p>
                     <p> {{ form.password(class='textinput')}}</p>
 

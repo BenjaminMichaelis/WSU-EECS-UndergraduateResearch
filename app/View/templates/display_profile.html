@@ -11,6 +11,7 @@
     <p> <b>GPA:</b> {{user.gpa}}</p>
     <p> <b>Graduation Date:</b> {{user.graduationDate}}</p>
     <p> <b>Experience:</b> {{user.experience}}</p>
+    <p> <b>Technical Electives:</b> {{user.electiveCourses}}</p>
 
     <p> <b>Language Experience:</b></p>
     {% for Language in user.get_Languages().all() %}

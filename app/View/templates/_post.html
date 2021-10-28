@@ -1,0 +1,57 @@
+<table class = "posttable" style = "width:100%" valign="top">
+        <tr> 
+            <td colspan="3"><div class="posttitle"> {{post.title}} </div>
+            </td>
+        </tr>
+        <tr>
+            <td width="80%" >
+                <div class="postmessage">
+                    Description: {{ post.description }}
+               </div>
+
+               <div class="postline">
+                   Position begins {{ post.startdate }} and ends on {{ post.enddate }}
+               </div>
+
+               <div class="postline">
+                   The time commitment is expected to be about {{ post.timecommitment }} hours per week.
+               </div>
+
+               <div class="postmessage">
+                   Required qualifications: {{ post.qualifications }}
+               </div>
+               
+        </tr>
+        <tr>
+        </td>
+        <br>
+        <td colspan="3" style = "text-align:center" valign="bottom">  
+            <br>
+            {% for ResearchField in post.get_fields().all(): %}
+            <span class="tagitem">
+                {{ ResearchField.name }}
+            </span>
+            {% endfor %}
+        </tr>
+
+        <tr>
+            <td colspan="3" style = "text-align:center" valign="bottom">  
+                <br>
+            <span class="postuser">
+                Posted by:<span class="username"> {{ post.writer.username }}</span>
+                - Email:</span><span class="useremail"> {{ post.writer.email }}</span>
+            </span>
+
+              </td>
+        </tr>
+
+        <tr>
+            <td colspan="3" style = "text-align:center" valign="bottom">  
+            <div class="posttimestamp"> 
+                Posted at: {{ moment(post.timestamp).format('LLL') }}
+             </div>
+             </td>
+        </tr>
+        
+        </tr>
+    </table>

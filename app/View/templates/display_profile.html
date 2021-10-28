@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1> Profile</h1>
+    <h2> Username: {{user.username}}</h2>
+    <p> <b>Name:</b> {{user.firstname}} {{user.lastname}}</p>
+    <p> <b>Email:</b> {{user.email}}</p>
+    <p> <b>WSU ID:</b> {{user.wsuid}}</p>
+    <p> <b>Phone:</b> {{user.phone}}</p>
+    <p> <b>Major:</b> {{user.major}}</p>
+    <p> <b>GPA:</b> {{user.gpa}}</p>
+    <p> <b>Graduation Date:</b> {{user.graduationDate}}</p>
+    <p> <b>Experience:</b> {{user.experience}}</p>
+    <p> <b>Technical Electives:</b> {{user.electiveCourses}}</p>
+
+    <p> <b>Language Experience:</b></p>
+    {% for Language in user.get_Languages().all() %}
+        <span class="tagitem">{{ Language.name }}</span>
+    {% endfor %}
+
+    <p> <b>Interested Research Topics:</b></p>
+    {% for Field in user.get_fields().all() %}
+        <span class="tagitem">{{ Field.name }}</span>
+    {% endfor %}
+
+    {% if user == current_user %}
+    <p><a href="{{ url_for('routes.edit_profile')}}""> Edit your profile</a></p>
+    {% endif %}
+{% endblock %}

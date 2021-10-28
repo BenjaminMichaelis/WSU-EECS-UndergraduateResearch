@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>Post New Research Opportunity</h1>
+
+    {% if form %}
+
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <div>
+                <!--Displays the form item for the post's `title`.--> 
+                {{ form.title.label }}<br>
+                {{ form.title(class="formtitle") }}<br>
+                {% for error in form.title.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
+                {{ form.description.label }}<br>
+                {{ form.description(class="formbody") }}<br>
+                {% for error in form.description.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                <br>
+                {% endfor %}
+
+                {{ form.startdate.label }}<br>
+                {{ form.startdate(class="forminput") }}<br>
+                {% for error in form.startdate.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                <br>
+                {% endfor %}
+
+                {{ form.enddate.label }}<br>
+                {{ form.enddate(class="forminput") }}<br>
+                {% for error in form.enddate.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                <br>
+                {% endfor %}
+
+                {{ form.timecommitment.label }}<br>
+                {{ form.timecommitment(class="forminput") }}<br>
+                {% for error in form.timecommitment.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                <br>
+                {% endfor %}
+
+                {{ form.qualifications.label }}<br>
+                {{ form.qualifications(class="formbody") }}<br>
+                {% for error in form.qualifications.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                <br>
+                {% endfor %}
+                <table>
+                <tr>
+                    <td>
+                    {{ form.ResearchFields.label }}
+                    {{ form.ResearchFields (class="formselect")}}
+                    </td>
+                    <td>
+                    {{ form.submit(class="button") }}
+                    </td>
+                </tr>
+                </table>
+            </div>
+
+            
+        </form>
+    {% endif %}
+
+
+  {% endblock %}

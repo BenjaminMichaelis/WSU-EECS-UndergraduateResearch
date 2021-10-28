@@ -5,7 +5,7 @@ Prepared by:
 * `Benjamin Michaelis`
 * `Blake Thomas`
 * `Eric Song`
-* `Zach G`
+* `Zach Griswold`
 
 --------
 
@@ -173,14 +173,14 @@ Users will be the main people (faculty and students) that we are focusing our ca
 | ------------------|---|
 | Name              | Apply to Research Position |
 | Users             | Any student who is currently logged in |
-| Rationale         | Students should be able to apply to the research positions that faculty have posted |
-| Triggers          | Click the apply button on a research posting |
-| Preconditions     | User is a logged in as a student |
-| Actions           | User fills out form with a statement about the research topic and the name + email of a faculty member as a reference |
+| Rationale | Students should be able to apply to the research positions that faculty have posted |
+| Triggers | Click the apply button on a research posting |
+| Preconditions | User is a logged in as a student |
+| Actions | User fills out form with a statement about the research topic and the name + email of a faculty member as a reference |
 | Alternative paths | Error is posted and user needs to fill out required fields |
-| Postconditions    | Research position is displayed as applied to student, and as pending to faculty who posted it |
+| Postconditions | Research position is displayed as applied to student, and as pending to faculty who posted it |
 | Acceptance tests  | Student application is created and stored |
-| Iteration         | Iteration - 1 |
+| Iteration | Iteration - 1 |
 
 | Create application framework code |  |
 | ------------------|---|
@@ -233,6 +233,18 @@ Users will be the main people (faculty and students) that we are focusing our ca
 | Postconditions    | System is updated with new student status |
 | Acceptance tests  | Information is accurately updated in database |
 | Iteration         | Iteration-2 |
+
+| Name              | Edit user profile/add profile information |
+| ------------------|---|
+| Users             | All users |
+| Rationale         | Users should be able to edit their user information and add information to their profile |
+| Triggers          | Edit profile button is clicked or new user registers |
+| Preconditions     | User is logged in |
+| Actions           | When edit profile button is clicked or user registers, user is asked to fill out profile. |
+| Alternative paths | Error if form is filled out incorrectly |
+| Postconditions    | Information is saved to database |
+| Acceptance tests  | Information is accurately filled out in form and saved to user information in database |
+| Iteration         | Iteration-1 |
 
 **Include a swim-lane diagram that illustrates the message flow and activities for following scenario:**
 “A student applies to a research position; initially its status will appear as “Pending”. The faculty who created that position reviews the application and updates the application status to either “Approved for Interview”, or “Hired”, or “Not hired”. The updated status of the application is displayed on the student view.

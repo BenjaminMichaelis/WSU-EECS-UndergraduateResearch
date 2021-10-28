@@ -64,8 +64,11 @@ def edit_profile():
             current_user.gpa = eform.gpa.data 
             current_user.graduationDate = eform.graduationDate.data 
             current_user.experience = eform.experience.data
+            current_user.electiveCourses = eform.electives.data
             for language in eform.languages.data:
                 current_user.LanguagesKnown.append(language)
+            for field in eform.fields.data:
+                current_user.Fields.append(field)
             db.session.add(current_user)
             db.session.commit()
             flash("Your changes have been saved")
@@ -80,6 +83,7 @@ def edit_profile():
         eform.gpa.data = current_user.gpa 
         eform.graduationDate.data = current_user.graduationDate
         eform.experience.data = current_user.experience
+        eform.electives.data = current_user.electiveCourses
     else:
         pass 
     return render_template('edit_profile.html', title='Edit Profile', form = eform)

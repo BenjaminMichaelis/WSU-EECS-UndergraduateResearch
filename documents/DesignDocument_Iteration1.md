@@ -79,7 +79,7 @@ In this section:
 * Briefly explain the role of each subsystem in your architectural design and explain the dependencies between them.
 * Discuss the rationale for the proposed decomposition in terms of cohesion and coupling.
 
-![UMLDiagram](images/UMLDiagram.JPG)
+![UMLDiagram](images/UMLDiagram.png)
 
 The View subsystem includes any visual representation of information to the user.
 The Model subsystem includes any logic that manages the data of the system.
@@ -196,7 +196,26 @@ The role of the view component is to handle how to present the application to th
 It can access the data in the model, but it does not deal not interpret or manipulate this
 data. We intend on using the bootstrap library to handle most of the design aspects of the app.
 
-Provide a detailed description of user interface you have built so far. The information in this section should be accompanied with proper images of your screenshots.  Make sure to mention which use-cases in your “Requirements Specification” document will utilize these interfaces for user interaction.
+In the registration form we have a user register for an account with valid information (such as a wsu email), and after filling this out without errors, they can login and get forwarded to their edit profile page. This is for Use-Case Create Account as a user without an account
+
+![Registration Form](images/RegistrationPage.jpg)
+
+From the faculty permissions, you have a button to make a new post which sends you to the make a new post page, where you fill out the details and submit the form. This is for Use-Case Create Research Position.
+
+![Post Form](images/PostResearchPosition.jpg)
+
+Then from the student page you can view all available posts. This is for Use-Case View open research positions.
+
+![Student Post View](images/StudentViewPosts.jpg)
+
+To view profile information a user can click on view profile button and then the edit profile button to add additional information. This is for use-cases view and edit user profile/add profile information.
+
+![Display User Profile](images/DisplayUserProfile.jpg)
+![Edit User Profile](images/EditUserProfile.jpg)
+
+To log-in, the user when logged out is automatically redirected to the login screen. This is for use-case log in as a user.
+
+![Log-In](images/Log-In.jpg)
 
 ## 3. Progress Report
 

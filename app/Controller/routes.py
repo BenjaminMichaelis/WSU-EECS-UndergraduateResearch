@@ -33,7 +33,7 @@ def post():
                 startdate = sform.startdate.data, enddate = sform.enddate.data, timecommitment = sform.timecommitment.data,
                 qualifications = sform.qualifications.data)
                 for ResearchFields in sform.ResearchFields.data:
-                    newPost.ResearchFields.append(ResearchFields)
+                    newPost.Fields.append(ResearchFields)
                 print(newPost)
                 db.session.add(newPost)
                 db.session.commit()

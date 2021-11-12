@@ -20,29 +20,28 @@
                <div class="postmessage">
                    Required qualifications: {{ post.qualifications }}
                </div>
-               
+            </td>
         </tr>
-        <tr>
-        </td>
+        <tr height="10%">
         <br>
-        <td colspan="3" style = "text-align:center" valign="bottom">  
-            <br>
+        <td height="10%" colspan="3" style = "text-align:center">  
             {% for ResearchField in post.get_fields().all(): %}
             <span class="tagitem">
                 {{ ResearchField.name }}
             </span>
             {% endfor %}
+        </td>
         </tr>
 
         <tr>
             <td colspan="3" style = "text-align:center" valign="bottom">  
                 <br>
-            <span class="postuser">
-                Posted by:<span class="username"> {{ post.writer.username }}</span>
-                - Email:</span><span class="useremail"> {{ post.writer.email }}</span>
-            </span>
+                <span class="postuser">
+                    Posted by:<span class="username"> {{ post.writer.username }}</span>
+                    - Email:</span><span class="useremail"> {{ post.writer.email }}</span>
+                </span>
 
-              </td>
+            </td>
         </tr>
 
         <tr>

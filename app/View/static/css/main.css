@@ -219,13 +219,14 @@ a:hover {
 }
 
 .tagitem {
-    padding:1px 1px 1px 1px;
+    padding: 0px 1px;
     color: #555555;
     background-color: #eeeeee;
     border: #000000 1px solid;
-    margin: 2px;
+    margin: 10px 5px;
     width: fit-content;
     text-align: center;
-    object-position: auto;
+    object-position: 10px;
+    position: block;
+    line-height: 170%;
 }
-

@@ -1,57 +1,46 @@
-<table class = "posttable" style = "width:100%" valign="top">
-        <tr> 
-            <td colspan="3"><div class="posttitle"> {{post.title}} </div>
-            </td>
-        </tr>
-        <tr>
-            <td width="80%" >
-                <div class="postmessage">
-                    Description: {{ post.description }}
-               </div>
-
-               <div class="postline">
-                   Position begins {{ post.startdate }} and ends on {{ post.enddate }}
-               </div>
-
-               <div class="postline">
-                   The time commitment is expected to be about {{ post.timecommitment }} hours per week.
-               </div>
-
-               <div class="postmessage">
-                   Required qualifications: {{ post.qualifications }}
-               </div>
-               
-        </tr>
-        <tr>
+<table class="posttable" style="width: 100%" valign="top">
+    <tr>
+        <td colspan="3">
+            <div class="posttitle">{{post.title}}</div>
         </td>
-        <br>
-        <td colspan="3" style = "text-align:center" valign="bottom">  
-            <br>
+    </tr>
+    <tr>
+        <td width="80%">
+            <div class="postmessage">Description: {{ post.description }}</div>
+            <div class="postline">
+                Position begins on {{ moment(post.startdate).format('L') }} and
+                ends on {{ moment(post.enddate).format('L') }}
+            </div>
+            <div class="postline">
+                The time commitment is expected to be about {{
+                post.timecommitment }} hours per week.
+            </div>
+            <div class="postmessage">
+                Required qualifications: {{ post.qualifications }}
+            </div>
+        </td>
+    </tr>
+    <tr height="10%">
+        <td height="10%" colspan="3" style="text-align: center">
             {% for ResearchField in post.get_fields().all(): %}
-            <span class="tagitem">
-                {{ ResearchField.name }}
-            </span>
+            <span class="tagitem"> {{ ResearchField.name }} </span>
             {% endfor %}
-        </tr>
-
-        <tr>
-            <td colspan="3" style = "text-align:center" valign="bottom">  
-                <br>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" style="text-align: center" valign="bottom">
             <span class="postuser">
-                Posted by:<span class="username"> {{ post.writer.username }}</span>
-                - Email:</span><span class="useremail"> {{ post.writer.email }}</span>
+                Posted by:<span class="username">
+                    {{ post.writer.username }}</span>
+                - Email:<span class="useremail"> {{ post.writer.email }}</span>
             </span>
-
-              </td>
-        </tr>
-
-        <tr>
-            <td colspan="3" style = "text-align:center" valign="bottom">  
-            <div class="posttimestamp"> 
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" style="text-align: center" valign="bottom">
+            <div class="posttimestamp">
                 Posted at: {{ moment(post.timestamp).format('LLL') }}
-             </div>
-             </td>
-        </tr>
-        
-        </tr>
-    </table>
+            </div>
+        </td>
+    </tr>
+</table>

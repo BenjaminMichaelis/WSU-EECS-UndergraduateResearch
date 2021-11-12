@@ -14,43 +14,38 @@
                </div>
 
                <div class="postline">
-                   The time commitment is expected to be about {{ post.timecommitment }} hours per week.
+                    The time commitment is expected to be about {{ post.timecommitment }} hours per week.
                </div>
 
                <div class="postmessage">
-                   Required qualifications: {{ post.qualifications }}
+                    Required qualifications: {{ post.qualifications }}
                </div>
             </td>
         </tr>
         <tr height="10%">
-        <br>
-        <td height="10%" colspan="3" style = "text-align:center">  
-            {% for ResearchField in post.get_fields().all(): %}
-            <span class="tagitem">
-                {{ ResearchField.name }}
-            </span>
-            {% endfor %}
-        </td>
-        </tr>
-
-        <tr>
-            <td colspan="3" style = "text-align:center" valign="bottom">  
-                <br>
-                <span class="postuser">
-                    Posted by:<span class="username"> {{ post.writer.username }}</span>
-                    - Email:</span><span class="useremail"> {{ post.writer.email }}</span>
+            <td height="10%" colspan="3" style = "text-align:center">
+                {% for ResearchField in post.get_fields().all(): %}
+                <span class="tagitem">
+                    {{ ResearchField.name }}
                 </span>
-
+                {% endfor %}
             </td>
         </tr>
 
         <tr>
             <td colspan="3" style = "text-align:center" valign="bottom">  
-            <div class="posttimestamp"> 
-                Posted at: {{ moment(post.timestamp).format('LLL') }}
-             </div>
+                <span class="postuser">
+                    Posted by:<span class="username"> {{ post.writer.username }}</span>
+                    - Email:</span><span class="useremail"> {{ post.writer.email }}</span>
+                </span>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="3" style = "text-align:center" valign="bottom">  
+                <div class="posttimestamp">
+                    Posted at: {{ moment(post.timestamp).format('LLL') }}
+                </div>
              </td>
         </tr>
-        
-        </tr>
-    </table>
+</table>

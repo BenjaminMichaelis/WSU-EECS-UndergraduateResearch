@@ -10,7 +10,7 @@
                </div>
 
                <div class="postline">
-                   Position begins {{ post.startdate }} and ends on {{ post.enddate }}
+                    Position begins on {{ moment(post.startdate).format('L') }} and ends on {{ moment(post.enddate).format('L') }}
                </div>
 
                <div class="postline">

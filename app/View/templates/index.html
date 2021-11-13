@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-
 <div class="postlist">
     {% for post in posts %}
     {% if ((post.writer.id == current_user.id) or (current_user.faculty == False)) %}

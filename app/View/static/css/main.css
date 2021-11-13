@@ -193,6 +193,7 @@ a:hover {
         width: 32%;
         margin: auto;
         padding: 5px;
+        border: #000000 1px solid;
     }
 }
 
@@ -204,6 +205,7 @@ a:hover {
         width: 48%;
         margin: auto;
         padding: 5px;
+        border: #000000 1px solid;
     }
 }
 
@@ -215,18 +217,23 @@ a:hover {
         width: 99%;
         margin: auto;
         padding: 5px;
+        border: #000000 1px solid;
     }
 }
 
+.taglist {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .tagitem {
-    padding: 0px 1px;
-    color: #555555;
-    background-color: #eeeeee;
+    padding: 2px 3px;
+    color: #555555; 
+    background-color: #eeeeee; 
     border: #000000 1px solid;
-    margin: 10px 5px;
-    width: fit-content;
+    margin: 2px 5px;
+    width: auto;
     text-align: center;
     object-position: 10px;
-    position: block;
-    line-height: 170%;
 }

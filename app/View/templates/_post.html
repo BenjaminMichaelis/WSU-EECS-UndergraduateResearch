@@ -21,10 +21,10 @@
         </td>
     </tr>
     <tr height="10%">
-        <td height="10%" colspan="3" style="text-align: center">
-            {% for ResearchField in post.get_fields().all(): %}
-            <span class="tagitem"> {{ ResearchField.name }} </span>
-            {% endfor %}
+        <td height="10%" colspan="3" class="taglist">
+                {% for ResearchField in post.get_fields().all(): %}
+                <span class="tagitem"> {{ ResearchField.name }} </span>
+                {% endfor %}
         </td>
     </tr>
     <tr>

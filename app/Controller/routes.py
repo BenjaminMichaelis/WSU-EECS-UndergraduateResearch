@@ -5,7 +5,7 @@ from flask import render_template, flash, redirect, url_for, request
 from config import Config
 
 from app import db
-from app.Controller.forms import PostForm, EditForm
+from app.Controller.forms import PostForm, EditForm, EditPasswordForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.Controller.auth_forms import LoginForm, RegistrationForm
 from app.Model.models import Post
@@ -58,7 +58,6 @@ def edit_profile():
         if eform.validate_on_submit():
             current_user.firstname = eform.firstname.data
             current_user.lastname = eform.lastname.data
-            current_user.set_password(eform.password.data)
             current_user.phone = eform.phone.data 
             current_user.major = eform.major.data 
             current_user.gpa = eform.gpa.data 
@@ -87,3 +86,17 @@ def edit_profile():
     else:
         pass 
     return render_template('edit_profile.html', title='Edit Profile', form = eform)
+
+@bp_routes.route('/edit_password/', methods=['GET', 'POST'])
+@login_required
+def edit_password():
+    pform = EditPasswordForm()
+    if request.method == 'POST':
+        if pform.validate_on_submit():
+            current_user.set_password(pform.password.data)
+            db.session.add(current_user)
+            db.session.commit()
+            flash("Your password has been changed")
+            return redirect(url_for('routes.display_profile'))
+        pass
+    return render_template('edit_password.html', title='Edit Password', form = pform)

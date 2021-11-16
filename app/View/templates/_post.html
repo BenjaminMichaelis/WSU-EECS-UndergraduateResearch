@@ -22,7 +22,7 @@
     </tr>
     <tr height="10%">
         <td height="10%" colspan="3" class="taglist">
-                {% for ResearchField in post.get_fields().all(): %}
+                {% for ResearchField in post.get_ResearchFields().all(): %}
                 <span class="tagitem"> {{ ResearchField.name }} </span>
                 {% endfor %}
         </td>
@@ -42,5 +42,11 @@
                 Posted at: {{ moment(post.timestamp).format('LLL') }}
             </div>
         </td>
+        
+    </tr>
+    <tr>
+        {% if current_user.faculty == False and post.get_Applications().filter_by(userid=current_user.id).first() == None %}
+            <td><a href="{{ url_for('routes.apply', post_id = post.id) }}" class = "button">Apply</a></td>
+        {% endif %}
     </tr>
 </table>

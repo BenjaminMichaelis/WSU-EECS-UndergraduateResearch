@@ -15,6 +15,11 @@ postFields = db.Table('postFields',
     db.Column('field_id', db.Integer, db.ForeignKey('field.id'))
 )
 
+applications = db.Table('applications',
+    db.Column('post_id', db.Integer, db.ForeignKey('post.id')),
+    db.Column('application_id', db.Integer, db.ForeignKey('application.id'))
+)
+
 userLanguages = db.Table('userLanguages',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
     db.Column('language_id', db.Integer, db.ForeignKey('language.id'))
@@ -28,16 +33,30 @@ class Post(db.Model):
     enddate = db.Column(db.Date)
     timecommitment = db.Column(db.Integer)
     qualifications = db.Column(db.String(1500))
-    Fields = db.relationship(
+    ResearchFields = db.relationship(
         'Field',  secondary = postFields,
         primaryjoin=(postFields.c.post_id == id), backref=db.backref('postFields', lazy='dynamic')
+        , lazy='dynamic')
+    Applications = db.relationship(
+        'Application',  secondary = applications,
+        primaryjoin=(applications.c.post_id == id), backref=db.backref('applications', lazy='dynamic')
         , lazy='dynamic')
     user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     db.relationship('User', backref="Userid", lazy='dynamic')
 
-    def get_fields(self):
-        return self.Fields
+    def get_Applications(self):
+        return self.Applications
+
+    def get_ResearchFields(self):
+        return self.ResearchFields
+
+class Application(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    userid = db.Column(db.Integer)
+    description = db.Column(db.String(1500))
+    referenceName = db.Column(db.String(50))
+    referenceEmail = db.Column(db.String(50))
 
 class Field(db.Model):
     id = db.Column(db.Integer, primary_key=True)

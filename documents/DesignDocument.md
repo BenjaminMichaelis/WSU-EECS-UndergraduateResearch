@@ -155,7 +155,17 @@ will involve calling a method on the model.
    The authorization forms subsystem handles the creation of forms
    for logging in and registering users. It interacts with the model
    subsystem by looking up users, for the purpose of making sure the
-   input email and username is unique.
+   input email and username is unique. The types of forms we currently
+   have are a LoginForm and a RegistrationForm
+
+   a) LoginForm:
+      This form is used to log in a user. It has the columns of a username,
+      password, remember_me, and submit
+
+   b) RegistrationForm: 
+      This form is used to register a new user to the database. It has the
+      columns of a username, firstname, lastname, email, phone, wsuid,
+      password, password2, and a submit.
 
 2. Authorization Routes \
    The authorization routes subsystem handles the logic for logging in
@@ -203,7 +213,26 @@ will involve calling a method on the model.
 
 4. Forms \
    The forms subsystem handles the creation of forms for posting forms,
-   and eventually forms for other features. It has no dependencies.
+   and eventually forms for other features. It has no dependencies. The types of forms 
+   we have currently are PostForm, ApplyForm, EditForm, EditPasswordForm
+
+   a) PostForm: 
+      This form is used for creating a new post to the database. This form has
+      the columns of a title, description, startdate, enddate, timecommitment, 
+      ResearchFields, qualifications, submit, and apply
+   
+   b) ApplyForm: 
+      This form is used for applying to posts. This form has the columns of a 
+      description, refName, refEmail, and submit
+   
+   c) EditForm:
+      This form is used for editting your profile information. This form has the 
+      columns of a firstname, lastname, major, gpa, graduationDate, phone, 
+      experience, electives, languages, fields, and submit
+
+   d) EditPasswordForm:
+      This form is used for editting your profiles password. This form has the 
+      columns of a password, a password2, and a submit.
 
 5. Routes \
    The routes subsystem handles the logic for adding a new post to
@@ -227,7 +256,7 @@ will involve calling a method on the model.
       information from the form to that new post. Then it will add it to the
       database and commit those changes. Lastly, the route will flash them 
       a confirmation message that their post was created successfully and 
-      redirect them to the main index page. 
+      redirect them to the main index page.
 
    c) Display Profile Route:
       This route is used to let the logged in user see their account 
@@ -260,6 +289,27 @@ will involve calling a method on the model.
       a message to notify them that their password is changed successfully, 
       and then redirects them back to their account screen.
 
+   f) Apply Route:
+      This route is used for a user to apply to one of the active posts. 
+      There must be a logged in user for this route to be accessible, and will 
+      redirect the user back to the index page if they aren't logged in. If 
+      there is a logged in user, then the route will create an instance of the
+      apply form and render it to the screen for the user to fill out. Once the
+      form has been filled out successfully and submitted, a new application
+      is created and populated with the information from the form. This new 
+      application is then appended to the Applications column on the 
+      specific post specified by the URL. After that, the changes are committed
+      and the user is flashed a message notifying them that they have successfully
+      applied to the position. Lastly, the user is redirected to the index page. 
+   
+   g) My Posts Route:
+      This route is used for a user to be able to view all of the posts they 
+      have created. There must be a logged in faculty user for this route to be 
+      accessible, and will redirect the user back to the index page if they aren't 
+      logged in or aren't faculty. If there is a logged in faculty user, the route 
+      will query all of the posts that faculty user has created and render them
+      to their screen. 
+
 **Note:** Some of your subsystems will interact with the Web clients (browsers). Make sure to include a detailed description of the  Web API interface (i.e. the set of routes) your application will implement. For each route specify its “methods”, “URL path”, and “a description of the operation it implements”.  
 You can use the following table template to list your route specifications.
 
@@ -289,12 +339,13 @@ From the faculty permissions, you have a button to make a new post which sends y
 
 Then from the student page you can view all available posts. This is for Use-Case View open research positions.
 
-![Student Post View](images/StudentViewPosts.jpg)
+![Student Post View](images/StudentViewPosts.png)
 
-To view profile information a user can click on view profile button and then the edit profile button to add additional information. This is for use-cases view and edit user profile/add profile information.
+To view profile information a user can click on view profile button and then the edit profile button to add additional information. Additionally, they can edit their password in a seperate form. This is for use-cases view and edit user profile/add profile information.
 
 ![Display User Profile](images/DisplayUserProfile.jpg)
-![Edit User Profile](images/EditUserProfile.jpg)
+![Edit User Profile](images/EditUserProfile.png)
+![Edit Password](images/EditPassword.png)
 
 To log-in, the user when logged out is automatically redirected to the login screen. This is for use-case log in as a user.
 

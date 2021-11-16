@@ -1,4 +1,4 @@
-# Design Document - Iteration 1
+# Design Document - Iteration 2
 
 ## WSU EECS Undergraduate Research Website
 

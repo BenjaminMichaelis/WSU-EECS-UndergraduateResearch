@@ -20,21 +20,21 @@ Prepared by:
 
 ## Table of Contents
 
-- [Design Document - Iteration 2](#design-document---iteration-2)
-  - [WSU EECS Undergraduate Research Website](#wsu-eecs-undergraduate-research-website)
-  - [Table of Contents](#table-of-contents)
-  - [Document Revision History](#document-revision-history)
-  - [1. Introduction](#1-introduction)
-  - [2. Architectural and Component-level Design](#2-architectural-and-component-level-design)
-    - [2.1 System Structure](#21-system-structure)
-    - [2.2 Subsystem Design](#22-subsystem-design)
-      - [2.2.1 Model](#221-model)
-        - [List of tables](#list-of-tables)
-      - [2.2.2 Controller](#222-controller)
-        - [Controller Subsystems](#controller-subsystems)
-      - [2.2.3 View and User Interface Design](#223-view-and-user-interface-design)
-  - [3. Progress Report](#3-progress-report)
-  - [4. References](#4-references)
+* [Design Document - Iteration 2](#design-document---iteration-2)
+  * [WSU EECS Undergraduate Research Website](#wsu-eecs-undergraduate-research-website)
+  * [Table of Contents](#table-of-contents)
+  * [Document Revision History](#document-revision-history)
+  * [1. Introduction](#1-introduction)
+  * [2. Architectural and Component-level Design](#2-architectural-and-component-level-design)
+    * [2.1 System Structure](#21-system-structure)
+    * [2.2 Subsystem Design](#22-subsystem-design)
+      * [2.2.1 Model](#221-model)
+        * [List of tables](#list-of-tables)
+      * [2.2.2 Controller](#222-controller)
+        * [Controller Subsystems](#controller-subsystems)
+      * [2.2.3 View and User Interface Design](#223-view-and-user-interface-design)
+  * [3. Progress Report](#3-progress-report)
+  * [4. References](#4-references)
 
 ## Document Revision History
 
@@ -178,7 +178,7 @@ will involve calling a method on the model.
       This form is used to log in a user. It has the columns of a username,
       password, remember_me, and submit
 
-   b) RegistrationForm: 
+   b) RegistrationForm:
       This form is used to register a new user to the database. It has the
       columns of a username, firstname, lastname, email, phone, wsuid,
       password, password2, and a submit.
@@ -191,34 +191,34 @@ will involve calling a method on the model.
    component by getting the user input from LoginForm and registration form
 
    a) Register Route:
-      This route is used for registering new users to the database. It first 
+      This route is used for registering new users to the database. It first
       checks if there is already a logged in user and returns that user to
       the main index page if the current_user exists. If there is no logged
       in user yet, the route understands the user would like to create an
-      account and creates an instance of the registration form and renders 
+      account and creates an instance of the registration form and renders
       it on the page for them to fill out. Once filled out successfully, the
       route will then add the new user to the database and commit it. Lastly,
       it will flash them the message that their account was created successfully
       and redirect them to the login page.
 
    b) Login Route:
-      This route is used for loging in users to the webapp. It first checks if 
-      there is already a logged in user and returns that user to the main index 
-      page if the current_user exists. If there is no logged in user yet, the 
-      route will create in an instance of the login form and render it on the 
-      screen for the user to fill out. Once filled out successfully, the route 
+      This route is used for loging in users to the webapp. It first checks if
+      there is already a logged in user and returns that user to the main index
+      page if the current_user exists. If there is no logged in user yet, the
+      route will create in an instance of the login form and render it on the
+      screen for the user to fill out. Once filled out successfully, the route
       will then set the current_user equal to the user credentials filled out
       in the login form to complete the log in process. Lastly, a message will
       be flashed on the screen to notify that they are logged in and will also
-      remind them to complete their account by filling in the rest of the 
-      non-mandatory information in the account page. Once it flashes the message, 
-      the route redirects the user to the main index page and they are 
+      remind them to complete their account by filling in the rest of the
+      non-mandatory information in the account page. Once it flashes the message,
+      the route redirects the user to the main index page and they are
       successfully logged in.
 
    c) Logout Route:
       This route is used for logging out users from the webapp. If this route is
       being used, then it simply runs the logout_user() function built into flask
-      which essentially unlinks the current_user from the credentials that was 
+      which essentially unlinks the current_user from the credentials that was
       previously used to log in. And once that is complete, there will be no
       logged in user on the webapp so the route will then redirect the user to
       the login screen.
@@ -229,25 +229,25 @@ will involve calling a method on the model.
 
 4. Forms \
    The forms subsystem handles the creation of forms for posting forms,
-   and eventually forms for other features. It has no dependencies. The types of forms 
+   and eventually forms for other features. It has no dependencies. The types of forms
    we have currently are PostForm, ApplyForm, EditForm, EditPasswordForm
 
-   a) PostForm: 
+   a) PostForm:
       This form is used for creating a new post to the database. This form has
-      the columns of a title, description, startdate, enddate, timecommitment, 
+      the columns of a title, description, startdate, enddate, timecommitment,
       ResearchFields, qualifications, submit, and apply
-   
-   b) ApplyForm: 
-      This form is used for applying to posts. This form has the columns of a 
+
+   b) ApplyForm:
+      This form is used for applying to posts. This form has the columns of a
       description, refName, refEmail, and submit
-   
+
    c) EditForm:
-      This form is used for editting your profile information. This form has the 
-      columns of a firstname, lastname, major, gpa, graduationDate, phone, 
+      This form is used for editting your profile information. This form has the
+      columns of a firstname, lastname, major, gpa, graduationDate, phone,
       experience, electives, languages, fields, and submit
 
    d) EditPasswordForm:
-      This form is used for editting your profiles password. This form has the 
+      This form is used for editting your profiles password. This form has the
       columns of a password, a password2, and a submit.
 
 5. Routes \
@@ -258,73 +258,73 @@ will involve calling a method on the model.
    a) Index Route:
       This route is used for rendering the main home screen of the webapp. The
       main home screen is used for seeing all of the posts created in clean
-      way. So, this route will query all of the posts in the database, and 
-      present them to the user on the screen in an organized manner. 
+      way. So, this route will query all of the posts in the database, and
+      present them to the user on the screen in an organized manner.
 
    b) Post Route:
       This route is used for creating new posts to the webapp. This route can
-      only be accessed by faculty users so it first checks to make sure 
-      whoever is accessing this route is a faculty, and if they aren't, the 
+      only be accessed by faculty users so it first checks to make sure
+      whoever is accessing this route is a faculty, and if they aren't, the
       route will redirect them back to the main index page. However, if the
-      user is faculty, then the route will create an instance of the post 
+      user is faculty, then the route will create an instance of the post
       form and render it to the screen for them. Once they fill out the post
-      form correctly, the route will create a new post and add all of the 
+      form correctly, the route will create a new post and add all of the
       information from the form to that new post. Then it will add it to the
-      database and commit those changes. Lastly, the route will flash them 
-      a confirmation message that their post was created successfully and 
+      database and commit those changes. Lastly, the route will flash them
+      a confirmation message that their post was created successfully and
       redirect them to the main index page.
 
    c) Display Profile Route:
-      This route is used to let the logged in user see their account 
+      This route is used to let the logged in user see their account
       information. What this route does it simply just render the HTML for
       displaying their profile to the screen, while passing in a user variable
-      to left the HTML know which user's information to render. This route 
-      will not be accessible unless their is a logged in user. 
+      to left the HTML know which user's information to render. This route
+      will not be accessible unless their is a logged in user.
 
    d) Edit Profile Route:
       This route is used for processing the logic to edit someone's account
-      information. A user must be logged in to access this route, and if one 
+      information. A user must be logged in to access this route, and if one
       is, then it will create an instance of the edit form and render it to
-      the screen. Also, the route will populate the form with their prior 
+      the screen. Also, the route will populate the form with their prior
       account information to make it easier on them if they only want to edit
       a couple things. Once the user fills out the form correctly, everything
       in the form will be updated to that users information and the route will
-      then commit those changes to the database to finalize the saving process. 
+      then commit those changes to the database to finalize the saving process.
       Lastly, the route will flash them a message to let the user know their
       changes have been saved and redirect them back to their account page.
 
    e) Edit Password Route:
-      This route is used to change a user's password if they wish to. There 
-      must be a logged in user for this route to be accessible, and will 
-      redirect the user back to the index page if they aren't logged in. 
+      This route is used to change a user's password if they wish to. There
+      must be a logged in user for this route to be accessible, and will
+      redirect the user back to the index page if they aren't logged in.
       If there is a logged in user, then the route understands they wish
-      to change their password, so it creates an instance of the change 
+      to change their password, so it creates an instance of the change
       password form and renders it to the screen. Once the form has been
       filled out successfully and submitted, the current_user's password is
       changed and committed to the database. The route then flashes the user
-      a message to notify them that their password is changed successfully, 
+      a message to notify them that their password is changed successfully,
       and then redirects them back to their account screen.
 
    f) Apply Route:
-      This route is used for a user to apply to one of the active posts. 
-      There must be a logged in user for this route to be accessible, and will 
-      redirect the user back to the index page if they aren't logged in. If 
+      This route is used for a user to apply to one of the active posts.
+      There must be a logged in user for this route to be accessible, and will
+      redirect the user back to the index page if they aren't logged in. If
       there is a logged in user, then the route will create an instance of the
       apply form and render it to the screen for the user to fill out. Once the
       form has been filled out successfully and submitted, a new application
-      is created and populated with the information from the form. This new 
-      application is then appended to the Applications column on the 
+      is created and populated with the information from the form. This new
+      application is then appended to the Applications column on the
       specific post specified by the URL. After that, the changes are committed
       and the user is flashed a message notifying them that they have successfully
-      applied to the position. Lastly, the user is redirected to the index page. 
-   
+      applied to the position. Lastly, the user is redirected to the index page.
+
    g) My Posts Route:
-      This route is used for a user to be able to view all of the posts they 
-      have created. There must be a logged in faculty user for this route to be 
-      accessible, and will redirect the user back to the index page if they aren't 
-      logged in or aren't faculty. If there is a logged in faculty user, the route 
+      This route is used for a user to be able to view all of the posts they
+      have created. There must be a logged in faculty user for this route to be
+      accessible, and will redirect the user back to the index page if they aren't
+      logged in or aren't faculty. If there is a logged in faculty user, the route
       will query all of the posts that faculty user has created and render them
-      to their screen. 
+      to their screen.
 
 **Note:** Some of your subsystems will interact with the Web clients (browsers). Make sure to include a detailed description of the  Web API interface (i.e. the set of routes) your application will implement. For each route specify its “methods”, “URL path”, and “a description of the operation it implements”.  
 You can use the following table template to list your route specifications.

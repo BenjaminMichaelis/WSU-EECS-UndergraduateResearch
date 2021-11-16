@@ -10,8 +10,8 @@
             {{ form.hidden_tag() }}
             <div>
                 
-                {{ form.username.label }}<br>
-                {{ form.username(class="formbody") }}<br>
+                {{ form.preferredname.label }}<br>
+                {{ form.preferredname(class="formbody") }}<br>
                 {% for error in form.description.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 <br>

@@ -53,7 +53,7 @@
                 <div class="postmessage">
                     Students who have applied: 
                     {% for Application in post.get_Applications().all() %}
-                        <br>* {{ Application.username }}
+                        <br>* {{ Application.preferredname }}
                     {% endfor %}
                 </div>
             </td>

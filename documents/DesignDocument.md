@@ -345,7 +345,7 @@ To view profile information a user can click on view profile button and then the
 
 ![Display User Profile](images/DisplayUserProfile.jpg)
 ![Edit User Profile](images/EditUserProfile.png)
-![Edit Password](images/EditPassword.png)
+![Edit Password](images/EditPassword.PNG)
 
 To log-in, the user when logged out is automatically redirected to the login screen. This is for use-case log in as a user.
 

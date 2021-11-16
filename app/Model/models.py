@@ -45,16 +45,18 @@ class Post(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     db.relationship('User', backref="Userid", lazy='dynamic')
 
+    def get_Applications(self):
+        return self.Applications
+
     def get_ResearchFields(self):
         return self.ResearchFields
 
 class Application(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     userid = db.Column(db.Integer)
-    postid = db.Column(db.Integer)
     description = db.Column(db.String(1500))
-    name = db.Column(db.String(50))
-    email = db.Column(db.String(50))
+    referenceName = db.Column(db.String(50))
+    referenceEmail = db.Column(db.String(50))
 
 class Field(db.Model):
     id = db.Column(db.Integer, primary_key=True)

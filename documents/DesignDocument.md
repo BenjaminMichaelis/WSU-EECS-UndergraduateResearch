@@ -164,6 +164,39 @@ will involve calling a method on the model.
    credentials when logging in a user. It also interacts with the controller
    component by getting the user input from LoginForm and registration form
 
+   a) Register Route:
+      This route is used for registering new users to the database. It first 
+      checks if there is already a logged in user and returns that user to
+      the main index page if the current_user exists. If there is no logged
+      in user yet, the route understands the user would like to create an
+      account and creates an instance of the registration form and renders 
+      it on the page for them to fill out. Once filled out successfully, the
+      route will then add the new user to the database and commit it. Lastly,
+      it will flash them the message that their account was created successfully
+      and redirect them to the login page.
+
+   b) Login Route:
+      This route is used for loging in users to the webapp. It first checks if 
+      there is already a logged in user and returns that user to the main index 
+      page if the current_user exists. If there is no logged in user yet, the 
+      route will create in an instance of the login form and render it on the 
+      screen for the user to fill out. Once filled out successfully, the route 
+      will then set the current_user equal to the user credentials filled out
+      in the login form to complete the log in process. Lastly, a message will
+      be flashed on the screen to notify that they are logged in and will also
+      remind them to complete their account by filling in the rest of the 
+      non-mandatory information in the account page. Once it flashes the message, 
+      the route redirects the user to the main index page and they are 
+      successfully logged in.
+
+   c) Logout Route:
+      This route is used for logging out users from the webapp. If this route is
+      being used, then it simply runs the logout_user() function built into flask
+      which essentially unlinks the current_user from the credentials that was 
+      previously used to log in. And once that is complete, there will be no
+      logged in user on the webapp so the route will then redirect the user to
+      the login screen.
+
 3. Errors \
    Handles either 404 or 500 errors. Interacts with the models subsystem
    by rolling back the database when a 500 error is thrown.
@@ -176,6 +209,56 @@ will involve calling a method on the model.
    The routes subsystem handles the logic for adding a new post to
    the app. It interacts with the Model component by using the post
    model to create new posts.
+
+   a) Index Route:
+      This route is used for rendering the main home screen of the webapp. The
+      main home screen is used for seeing all of the posts created in clean
+      way. So, this route will query all of the posts in the database, and 
+      present them to the user on the screen in an organized manner. 
+
+   b) Post Route:
+      This route is used for creating new posts to the webapp. This route can
+      only be accessed by faculty users so it first checks to make sure 
+      whoever is accessing this route is a faculty, and if they aren't, the 
+      route will redirect them back to the main index page. However, if the
+      user is faculty, then the route will create an instance of the post 
+      form and render it to the screen for them. Once they fill out the post
+      form correctly, the route will create a new post and add all of the 
+      information from the form to that new post. Then it will add it to the
+      database and commit those changes. Lastly, the route will flash them 
+      a confirmation message that their post was created successfully and 
+      redirect them to the main index page. 
+
+   c) Display Profile Route:
+      This route is used to let the logged in user see their account 
+      information. What this route does it simply just render the HTML for
+      displaying their profile to the screen, while passing in a user variable
+      to left the HTML know which user's information to render. This route 
+      will not be accessible unless their is a logged in user. 
+
+   d) Edit Profile Route:
+      This route is used for processing the logic to edit someone's account
+      information. A user must be logged in to access this route, and if one 
+      is, then it will create an instance of the edit form and render it to
+      the screen. Also, the route will populate the form with their prior 
+      account information to make it easier on them if they only want to edit
+      a couple things. Once the user fills out the form correctly, everything
+      in the form will be updated to that users information and the route will
+      then commit those changes to the database to finalize the saving process. 
+      Lastly, the route will flash them a message to let the user know their
+      changes have been saved and redirect them back to their account page.
+
+   e) Edit Password Route:
+      This route is used to change a user's password if they wish to. There 
+      must be a logged in user for this route to be accessible, and will 
+      redirect the user back to the index page if they aren't logged in. 
+      If there is a logged in user, then the route understands they wish
+      to change their password, so it creates an instance of the change 
+      password form and renders it to the screen. Once the form has been
+      filled out successfully and submitted, the current_user's password is
+      changed and committed to the database. The route then flashes the user
+      a message to notify them that their password is changed successfully, 
+      and then redirects them back to their account screen.
 
 **Note:** Some of your subsystems will interact with the Web clients (browsers). Make sure to include a detailed description of the  Web API interface (i.e. the set of routes) your application will implement. For each route specify its “methods”, “URL path”, and “a description of the operation it implements”.  
 You can use the following table template to list your route specifications.

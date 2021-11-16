@@ -10,6 +10,13 @@
             {{ form.hidden_tag() }}
             <div>
                 
+                {{ form.username.label }}<br>
+                {{ form.username(class="formbody") }}<br>
+                {% for error in form.description.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                <br>
+                {% endfor %}
+
                 {{ form.description.label }}<br>
                 {{ form.description(class="formbody") }}<br>
                 {% for error in form.description.errors %}

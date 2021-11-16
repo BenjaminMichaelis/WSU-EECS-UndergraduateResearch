@@ -36,6 +36,7 @@ class PostForm(FlaskForm):
 
 
 class ApplyForm(FlaskForm):
+    username = StringField('Your preferred name: ', validators=[DataRequired()])
     description = TextAreaField('Describe why you are interested and what you hope to gain from this project', [Length(min=1, max=1500)])
     refName = StringField('Name of faculty member reference', validators=[DataRequired()])
     refEmail = StringField('Reference Email', validators=[DataRequired(), Email()])

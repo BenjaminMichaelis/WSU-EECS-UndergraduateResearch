@@ -120,7 +120,10 @@ def apply(post_id):
 @bp_routes.route('/myposts/', methods=['POST','GET'])
 @login_required
 def myposts():
+    if current_user.faculty is True:
     # only faculty can view their own posts
-    posts = Post.query.filter_by(id=current_user.id)
-    return render_template('index.html', title="My Research Postings", posts=posts.all())
+        posts = Post.query.filter_by(user_id=current_user.id)
+        return render_template('index.html', title="My Research Postings", posts=posts.all())
+    flash('Error: No faculty permissions discovered')
+    return redirect(url_for('routes.index'))
 

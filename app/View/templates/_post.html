@@ -54,6 +54,11 @@
                     Students who have applied: 
                     {% for Application in post.get_Applications().all() %}
                         <br>* {{ Application.preferredname }}
+                        {% if User.query.filter_by(id=Application.userid).first().approved == True %}
+                            <span class="status">(Approved for interview elsewhere)</span>
+                        {% elif User.query.filter_by(id=Application.userid).first().hired == True %}
+                            <span class="status">(Hired elsewhere)</span>
+                        {% endif %}
                     {% endfor %}
                 </div>
             </td>

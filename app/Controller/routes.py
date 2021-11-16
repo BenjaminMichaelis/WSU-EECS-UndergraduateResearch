@@ -8,7 +8,7 @@ from app import db
 from app.Controller.forms import PostForm, EditForm, EditPasswordForm, ApplyForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.Controller.auth_forms import LoginForm, RegistrationForm
-from app.Model.models import Post, Application
+from app.Model.models import Post, Application, User
 bp_routes = Blueprint('routes', __name__)
 bp_routes.template_folder = Config.TEMPLATE_FOLDER #'..\\View\\templates'
 
@@ -18,7 +18,7 @@ bp_routes.template_folder = Config.TEMPLATE_FOLDER #'..\\View\\templates'
 @login_required
 def index():
     posts = Post.query.order_by(Post.timestamp.desc())
-    return render_template('index.html', title="WSU Undergraduate Research Portal", posts=posts.all())
+    return render_template('index.html', title="WSU Undergraduate Research Portal", posts=posts.all(), User = User)
 
 @bp_routes.route('/post/', methods=['POST','GET'])
 @login_required
@@ -123,7 +123,7 @@ def myposts():
     if current_user.faculty is True:
     # only faculty can view their own posts
         posts = Post.query.filter_by(user_id=current_user.id)
-        return render_template('index.html', title="My Research Postings", posts=posts.all())
+        return render_template('index.html', title="My Research Postings", posts=posts.all(), User = User)
     flash('Error: No faculty permissions discovered')
     return redirect(url_for('routes.index'))
 

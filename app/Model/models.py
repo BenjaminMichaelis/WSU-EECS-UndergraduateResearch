@@ -54,7 +54,7 @@ class Post(db.Model):
 class Application(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     userid = db.Column(db.Integer)
-    username = db.Column(db.String(100))
+    preferredname = db.Column(db.String(100))
     description = db.Column(db.String(1500))
     referenceName = db.Column(db.String(50))
     referenceEmail = db.Column(db.String(50))

@@ -108,7 +108,7 @@ def apply(post_id):
     post = Post.query.filter_by(id=post_id).first()
     if request.method == 'POST':
         if aform.validate_on_submit():
-            newApp = Application(userid=current_user.id, username = aform.username.data, description=aform.description.data, referenceName=aform.refName.data, referenceEmail=aform.refEmail.data)
+            newApp = Application(userid=current_user.id, preferredname = aform.preferredname.data, description=aform.description.data, referenceName=aform.refName.data, referenceEmail=aform.refEmail.data)
             post.Applications.append(newApp)
             db.session.add(newApp)
             db.session.commit()

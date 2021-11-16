@@ -48,5 +48,15 @@
         {% if current_user.faculty == False and post.get_Applications().filter_by(userid=current_user.id).first() == None %}
             <td><a href="{{ url_for('routes.apply', post_id = post.id) }}" class = "button">Apply</a></td>
         {% endif %}
+        {% if current_user.faculty == True %}
+            <td width="80%">
+                <div class="postmessage">
+                    Students who have applied: 
+                    {% for Application in post.get_Applications().all() %}
+                        {{ Application.username }} 
+                    {% endfor %}
+                </div>
+            </td>
+        {% endif %}
     </tr>
 </table>

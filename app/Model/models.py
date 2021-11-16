@@ -54,9 +54,11 @@ class Post(db.Model):
 class Application(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     userid = db.Column(db.Integer)
+    username = db.Column(db.String(100))
     description = db.Column(db.String(1500))
     referenceName = db.Column(db.String(50))
     referenceEmail = db.Column(db.String(50))
+
 
 class Field(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -91,7 +93,7 @@ class User(UserMixin, db.Model):
         lazy='dynamic')
 
     posts = db.relationship('Post', backref='writer', lazy='dynamic')
-    faculty = db.Column(db.Boolean, default=False)
+    faculty = db.Column(db.Boolean, default=True)
     admin = db.Column(db.Boolean, default=False)
 
     def __repr__(self):

@@ -40,6 +40,8 @@ def login():
             flash('Invalid username or password')
             return redirect(url_for('auth.login'))
         login_user(user, remember = lform.remember_me.data)
+        if (user.major is None) or (user.gpa is None) or (user.graduationDate is None) or (user.experience is None) or (user.electiveCourses is None) or (user.get_LanguagesCount() == 0) or (user.get_FieldsCount() == 0):
+            flash("Don't forget to complete your user profile in the profile tab.")
         return redirect(url_for('routes.index'))
     return render_template('login.html', title="Sign In", form = lform)
 

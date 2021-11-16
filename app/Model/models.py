@@ -93,6 +93,18 @@ class User(UserMixin, db.Model):
     def get_fields(self):
         return self.Fields
 
+    def get_LanguagesCount(self):
+        count = 0
+        for language in self.get_Languages():
+            count += 1
+        return count
+
+    def get_FieldsCount(self):
+        count = 0
+        for language in self.get_Languages():
+            count += 1
+        return count
+
 class Language(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20))

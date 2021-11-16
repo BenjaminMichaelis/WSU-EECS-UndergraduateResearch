@@ -59,7 +59,6 @@ class Application(db.Model):
     referenceName = db.Column(db.String(50))
     referenceEmail = db.Column(db.String(50))
 
-
 class Field(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20))

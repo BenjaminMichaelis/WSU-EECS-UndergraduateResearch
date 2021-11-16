@@ -5,6 +5,13 @@ body {
     text-align: left;
 }
 
+.status {
+    color: red;
+    font-family: Tahoma;
+    font-size: 12px;
+    margin: 3px;
+}
+
 .form-container {
     min-height: 1200px;
 }

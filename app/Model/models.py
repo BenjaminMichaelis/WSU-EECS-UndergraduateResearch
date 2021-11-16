@@ -80,6 +80,8 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     experience = db.Column(db.Text)
     electiveCourses = db.Column(db.Text)
+    approved = db.Column(db.Boolean, default=False)
+    hired = db.Column(db.Boolean, default=False)
 
     Fields = db.relationship(
         'Field',  secondary = userFields,

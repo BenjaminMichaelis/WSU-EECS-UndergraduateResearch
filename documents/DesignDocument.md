@@ -341,11 +341,15 @@ Then from the student page you can view all available posts. This is for Use-Cas
 
 ![Student Post View](images/StudentViewPosts.png)
 
+Once the student finds a post they would like to apply to, they can click the apply button and fill out the form to apply
+
+![Student Application](images/StudentApply.PNG)
+
 To view profile information a user can click on view profile button and then the edit profile button to add additional information. Additionally, they can edit their password in a seperate form. This is for use-cases view and edit user profile/add profile information.
 
 ![Display User Profile](images/DisplayUserProfile.jpg)
 ![Edit User Profile](images/EditUserProfile.png)
-![Edit Password](images/EditPassword.png)
+![Edit Password](images/EditPassword.PNG)
 
 To log-in, the user when logged out is automatically redirected to the login screen. This is for use-case log in as a user.
 

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>Position Application</h1>
+
+    {% if form %}
+
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <div>
+                
+                {{ form.description.label }}<br>
+                {{ form.description(class="formbody") }}<br>
+                {% for error in form.description.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                <br>
+                {% endfor %}
+
+                {{ form.refName.label }}<br>
+                {{ form.refName(class="forminput") }}<br>
+                {% for error in form.refName.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                <br>
+                {% endfor %}
+
+                {{ form.refEmail.label }}<br>
+                {{ form.refEmail(class="forminput") }}<br>
+                {% for error in form.refEmail.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                <br>
+                {% endfor %}
+
+                {{ form.submit(class="button") }}
+                
+            </div>
+
+            
+        </form>
+    {% endif %}
+
+
+  {% endblock %}

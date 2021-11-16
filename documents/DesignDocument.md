@@ -20,21 +20,21 @@ Prepared by:
 
 ## Table of Contents
 
-- [Design Document - Iteration 2](#design-document---iteration-2)
-  - [WSU EECS Undergraduate Research Website](#wsu-eecs-undergraduate-research-website)
-  - [Table of Contents](#table-of-contents)
-  - [Document Revision History](#document-revision-history)
-  - [1. Introduction](#1-introduction)
-  - [2. Architectural and Component-level Design](#2-architectural-and-component-level-design)
-    - [2.1 System Structure](#21-system-structure)
-    - [2.2 Subsystem Design](#22-subsystem-design)
-      - [2.2.1 Model](#221-model)
-        - [List of tables](#list-of-tables)
-      - [2.2.2 Controller](#222-controller)
-        - [Controller Subsystems](#controller-subsystems)
-      - [2.2.3 View and User Interface Design](#223-view-and-user-interface-design)
-  - [3. Progress Report](#3-progress-report)
-  - [4. References](#4-references)
+* [Design Document - Iteration 2](#design-document---iteration-2)
+  * [WSU EECS Undergraduate Research Website](#wsu-eecs-undergraduate-research-website)
+  * [Table of Contents](#table-of-contents)
+  * [Document Revision History](#document-revision-history)
+  * [1. Introduction](#1-introduction)
+  * [2. Architectural and Component-level Design](#2-architectural-and-component-level-design)
+    * [2.1 System Structure](#21-system-structure)
+    * [2.2 Subsystem Design](#22-subsystem-design)
+      * [2.2.1 Model](#221-model)
+        * [List of tables](#list-of-tables)
+      * [2.2.2 Controller](#222-controller)
+        * [Controller Subsystems](#controller-subsystems)
+      * [2.2.3 View and User Interface Design](#223-view-and-user-interface-design)
+  * [3. Progress Report](#3-progress-report)
+  * [4. References](#4-references)
 
 ## Document Revision History
 

@@ -59,11 +59,10 @@ class Application(db.Model):
     referenceName = db.Column(db.String(50))
     referenceEmail = db.Column(db.String(50))
 
-
 class Field(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20))
-    
+
     def __repr__(self):
         return '<Field name: {} Field id: {}'.format(self.name,self.id)
 
@@ -93,7 +92,7 @@ class User(UserMixin, db.Model):
         lazy='dynamic')
 
     posts = db.relationship('Post', backref='writer', lazy='dynamic')
-    faculty = db.Column(db.Boolean, default=True)
+    faculty = db.Column(db.Boolean, default=False)
     admin = db.Column(db.Boolean, default=False)
 
     def __repr__(self):

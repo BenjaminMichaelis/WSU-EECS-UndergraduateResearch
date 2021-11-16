@@ -5,10 +5,10 @@ from flask import render_template, flash, redirect, url_for, request
 from config import Config
 
 from app import db
-from app.Controller.forms import PostForm, EditForm, EditPasswordForm
+from app.Controller.forms import PostForm, EditForm, EditPasswordForm, ApplyForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.Controller.auth_forms import LoginForm, RegistrationForm
-from app.Model.models import Post
+from app.Model.models import Post, Application
 bp_routes = Blueprint('routes', __name__)
 bp_routes.template_folder = Config.TEMPLATE_FOLDER #'..\\View\\templates'
 
@@ -33,7 +33,7 @@ def post():
                 startdate = sform.startdate.data, enddate = sform.enddate.data, timecommitment = sform.timecommitment.data,
                 qualifications = sform.qualifications.data)
                 for ResearchFields in sform.ResearchFields.data:
-                    newPost.Fields.append(ResearchFields)
+                    newPost.ResearchFields.append(ResearchFields)
                 print(newPost)
                 db.session.add(newPost)
                 db.session.commit()
@@ -100,3 +100,19 @@ def edit_password():
             return redirect(url_for('routes.display_profile'))
         pass
     return render_template('edit_password.html', title='Edit Password', form = pform)
+
+@bp_routes.route('/apply/<post_id>', methods=['GET', 'POST'])
+@login_required
+def apply(post_id):
+    aform = ApplyForm()
+    post = Post.query.filter_by(id=post_id).first()
+    if request.method == 'POST':
+        if aform.validate_on_submit():
+            newApp = Application(userid=current_user.id, description=aform.description.data, referenceName=aform.refName.data, referenceEmail=aform.refEmail.data)
+            post.Applications.append(newApp)
+            db.session.add(newApp)
+            db.session.commit()
+            flash("You have succesfully applied to this position")
+            return redirect(url_for('routes.index'))
+        pass
+    return render_template('apply.html', title='Apply', form = aform)

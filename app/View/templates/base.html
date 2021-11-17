@@ -1,46 +1,80 @@
 <html>
     <head>
-       {% if title %}
-          <title>{{ title }}</title>
-       {% else %}
-          <title> Welcome to the WSU VCEA Undergraduate Research Portal! </title>
-       {% endif %}
-       <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-       {{ moment.include_moment() }}
-
+        {% if title %}
+        <title>{{ title }}</title>
+        {% else %}
+        <title>Welcome to the WSU VCEA Undergraduate Research Portal!</title>
+        {% endif %}
+        <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/main.css') }}"
+        />
+        {{ moment.include_moment() }}
     </head>
 
     <body>
-        <div class ="nav-container">
-        <table>
-            <tr>
-                <td><a href="{{ url_for('routes.index') }}" class = "button">Home</a></td>
+        <ul>
+            <li>
+                <img
+                src="{{ url_for('static', filename = '../static/img/WSU-square-logo.png' )}}"
+                width="40px"
+                />
+            </li>
+            <li>
+                <a href="{{ url_for('routes.index') }}" class="button"
+                >Home</a
+                >
+            </li>
+            <li>
                 {%if current_user.faculty == True %}
-                <td><a href="{{ url_for('routes.post') }}" class = "button">Post New Position</a></td>
-                <td><a href="{{ url_for('routes.myposts') }}" class = "button">View My Positions</a></td>
-                {% endif %}
+                        <a href="{{ url_for('routes.post') }}" class="button"
+                            >Post New Position</a
+                            >
+                            <a href="{{ url_for('routes.myposts') }}" class="button"
+                            >View My Positions</a
+                        >
+                    {% endif %} 
+                </li>
                 {%if current_user.is_anonymous %}
-                <td><a href="{{ url_for('auth.login') }}" class = "button">Login</a></td>
-                {% else %}
-                <td><a href="{{ url_for('routes.display_profile') }}" class = "button">Profile</a></td> 
-                <td><a href="{{ url_for('auth.logout') }}" class = "button">Logout</a></td>
-                <td> User: <span class="useritem">{{ current_user.username }} </span></td>
-                <td> <span class="pagetitle"> Welcome to the WSU VCEA Undergraduate Research Portal! </span></td>
-                {% endif %}
-            </tr>
-        </table>
+                    <li>
+                        <a href="{{ url_for('auth.login') }}" class="button"
+                        >Login</a
+                        >
+                    </li>
+                    {% else %}
+                    <li>
+                        <a
+                            href="{{ url_for('routes.display_profile') }}"
+                            class="button"
+                            >Profile</a
+                        >
+                    </li>
+                    <li>
+                        <a href="{{ url_for('auth.logout') }}" class="button"
+                            >Logout</a
+                        >
+                    </li>
+                    <li>
+                        <span class="pagetitle">
+                            Welcome to the WSU VCEA Undergraduate Research
+                            Portal!
+                        </span>
+                    </li>
+                    <li style="float: right;">
+                        User:
+                        <span class="useritem"
+                            >{{ current_user.username }}
+                        </span>
+                    </li>
+                    {% endif %}
         </div>
         <div>
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                <div class="flash-container"> {{ message }}</div>
-                {% endfor %}
-            {% endif %}
-            {% endwith %}
-
-            {% block content %} {% endblock %}
+            {% with messages = get_flashed_messages() %} {% if messages %} {%
+            for message in messages %}
+            <div class="flash-container">{{ message }}</div>
+            {% endfor %} {% endif %} {% endwith %} {% block content %} {%
+            endblock %}
         </div>
-
+        </ul>
     </body>
 </html>

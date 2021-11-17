@@ -20,15 +20,35 @@ body {
     min-height: 1300px;
 }
 
+ul {
+    list-style-type: none;
+    margin: 1px;
+    padding: 1px;
+    overflow: hidden;
+    background-color: #f6f6f6;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: black;
+    text-align: left;
+    padding: 15px 17px;
+    text-decoration: none;
+}
+
 .nav-container {
     background:#f6f6f6;
     font-family: Tahoma;
     font-size: 12px;
-    height: 32px;
+    height: auto;
     text-transform: uppercase;
     text-decoration: aquamarine;
 }
-a:hover {
+li a:hover {
     color:#2387D9;
 }
 

@@ -38,7 +38,7 @@ Prepared by:
 | ------    | ------ | --------- | --------- |
 | Revision 1 | 2021-10-05 | Initial draft | 1.0 |
 | Revision 2 | 2021-10-13 | Completed Document | 2.0 |
-|           |        |           |           |
+| Revision 3 | 2021-11-15 | Revised document based on feedback | 3.0 |
 
 --------
 
@@ -70,8 +70,11 @@ This section specifies the software product's requirements. Specify all of the s
 
 ### 2.1 Customer, Users, and Stakeholders
 
-The customer for this site is Washington State University VCEA and the main users would be undergraduate students or faculty members at Washington State University.
-
+The customer for this application will be Washington State University Voiland College of Engineering and Architecture.
+The main users would be undergraduate students or faculty members at Washington State University.
+The stakeholders for this application are  undergraduate students looking for research and faculty who have research position to fill,
+both of which are direct users. Stakeholders who are not direct users but beneficiaries include everyone in the college of
+engineering, because having a research portal for students will indirectly benefit everyone.
 --------
 
 ### 2.2 Use Cases
@@ -85,8 +88,8 @@ Users will be the main people (faculty and students) that we are focusing our ca
 | Rationale         | To be able to use the site you need to be able to create an account to use the site |
 | Triggers          | You go to the registration page/click the button |
 | Preconditions     | User has a valid @wsu.edu email that is not already tied to an account. |
-| Actions           | User fills out form with required information, system validates email requirements, creates new account record, and user is sent to login page if successful |
-| Alternative paths | Error is posted and user needs to use a different email that is actually valid (not used and is @wsu.edu) |
+| Actions           | User fills out form with required information and submits. The system validates email requirements, creates new account record, and sends user to login page if successful |
+| Alternative paths | If the user fails to fill out the fields correctly, the system displays a message indicating which fields are empty or incorrect. |
 | Postconditions    | Account for user is created. |
 | Acceptance tests  | User account is stored by system with correct information to what user supplied. |
 | Iteration         | Iteration - 1 |
@@ -98,8 +101,8 @@ Users will be the main people (faculty and students) that we are focusing our ca
 | Rationale         | Users should be able to log back in and have their information and applications/positions saved |
 | Triggers          | Go to the homepage and click on returning user |
 | Preconditions     | User has a valid @wsu.edu email with a valid password |
-| Actions           | User fills out form with email and password, and user is sent to login page if successful |
-| Alternative paths | Error is posted and user needs to enter valid credentials |
+| Actions           | User fills out form with email and password. Software sends user to their user homepage. |
+| Alternative paths | If the user submits invalid credentials, the software notifies that username or password is invalid |
 | Postconditions    | User is logged into their account and taken to their homepage |
 | Acceptance tests  | User account is now logged in. |
 | Iteration         | Iteration - 1 |
@@ -111,8 +114,8 @@ Users will be the main people (faculty and students) that we are focusing our ca
 | Rationale         | Faculty members should be able to create Research positions for students to apply to |
 | Triggers          | Go to the homepage and click on create research position |
 | Preconditions     | User is a logged in faculty member |
-| Actions           | User fills out form with details about the research position, and it is posted when successful |
-| Alternative paths | Error is posted and user needs to fill out required fields |
+| Actions           | User fills out form with details about the research position and submits. Software adds it to available research positions |
+| Alternative paths | If the user fails to fill out the fields correctly, the system displays a message indicating which fields are empty or incorrect. |
 | Postconditions    | Research position is posted to the site |
 | Acceptance tests  | Research position appears in database of currently open positions |
 | Iteration         | Iteration - 1 |
@@ -124,24 +127,11 @@ Users will be the main people (faculty and students) that we are focusing our ca
 | Rationale         | Students should be able to apply to the research positions that faculty have posted |
 | Triggers          | Click the apply button on a research posting |
 | Preconditions     | User is a logged in as a student |
-| Actions           | User fills out form with a statement about the research topic and the name + email of a faculty member as a reference |
-| Alternative paths | Error is posted and user needs to fill out required fields |
+| Actions           | User fills out form with a statement about the research topic. Software adds student to list of students applied to this position. |
+| Alternative paths | If the user fails to fill out the required fields, the system displays a message indicating which fields need input.  |
 | Postconditions    | Research position is displayed as applied to student, and as pending to faculty who posted it |
 | Acceptance tests  | Student application is created and stored |
-| Iteration         | Iteration - 1 |
-
-| Cancel Research Position Application |  |
-| ------------------|---|
-| Name              | Cancel Research Position Application |
-| Users             | Any student who has already applied to a research position and is logged in |
-| Rationale         | Students should be able to cancel any applications if they change their mind |
-| Triggers          | Click the x button on a research posting |
-| Preconditions     | User is a logged in as a student and has already applied to the specific position, which has not been reviewed yet by the faculty member who posted it|
-| Actions           | User clicks on cancel application then hits confirm in the subsequent dialog box |
-| Alternative paths | Error is posted and user needs to try and cancel again |
-| Postconditions    | Research position is no longer displayed as applied to as student, and the application is no longer visible to the faculty member |
-| Acceptance tests  | Research position application for this student no longer exists |
-| Iteration         | Iteration - 1 |
+| Iteration         | Iteration - 2 |
 
 | View Open Research Positions |  |
 | ------------------|---|
@@ -150,11 +140,11 @@ Users will be the main people (faculty and students) that we are focusing our ca
 | Rationale         | Students should be able view open applications and choose a research topic that interests them |
 | Triggers          | User logs in as student, then is taken to home page where research position are displayed |
 | Preconditions     | User is a logged in as a student |
-| Actions           | User logs in as student, then is taken to home page where research positions are displayed |
-| Alternative paths | Error is posted and user needs to try and log in again |
+| Actions           | User logs in as student. Software takes them to home page where research positions are displayed |
+| Alternative paths | If the user logs out, then the software signs them out and takes the user back to the login page |
 | Postconditions    | Research position are displayed on student homepage |
 | Acceptance tests  | Research position UI elements are visible on student homepage |
-| Iteration         | Iteration - 1 |
+| Iteration         | Iteration - 2 |
 
 | Expand Research Position |  |
 | ------------------|---|
@@ -163,37 +153,11 @@ Users will be the main people (faculty and students) that we are focusing our ca
 | Rationale         | Students should be able to click on a research position and get more information about it, like a brief description, start/end date, required time commitment, research fields, required qualifications, and faculty name + contact information |
 | Triggers          | User clicks on a research position on the home page |
 | Preconditions     | User is a logged in as a student |
-| Actions           | User clicks on a position, then is taken to a page where all relevant information about the posting is displayed |
-| Alternative paths | Error is posted and user needs to try again |
+| Actions           | User clicks on a position. Software takes them to a page where more information about the posting is displayed |
+| Alternative paths | If there was an error retrieving information, the software displays the error to the user |
 | Postconditions    | Research position details are displayed |
 | Acceptance tests  | Research position detail UI elements are visible on student homepage |
-| Iteration         | Iteration - 1 |
-
-| Apply to Research Position  |  |
-| ------------------|---|
-| Name              | Apply to Research Position |
-| Users             | Any student who is currently logged in |
-| Rationale | Students should be able to apply to the research positions that faculty have posted |
-| Triggers | Click the apply button on a research posting |
-| Preconditions | User is a logged in as a student |
-| Actions | User fills out form with a statement about the research topic and the name + email of a faculty member as a reference |
-| Alternative paths | Error is posted and user needs to fill out required fields |
-| Postconditions | Research position is displayed as applied to student, and as pending to faculty who posted it |
-| Acceptance tests  | Student application is created and stored |
-| Iteration | Iteration - 1 |
-
-| Create application framework code |  |
-| ------------------|---|
-| Name              | Create framework code for application |
-| Users             | N/A |
-| Rationale         | Get a base working framework started to build off of |
-| Triggers          | N/A |
-| Preconditions     | N/A |
-| Actions           | Refer to smile application to create framework to start our application with |
-| Alternative paths | N/A |
-| Postconditions    | N/A |
-| Acceptance tests  | Flask application successfully builds and runs and database is built properly |
-| Iteration         | Iteration-1 |
+| Iteration         | Iteration - 2 |
 
 | Faculty view list of students who applied for their positions |  |
 | ------------------|---|
@@ -202,11 +166,25 @@ Users will be the main people (faculty and students) that we are focusing our ca
 | Rationale         | Faculty should be able to see the list of students who applied for their position |
 | Triggers          | Faculty selects applicants button on their course page |
 | Preconditions     | User is logged in as faculty |
-| Actions           | System validates that it is a faculty member logged in, then system lists students that applied for a course when button is clicked. |
-| Alternative paths | Error if the user is not faculty or does not own the class trying to be accessed |
+| Actions           | System validates that it is a faculty member logged in, then system lists students that applied for a course when user clicks button. |
+| Alternative paths | If the user is not faculty or did not post that position, then the system displays an error and takes the user back to their homepage |
 | Postconditions    | List of students is displayed |
 | Acceptance tests  | Accurate list of students is show to faculty member |
-| Iteration         | Iteration-1 |
+| Iteration         | Iteration-2 |
+
+| Users can change details about their profiles |  |
+| ------------------|---|
+| Name              | Edit user profile/add profile information |
+| ------------------|---|
+| Users             | All users |
+| Rationale         | Users should be able to edit their user information and add information to their profile |
+| Triggers          | Edit profile button is clicked or new user registers |
+| Preconditions     | User is logged in |
+| Actions           | When user clicks on edit profile button, the software takes user to edit profile page. |
+| Alternative paths | If the the user leaves required fields blank or invalid, system will display message indicating required fields. |
+| Postconditions    | Information is saved to database |
+| Acceptance tests  | Information is accurately filled out in form and saved to user information in database |
+| Iteration         | Iteration-2 |
 
 | Faculty can see information about students that applied for position |  |
 | ------------------|---|
@@ -215,11 +193,11 @@ Users will be the main people (faculty and students) that we are focusing our ca
 | Rationale         | Faculty should be able to view the qualifications of students. |
 | Triggers          | From the list of students who applied, click on a student |
 | Preconditions     | User is a faculty member |
-| Actions           | When student from list is clicked, information about them is displayed including whether or not they have other offers, their GPS, courses taken, interests, program language experience, and prior research experience |
-| Alternative paths | Error if user is not faculty |
+| Actions           | When student from list is clicked, the software displays information about them such as whether or not they have other offers, their GPS, courses taken, interests, program language experience, and prior research experience |
+| Alternative paths | If the user is not faculty, then the software takes them back to their homepage. |
 | Postconditions    | Information about the student is displayed |
 | Acceptance tests  | Accurate information from database is displayed |
-| Iteration         | Iteration-2 |
+| Iteration         | Iteration-3 |
 
 | Faculty can update student application status |  |
 | ------------------|---|
@@ -228,23 +206,38 @@ Users will be the main people (faculty and students) that we are focusing our ca
 | Rationale         | Faculty should be able to approve students for interview, hire them or update as not hired. |
 | Triggers          | Select dropdown menu on student |
 | Preconditions     | User is a faculty member |
-| Actions           | When student from list is clicked, you can choose whether to approve them for interview, hire them, or deny them |
-| Alternative paths | Error if user is not faculty |
+| Actions           | When user clicks on a student from list is clicked, software will prompt 3 options: approve them for interview, hire them, or deny them |
+| Alternative paths | If the user does not select any fields, the software displays a message indicating required fields |
 | Postconditions    | System is updated with new student status |
 | Acceptance tests  | Information is accurately updated in database |
-| Iteration         | Iteration-2 |
+| Iteration         | Iteration-3 |
 
-| Name              | Edit user profile/add profile information |
+| Cancel Research Position Application |  |
 | ------------------|---|
-| Users             | All users |
-| Rationale         | Users should be able to edit their user information and add information to their profile |
-| Triggers          | Edit profile button is clicked or new user registers |
-| Preconditions     | User is logged in |
-| Actions           | When edit profile button is clicked or user registers, user is asked to fill out profile. |
-| Alternative paths | Error if form is filled out incorrectly |
+| Name              | Cancel Research Position Application |
+| Users             | Any student who has already applied to a research position and is logged in |
+| Rationale         | Students should be able to cancel any applications if they change their mind |
+| Triggers          | Click the x button on a research posting |
+| Preconditions     | User is a logged in as a student and has already applied to the specific position, which has not been reviewed yet by the faculty member who posted it|
+| Actions           | User clicks on cancel application then hits confirm in the subsequent dialog box. Software removes student from list of students applied to this position |
+| Alternative paths | If the user clicks on cancel or clicks away, the software brings user back to the research postings page. |
+| Postconditions    | Research position is no longer displayed as applied to as student, and the application is no longer visible to the faculty member |
+| Acceptance tests  | Research position application for this student no longer exists |
+| Iteration         | Iteration - 3 |
+
+| Admin can modify and add to tags |  |
+| ------------------|---|
+| Name              | Add, remove and modify tags |
+| ------------------|---|
+| Users             | Admin only |
+| Rationale         | Admin should be able to change the available tags for research positions |
+| Triggers          | Admin clicks on edit tags |
+| Preconditions     | User is logged in as admin |
+| Actions           | When user clicks on edit tags, the software shows existing tags available for edit, as well as an option to add new tags. |
+| Alternative paths | If the user clicks on cancel, the system takes them back to their homepage. |
 | Postconditions    | Information is saved to database |
-| Acceptance tests  | Information is accurately filled out in form and saved to user information in database |
-| Iteration         | Iteration-1 |
+| Acceptance tests  | Information is accurately filled out in form and saved to tag information in database |
+| Iteration         | Iteration-3 |
 
 **Include a swim-lane diagram that illustrates the message flow and activities for following scenario:**
 “A student applies to a research position; initially its status will appear as “Pending”. The faculty who created that position reviews the application and updates the application status to either “Approved for Interview”, or “Hired”, or “Not hired”. The updated status of the application is displayed on the student view.

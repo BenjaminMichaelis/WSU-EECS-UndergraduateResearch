@@ -17,6 +17,7 @@
                 <td><a href="{{ url_for('routes.index') }}" class = "button">Home</a></td>
                 {%if current_user.faculty == True %}
                 <td><a href="{{ url_for('routes.post') }}" class = "button">Post New Position</a></td>
+                <td><a href="{{ url_for('routes.myposts') }}" class = "button">View My Positions</a></td>
                 {% endif %}
                 {%if current_user.is_anonymous %}
                 <td><a href="{{ url_for('auth.login') }}" class = "button">Login</a></td>

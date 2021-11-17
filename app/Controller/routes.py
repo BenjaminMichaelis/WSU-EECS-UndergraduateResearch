@@ -5,10 +5,10 @@ from flask import render_template, flash, redirect, url_for, request
 from config import Config
 
 from app import db
-from app.Controller.forms import PostForm, EditForm
+from app.Controller.forms import PostForm, EditForm, EditPasswordForm, ApplyForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.Controller.auth_forms import LoginForm, RegistrationForm
-from app.Model.models import Post
+from app.Model.models import Post, Application, User
 bp_routes = Blueprint('routes', __name__)
 bp_routes.template_folder = Config.TEMPLATE_FOLDER #'..\\View\\templates'
 
@@ -18,7 +18,7 @@ bp_routes.template_folder = Config.TEMPLATE_FOLDER #'..\\View\\templates'
 @login_required
 def index():
     posts = Post.query.order_by(Post.timestamp.desc())
-    return render_template('index.html', title="WSU Undergraduate Research Portal", posts=posts.all())
+    return render_template('index.html', title="WSU Undergraduate Research Portal", posts=posts.all(), User = User)
 
 @bp_routes.route('/post/', methods=['POST','GET'])
 @login_required
@@ -33,7 +33,7 @@ def post():
                 startdate = sform.startdate.data, enddate = sform.enddate.data, timecommitment = sform.timecommitment.data,
                 qualifications = sform.qualifications.data)
                 for ResearchFields in sform.ResearchFields.data:
-                    newPost.Fields.append(ResearchFields)
+                    newPost.ResearchFields.append(ResearchFields)
                 print(newPost)
                 db.session.add(newPost)
                 db.session.commit()
@@ -58,7 +58,6 @@ def edit_profile():
         if eform.validate_on_submit():
             current_user.firstname = eform.firstname.data
             current_user.lastname = eform.lastname.data
-            current_user.set_password(eform.password.data)
             current_user.phone = eform.phone.data 
             current_user.major = eform.major.data 
             current_user.gpa = eform.gpa.data 
@@ -87,3 +86,44 @@ def edit_profile():
     else:
         pass 
     return render_template('edit_profile.html', title='Edit Profile', form = eform)
+
+@bp_routes.route('/edit_password/', methods=['GET', 'POST'])
+@login_required
+def edit_password():
+    pform = EditPasswordForm()
+    if request.method == 'POST':
+        if pform.validate_on_submit():
+            current_user.set_password(pform.password.data)
+            db.session.add(current_user)
+            db.session.commit()
+            flash("Your password has been changed")
+            return redirect(url_for('routes.display_profile'))
+        pass
+    return render_template('edit_password.html', title='Edit Password', form = pform)
+
+@bp_routes.route('/apply/<post_id>', methods=['GET', 'POST'])
+@login_required
+def apply(post_id):
+    aform = ApplyForm()
+    post = Post.query.filter_by(id=post_id).first()
+    if request.method == 'POST':
+        if aform.validate_on_submit():
+            newApp = Application(userid=current_user.id, preferredname = aform.preferredname.data, description=aform.description.data, referenceName=aform.refName.data, referenceEmail=aform.refEmail.data)
+            post.Applications.append(newApp)
+            db.session.add(newApp)
+            db.session.commit()
+            flash("You have succesfully applied to this position")
+            return redirect(url_for('routes.index'))
+        pass
+    return render_template('apply.html', title='Apply', form = aform)
+
+@bp_routes.route('/myposts/', methods=['POST','GET'])
+@login_required
+def myposts():
+    if current_user.faculty is True:
+    # only faculty can view their own posts
+        posts = Post.query.filter_by(user_id=current_user.id)
+        return render_template('index.html', title="My Research Postings", posts=posts.all(), User = User)
+    flash('Error: No faculty permissions discovered')
+    return redirect(url_for('routes.index'))
+

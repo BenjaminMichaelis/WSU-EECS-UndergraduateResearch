@@ -1,57 +1,67 @@
-<table class = "posttable" style = "width:100%" valign="top">
-        <tr> 
-            <td colspan="3"><div class="posttitle"> {{post.title}} </div>
-            </td>
-        </tr>
-        <tr>
-            <td width="80%" >
-                <div class="postmessage">
-                    Description: {{ post.description }}
-               </div>
-
-               <div class="postline">
-                   Position begins {{ post.startdate }} and ends on {{ post.enddate }}
-               </div>
-
-               <div class="postline">
-                   The time commitment is expected to be about {{ post.timecommitment }} hours per week.
-               </div>
-
-               <div class="postmessage">
-                   Required qualifications: {{ post.qualifications }}
-               </div>
-               
-        </tr>
-        <tr>
+<table class="posttable" style="width: 100%" valign="top">
+    <tr>
+        <td colspan="3">
+            <div class="posttitle">{{post.title}}</div>
         </td>
-        <br>
-        <td colspan="3" style = "text-align:center" valign="bottom">  
-            <br>
-            {% for ResearchField in post.get_fields().all(): %}
-            <span class="tagitem">
-                {{ ResearchField.name }}
-            </span>
-            {% endfor %}
-        </tr>
-
-        <tr>
-            <td colspan="3" style = "text-align:center" valign="bottom">  
-                <br>
+    </tr>
+    <tr>
+        <td width="80%">
+            <div class="postmessage">Description: {{ post.description }}</div>
+            <div class="postline">
+                Position begins on {{ moment(post.startdate).format('L') }} and
+                ends on {{ moment(post.enddate).format('L') }}
+            </div>
+            <div class="postline">
+                The time commitment is expected to be about {{
+                post.timecommitment }} hours per week.
+            </div>
+            <div class="postmessage">
+                Required qualifications: {{ post.qualifications }}
+            </div>
+        </td>
+    </tr>
+    <tr height="10%">
+        <td height="10%" colspan="3" class="taglist">
+                {% for ResearchField in post.get_ResearchFields().all(): %}
+                <span class="tagitem"> {{ ResearchField.name }} </span>
+                {% endfor %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" style="text-align: center" valign="bottom">
             <span class="postuser">
-                Posted by:<span class="username"> {{ post.writer.username }}</span>
-                - Email:</span><span class="useremail"> {{ post.writer.email }}</span>
+                Posted by:<span class="name">
+                    {{ post.writer.firstname }} {{ post.writer.lastname }}</span>
+                - Email:<span class="useremail"> {{ post.writer.email }}</span>
             </span>
-
-              </td>
-        </tr>
-
-        <tr>
-            <td colspan="3" style = "text-align:center" valign="bottom">  
-            <div class="posttimestamp"> 
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" style="text-align: center" valign="bottom">
+            <div class="posttimestamp">
                 Posted at: {{ moment(post.timestamp).format('LLL') }}
-             </div>
-             </td>
-        </tr>
+            </div>
+        </td>
         
-        </tr>
-    </table>
+    </tr>
+    <tr>
+        {% if current_user.faculty == False and post.get_Applications().filter_by(userid=current_user.id).first() == None %}
+            <td><a href="{{ url_for('routes.apply', post_id = post.id) }}" class = "button">Apply</a></td>
+        {% endif %}
+        {% if current_user.faculty == True %}
+            <td width="80%">
+                <div class="postmessage">
+                    Students who have applied: 
+                    {% for Application in post.get_Applications().all() %}
+                        <br>* {{ Application.preferredname }}
+                        {% if User.query.filter_by(id=Application.userid).first().approved == True %}
+                            <span class="status">(Approved for interview elsewhere)</span>
+                        {% elif User.query.filter_by(id=Application.userid).first().hired == True %}
+                            <span class="status">(Hired elsewhere)</span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </td>
+        {% endif %}
+    </tr>
+</table>

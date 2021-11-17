@@ -24,6 +24,7 @@
     {% endfor %}
 
     {% if user == current_user %}
-    <p><a href="{{ url_for('routes.edit_profile')}}""> Edit your profile</a></p>
+    <p><a href="{{ url_for('routes.edit_profile')}}"> Edit your profile information</a></p>
+    <p><a href="{{ url_for('routes.edit_password')}}"> Change your password</a></p>
     {% endif %}
 {% endblock %}

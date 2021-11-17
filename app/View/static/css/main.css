@@ -5,6 +5,13 @@ body {
     text-align: left;
 }
 
+.status {
+    color: red;
+    font-family: Tahoma;
+    font-size: 12px;
+    margin: 3px;
+}
+
 .form-container {
     min-height: 1200px;
 }
@@ -85,6 +92,14 @@ a:hover {
     margin: 1px 1px 1px 1px;
     color: blue;
     text-transform: uppercase;
+}
+
+.name{
+    text-align: left;
+    padding: 2px;
+    margin: 1px 1px 1px 1px;
+    color: blue;
+    text-transform: capitalize;
 }
 
 .useremail{
@@ -183,6 +198,7 @@ a:hover {
 .postlist {
     display: flex;
     flex-wrap: wrap;
+    margin: 10px 0px;
 }
 
 @media screen and (min-width: 1200px){
@@ -191,8 +207,10 @@ a:hover {
         vertical-align: middle;
         background-color: white;
         width: 32%;
-        margin: auto;
+        margin: auto auto;
+        margin-top: 10px;
         padding: 5px;
+        border: #000000 1px solid;
     }
 }
 
@@ -204,6 +222,7 @@ a:hover {
         width: 48%;
         margin: auto;
         padding: 5px;
+        border: #000000 1px solid;
     }
 }
 
@@ -215,17 +234,23 @@ a:hover {
         width: 99%;
         margin: auto;
         padding: 5px;
+        border: #000000 1px solid;
     }
 }
 
-.tagitem {
-    padding:1px 1px 1px 1px;
-    color: #555555;
-    background-color: #eeeeee;
-    border: #000000 1px solid;
-    margin: 2px;
-    width: fit-content;
-    text-align: center;
-    object-position: auto;
+.taglist {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
+.tagitem {
+    padding: 2px 3px;
+    color: #555555; 
+    background-color: #eeeeee; 
+    border: #000000 1px solid;
+    margin: 2px 5px;
+    width: auto;
+    text-align: center;
+    object-position: 10px;
+}

@@ -26,6 +26,8 @@ ul {
     padding: 1px;
     overflow: hidden;
     background-color: #f6f6f6;
+    top: 0;
+    width: auto;
 }
 
 li {
@@ -35,7 +37,8 @@ li {
 li a {
     display: block;
     color: black;
-    text-align: left;
+    text-align: center;
+    text-transform: uppercase;
     padding: 15px 17px;
     text-decoration: none;
 }
@@ -130,6 +133,7 @@ li a:hover {
 }
 
 .pagetitle{
+    display: block;
     text-align: right;
     padding: 3px;
     margin: 4px 3px 4px 3px;

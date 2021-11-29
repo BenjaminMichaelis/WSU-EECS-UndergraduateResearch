@@ -80,3 +80,7 @@ class EditPasswordForm(FlaskForm):
     password = PasswordField('New Password', validators=[EqualTo('password2', message='Passwords must match')])
     password2 = PasswordField('Repeat Password')
     submit = SubmitField('Save')
+
+class AddFieldForm(FlaskForm):
+    newtagname = StringField('New Tag')
+    submit = SubmitField('Save')

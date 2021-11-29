@@ -66,6 +66,9 @@
                         <span align-items="center" class="useritem">
                             {{ current_user.username }}
                         </span>
+                {%if current_user.admin == True %}
+                <td><a href="{{ url_for('routes.add_field') }}" class = "button">Add Tags</a></td>
+                {% endif %}
             {% endif %}
         </ul>
             <div>

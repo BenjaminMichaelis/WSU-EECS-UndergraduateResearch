@@ -5,10 +5,10 @@ from flask import render_template, flash, redirect, url_for, request
 from config import Config
 
 from app import db
-from app.Controller.forms import PostForm, EditForm, EditPasswordForm, ApplyForm
+from app.Controller.forms import PostForm, EditForm, EditPasswordForm, ApplyForm, AddFieldForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.Controller.auth_forms import LoginForm, RegistrationForm
-from app.Model.models import Post, Application, User
+from app.Model.models import Post, Application, User, Field
 bp_routes = Blueprint('routes', __name__)
 bp_routes.template_folder = Config.TEMPLATE_FOLDER #'..\\View\\templates'
 
@@ -127,3 +127,16 @@ def myposts():
     flash('Error: No faculty permissions discovered')
     return redirect(url_for('routes.index'))
 
+@bp_routes.route('/add_field/', methods=['GET', 'POST'])
+@login_required
+def add_field():
+    aform = AddFieldForm()
+    if request.method == 'POST':
+        # handle the form submission
+        if aform.validate_on_submit():
+            newField = Field(name=aform.newtagname.data)
+            db.session.add(newField)
+            db.session.commit()
+            flash("Your changes have been saved")
+            return redirect(url_for('routes.index')) #html for admin page
+    return render_template('edit_fields.html', title='Edit Fields', form = aform) #html for admin page

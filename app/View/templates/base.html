@@ -19,6 +19,9 @@
                 <td><a href="{{ url_for('routes.post') }}" class = "button">Post New Position</a></td>
                 <td><a href="{{ url_for('routes.myposts') }}" class = "button">View My Positions</a></td>
                 {% endif %}
+                {%if current_user.admin == True %}
+                <td><a href="{{ url_for('routes.add_field') }}" class = "button">Add Tags</a></td>
+                {% endif %}
                 {%if current_user.is_anonymous %}
                 <td><a href="{{ url_for('auth.login') }}" class = "button">Login</a></td>
                 {% else %}

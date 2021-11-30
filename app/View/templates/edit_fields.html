@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Edit Tags</h1>
+    {% if form %}
+        <div class="form-container">
+            <form action="" method="POST">
+                {{ form.hidden_tag() }}
+                    <p> {{ form.newtagname.label }}</p>
+                    <p> {{ form.newtagname(class='textinput')}}</p>
+
+                    {% for error in form.newtagname.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+
+                {{ form.submit(class='button') }}
+            </form>
+        </div>
+    {% endif %}
+
+{% endblock %}

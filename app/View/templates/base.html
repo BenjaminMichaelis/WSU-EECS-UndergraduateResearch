@@ -25,16 +25,18 @@
                     Home
                 </a>
             </li>
-            <li>
-                {%if current_user.faculty == True %}
+            {%if current_user.faculty == True %}
+                <li>
                     <a href="{{ url_for('routes.post') }}" class="button">
                         Post New Position
                     </a>
+                </li>
+                <li>
                     <a href="{{ url_for('routes.myposts') }}" class="button">
                         View My Positions
                     </a>
-                {% endif %} 
-            </li>
+                </li>
+            {% endif %} 
             {%if current_user.is_anonymous %}
                 <li>
                     <a href="{{ url_for('auth.login') }}" class="button">

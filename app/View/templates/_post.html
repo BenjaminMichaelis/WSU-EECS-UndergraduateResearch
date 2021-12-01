@@ -49,6 +49,7 @@
             <td><a href="{{ url_for('routes.apply', post_id = post.id) }}" class = "button">Apply</a></td>
         {% endif %}
         {% if current_user.faculty == True %}
+            <td><a href="{{ url_for('routes.delete', post_id = post.id) }}" class = "button">Delete post</a></td>
             <td width="80%">
                 <div class="postmessage">
                     Students who have applied: 

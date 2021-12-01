@@ -114,10 +114,32 @@ def apply(post_id):
             post.Applications.append(newApp)
             db.session.add(newApp)
             db.session.commit()
-            flash("You have succesfully applied to this position")
+            flash("You have successfully applied to this position")
             return redirect(url_for('routes.index'))
         pass
     return render_template('apply.html', title='Apply', form = aform)
+
+@bp_routes.route('/delete/<post_id>', methods=['GET', 'POST'])
+@login_required
+def delete(post_id):
+    # only faculty can create delete their research positions
+    if current_user.faculty is True:
+        currentPost=Post.query.filter_by(id=post_id).first()
+        if currentPost is None:
+            flash('Post with id "{}" not found.'.format(post_id))
+            return redirect(url_for('routes.index'))
+        PostTitle = currentPost.title
+        for t in currentPost.ResearchFields:
+            currentPost.ResearchFields.remove(t)
+        for t in currentPost.Applications:
+            currentPost.Applications.remove(t)
+        db.session.commit()
+        db.session.delete(currentPost)
+        flash('Post "{}" has been successfully deleted'.format(PostTitle))
+        return redirect(url_for('routes.index'))
+    flash('Error: No faculty permissions discovered')
+    return redirect(url_for('routes.index'))
+
 
 @bp_routes.route('/myposts/', methods=['POST','GET'])
 @login_required

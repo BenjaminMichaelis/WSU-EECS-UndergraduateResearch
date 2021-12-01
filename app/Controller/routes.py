@@ -5,7 +5,7 @@ from flask import render_template, flash, redirect, url_for, request
 from config import Config
 
 from app import db
-from app.Controller.forms import PostForm, EditForm, EditPasswordForm, ApplyForm, AddFieldForm
+from app.Controller.forms import PostForm, EditForm, EditPasswordForm, ApplyForm, AddFieldForm, RemoveFieldForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.Controller.auth_forms import LoginForm, RegistrationForm
 from app.Model.models import Post, Application, User, Field
@@ -134,9 +134,27 @@ def add_field():
     if request.method == 'POST':
         # handle the form submission
         if aform.validate_on_submit():
-            newField = Field(name=aform.newtagname.data)
+            newField = Field(name=aform.newfieldname.data)
             db.session.add(newField)
             db.session.commit()
-            flash("Your changes have been saved")
+            flash("Field has been added")
             return redirect(url_for('routes.index')) #html for admin page
-    return render_template('edit_fields.html', title='Edit Fields', form = aform) #html for admin page
+    return render_template('add_fields.html', title='Edit Fields', form = aform) #html for admin page
+
+@bp_routes.route('/remove_field/', methods=['GET', 'POST'])
+@login_required
+def remove_field():
+    rform = RemoveFieldForm()
+    if request.method == 'POST':
+        # handle the form submission
+        if rform.validate_on_submit():
+            for field in rform.ResearchFields.data:
+                # remove field from database
+                # User.query.filter_by(id=123).delete()
+                # Field.query.filter_by(name=field.name).delete()
+                db.session.delete(field)
+            # db.session.add(newField)
+            db.session.commit()
+            flash("Field has been added")
+            return redirect(url_for('routes.index')) #html for admin page
+    return render_template('remove_fields.html', title='Edit Fields', form = rform) #html for admin page

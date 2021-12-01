@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Edit Tags</h1>
+    <h1>Edit Fields</h1>
     {% if form %}
         <div class="form-container">
             <form action="" method="POST">
                 {{ form.hidden_tag() }}
-                    <p> {{ form.newtagname.label }}</p>
-                    <p> {{ form.newtagname(class='textinput')}}</p>
+                    <p> {{ form.newfieldname.label }}</p>
+                    <p> {{ form.newfieldname(class='textinput')}}</p>
 
-                    {% for error in form.newtagname.errors %}
+                    {% for error in form.newfieldname.errors %}
                     <span style="color: red;">[{{ error }}]</span>
                     {% endfor %}
 

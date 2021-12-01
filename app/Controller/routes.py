@@ -103,7 +103,7 @@ def edit_password():
         pass
     return render_template('edit_password.html', title='Edit Password', form = pform)
 
-@bp_routes.route('/apply/<post_id>', methods=['GET', 'POST'])
+@bp_routes.route('/apply/<post_id>', methods=['POST'])
 @login_required
 def apply(post_id):
     aform = ApplyForm()
@@ -119,7 +119,7 @@ def apply(post_id):
         pass
     return render_template('apply.html', title='Apply', form = aform)
 
-@bp_routes.route('/delete/<post_id>', methods=['GET', 'POST'])
+@bp_routes.route('/delete/<post_id>', methods=['POST'])
 @login_required
 def delete(post_id):
     # only faculty can create delete their research positions
@@ -133,8 +133,8 @@ def delete(post_id):
             currentPost.ResearchFields.remove(t)
         for t in currentPost.Applications:
             currentPost.Applications.remove(t)
-        db.session.commit()
         db.session.delete(currentPost)
+        db.session.commit()
         flash('Post "{}" has been successfully deleted'.format(PostTitle))
         return redirect(url_for('routes.index'))
     flash('Error: No faculty permissions discovered')

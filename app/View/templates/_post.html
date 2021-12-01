@@ -46,10 +46,18 @@
     </tr>
     <tr>
         {% if current_user.faculty == False and post.get_Applications().filter_by(userid=current_user.id).first() == None %}
-            <td><a href="{{ url_for('routes.apply', post_id = post.id) }}" class = "button">Apply</a></td>
+            <td>
+                <form action="{{url_for('routes.apply', post_id = post.id)}}" method="post">
+                    <input type="submit" value="Apply" class="button" >
+                </form>
+            </td>
         {% endif %}
         {% if current_user.faculty == True %}
-            <td><a href="{{ url_for('routes.delete', post_id = post.id) }}" class = "button">Delete post</a></td>
+            <td>
+                <form action="{{url_for('routes.delete', post_id = post.id)}}" method="post">
+                    <input type="submit" value="Delete" class="button" >
+                </form>
+            </td>
             <td width="80%">
                 <div class="postmessage">
                     Students who have applied: 

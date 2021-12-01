@@ -59,6 +59,7 @@ li a
     text-transform: uppercase;
     text-decoration: aquamarine;
 }
+
 li a:hover
 {
     color:#2387D9;
@@ -193,6 +194,7 @@ li a:hover
     -moz-background-size: contain;
     -o-background-size: contain;
 }
+
 .likebtn:hover
 {
     background-image: url("..//img//like_hover.png");

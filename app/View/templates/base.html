@@ -67,7 +67,8 @@
                             {{ current_user.username }}
                         </span>
                 {%if current_user.admin == True %}
-                <td><a href="{{ url_for('routes.add_field') }}" class = "button">Add Tags</a></td>
+                <td><a href="{{ url_for('routes.add_field') }}" class = "button">Add Fields</a></td>
+                <td><a href="{{ url_for('routes.remove_field') }}" class = "button">Remove Fields</a></td>
                 {% endif %}
             {% endif %}
         </ul>

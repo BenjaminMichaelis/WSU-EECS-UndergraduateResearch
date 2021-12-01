@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Remove Fields</h1>
+    {% if form %}
+        <div class="form-container">
+            <form action="" method="POST">
+                {{ form.submit(class='button') }}
+                {{ form.hidden_tag() }}
+                <table>
+                    <tr>
+                        <span><p>{{ form.ResearchFields.label }}</p></span>
+                        <span><p>{{ form.ResearchFields(class="formselect")}}</p></span>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    {% endif %}
+
+{% endblock %}

@@ -123,7 +123,7 @@ class User(UserMixin, db.Model):
 
     def get_FieldsCount(self):
         count = 0
-        for language in self.get_Languages():
+        for field in self.get_fields():
             count += 1
         return count
 

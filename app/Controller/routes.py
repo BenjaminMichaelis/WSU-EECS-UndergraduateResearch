@@ -18,7 +18,9 @@ bp_routes.template_folder = Config.TEMPLATE_FOLDER #'..\\View\\templates'
 @login_required
 def index():
     posts = Post.query.order_by(Post.timestamp.desc())
-    return render_template('index.html', title="WSU Undergraduate Research Portal", posts=posts.all(), User = User)
+    postscount = Post.query.count()
+    print(postscount)
+    return render_template('index.html', title="WSU Undergraduate Research Portal", posts=posts.all(), User = User, postscount = postscount)
 
 @bp_routes.route('/post/', methods=['POST','GET'])
 @login_required

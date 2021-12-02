@@ -182,3 +182,13 @@ def remove_field():
             flash("Field(s) have been removed")
             return redirect(url_for('routes.index')) #html for admin page
     return render_template('remove_fields.html', title='Edit Fields', form = rform) #html for admin page
+    
+@bp_routes.route('/cancelApplication/<application_id>/', methods=['POST','DELETE'])
+@login_required
+def cancelApplication(application_id):
+    if current_user.faculty is False:
+        application = Application.query.filter_by(id=application_id).first()
+        db.session.remove(application)
+        db.session.commit()
+        flash('Application has been canceled')
+    return redirect(url_for('routes/index'))

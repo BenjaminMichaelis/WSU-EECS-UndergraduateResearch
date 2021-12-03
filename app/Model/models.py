@@ -58,6 +58,9 @@ class Application(db.Model):
     description = db.Column(db.String(1500))
     referenceName = db.Column(db.String(50))
     referenceEmail = db.Column(db.String(50))
+    approved = db.Column(db.Boolean, default=False)
+    hired = db.Column(db.Boolean, default=False)
+    nothired = db.Column(db.Boolean, default=False)
 
 class Field(db.Model):
     id = db.Column(db.Integer, primary_key=True)

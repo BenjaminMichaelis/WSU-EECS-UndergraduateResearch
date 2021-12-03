@@ -52,6 +52,11 @@
                 </form>
             </td>
         {% endif %}
+        {% if current_user.faculty == False and post.get_Applications().filter_by(userid=current_user.id).first().approved == True %}
+            <td>
+                You have been approved for an interview. Please use the contact information to schedule an interview.
+            </td>
+        {% endif %}
         {% if current_user.faculty == True %}
             <td>
                 <form action="{{url_for('routes.delete', post_id = post.id)}}" method="post">

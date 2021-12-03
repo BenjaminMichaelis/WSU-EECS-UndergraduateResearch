@@ -12,3 +12,4 @@ wtforms-sqlalchemy
 python-dotenv
 pytest
 phonenumbers
+sentry-sdk[flask]

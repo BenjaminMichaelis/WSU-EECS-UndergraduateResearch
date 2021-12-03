@@ -89,6 +89,19 @@ li a:hover
     margin: 0px;
 }
 
+.studentApplicationStatus
+{
+    font-size: small;
+    color: rgb(192, 54, 54);
+}
+
+.studentApplicationStatusTitle
+{
+    font-size: medium;
+    color: rgb(0, 0, 0);
+    text-align: left;
+}
+
 .posttitle
 {
     text-align: center;

@@ -12,7 +12,6 @@ from app.Model.models import Post, Application, User, Field
 bp_routes = Blueprint('routes', __name__)
 bp_routes.template_folder = Config.TEMPLATE_FOLDER #'..\\View\\templates'
 
-
 @bp_routes.route('/', methods=['GET','POST'])
 @bp_routes.route('/index/', methods=['GET','POST'])
 @login_required
@@ -140,7 +139,6 @@ def delete(post_id):
     flash('Error: No faculty permissions discovered')
     return redirect(url_for('routes.index'))
 
-
 @bp_routes.route('/myposts/', methods=['POST','GET'])
 @login_required
 def myposts():
@@ -154,31 +152,47 @@ def myposts():
 @bp_routes.route('/add_field/', methods=['GET', 'POST'])
 @login_required
 def add_field():
-    aform = AddFieldForm()
-    if request.method == 'POST':
-        # handle the form submission
-        if aform.validate_on_submit():
-            newField = Field(name=aform.newfieldname.data)
-            db.session.add(newField)
-            db.session.commit()
-            flash("Field has been added")
-            return redirect(url_for('routes.index')) #html for admin page
-    return render_template('add_fields.html', title='Edit Fields', form = aform) #html for admin page
+    if current_user.admin is True:
+        aform = AddFieldForm()
+        if request.method == 'POST':
+            # handle the form submission
+            if aform.validate_on_submit():
+                newField = Field(name=aform.newfieldname.data)
+                db.session.add(newField)
+                db.session.commit()
+                flash("Field has been added")
+                return redirect(url_for('routes.index')) #html for admin page
+        return render_template('add_fields.html', title='Edit Fields', form = aform) #html for admin page
+    flash('Error: No admin permissions discovered')
+    return redirect(url_for('routes.index'))
 
 @bp_routes.route('/remove_field/', methods=['GET', 'POST'])
 @login_required
 def remove_field():
-    rform = RemoveFieldForm()
-    if request.method == 'POST':
-        # handle the form submission
-        if rform.validate_on_submit():
-            for field in rform.ResearchFields.data:
-                # remove field from database
-                # User.query.filter_by(id=123).delete()
-                # Field.query.filter_by(name=field.name).delete()
-                db.session.delete(field)
-            # db.session.add(newField)
-            db.session.commit()
-            flash("Field(s) have been removed")
-            return redirect(url_for('routes.index')) #html for admin page
-    return render_template('remove_fields.html', title='Edit Fields', form = rform) #html for admin page
+    if current_user.admin is True:
+        rform = RemoveFieldForm()
+        if request.method == 'POST':
+            # handle the form submission
+            if rform.validate_on_submit():
+                for field in rform.ResearchFields.data:
+                    # remove field from database
+                    # User.query.filter_by(id=123).delete()
+                    # Field.query.filter_by(name=field.name).delete()
+                    db.session.delete(field)
+                # db.session.add(newField)
+                db.session.commit()
+                flash("Field(s) have been removed")
+                return redirect(url_for('routes.index')) #html for admin page
+        return render_template('remove_fields.html', title='Edit Fields', form = rform) #html for admin page
+    flash('Error: No admin permissions discovered')
+    return redirect(url_for('routes.index'))
+
+@bp_routes.route('/cancelApplication/<application_id>/', methods=['POST','DELETE'])
+@login_required
+def cancelApplication(application_id):
+    if current_user.faculty is False:
+        application = Application.query.filter_by(id=application_id).first()
+        db.session.remove(application)
+        db.session.commit()
+        flash('Application has been canceled')
+    return redirect(url_for('routes/index'))

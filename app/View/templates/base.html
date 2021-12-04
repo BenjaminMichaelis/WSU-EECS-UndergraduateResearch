@@ -37,6 +37,18 @@
                     </a>
                 </li>
             {% endif %} 
+            {%if current_user.admin == True %}
+                <li>
+                    <a href="{{ url_for('routes.add_field') }}" class = "button">
+                        Add Fields
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('routes.remove_field') }}" class = "button">
+                        Remove Fields
+                    </a>
+                </li>
+            {% endif %}
             {%if current_user.is_anonymous %}
                 <li>
                     <a href="{{ url_for('auth.login') }}" class="button">

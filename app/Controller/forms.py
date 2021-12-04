@@ -80,3 +80,13 @@ class EditPasswordForm(FlaskForm):
     password = PasswordField('New Password', validators=[EqualTo('password2', message='Passwords must match')])
     password2 = PasswordField('Repeat Password')
     submit = SubmitField('Save')
+
+class AddFieldForm(FlaskForm):
+    newfieldname = StringField('New Field:')
+    submit = SubmitField('Save')
+
+class RemoveFieldForm(FlaskForm):
+    ResearchFields = QuerySelectMultipleField('Fields to remove', query_factory=get_fields , get_label=get_fieldlabel, widget=ListWidget(prefix_label=False), 
+    option_widget=CheckboxInput() )
+    submit = SubmitField('Save')
+

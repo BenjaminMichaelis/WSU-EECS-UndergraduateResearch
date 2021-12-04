@@ -179,6 +179,6 @@ def remove_field():
                 db.session.delete(field)
             # db.session.add(newField)
             db.session.commit()
-            flash("Field has been added")
+            flash("Field(s) have been removed")
             return redirect(url_for('routes.index')) #html for admin page
     return render_template('remove_fields.html', title='Edit Fields', form = rform) #html for admin page

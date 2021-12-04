@@ -89,4 +89,3 @@ class RemoveFieldForm(FlaskForm):
     ResearchFields = QuerySelectMultipleField('Fields to remove', query_factory=get_fields , get_label=get_fieldlabel, widget=ListWidget(prefix_label=False), 
     option_widget=CheckboxInput() )
     submit = SubmitField('Save')
-

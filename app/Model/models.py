@@ -33,6 +33,7 @@ class Post(db.Model):
     enddate = db.Column(db.Date)
     timecommitment = db.Column(db.Integer)
     qualifications = db.Column(db.String(1500))
+    sharedFieldCount = db.Column(db.Integer)
     ResearchFields = db.relationship(
         'Field',  secondary = postFields,
         primaryjoin=(postFields.c.post_id == id), backref=db.backref('postFields', lazy='dynamic')

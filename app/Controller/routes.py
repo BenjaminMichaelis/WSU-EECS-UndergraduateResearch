@@ -1,6 +1,7 @@
 from __future__ import print_function
+import os
 import sys
-from flask import Blueprint
+from flask import Blueprint, send_from_directory
 from flask import render_template, flash, redirect, url_for, request
 from config import Config
 
@@ -23,7 +24,7 @@ def index():
     if sform.validate_on_submit():
         order = sform.select.data
         if order == '0':
-            
+
             for post in posts.all():
                 cnt = 0
                 for pfield in post.ResearchFields:
@@ -41,9 +42,6 @@ def index():
         elif order == '2':
             posts = Post.query.order_by(Post.timecommitment.desc())
 
-
-                
-
     return render_template('index.html', title="WSU Undergraduate Research Portal", posts=posts.all(), User = User, postscount = postscount, sortForm = sform)
 
 @bp_routes.route('/post/', methods=['POST','GET'])
@@ -55,7 +53,7 @@ def post():
         sform = PostForm()
         if request.method == 'POST':
             if sform.validate_on_submit():
-                newPost = Post(title = sform.title.data, description = sform.description.data, user_id = current_user.id, 
+                newPost = Post(title = sform.title.data, description = sform.description.data, user_id = current_user.id,
                 startdate = sform.startdate.data, enddate = sform.enddate.data, timecommitment = sform.timecommitment.data,
                 qualifications = sform.qualifications.data)
                 for ResearchFields in sform.ResearchFields.data:
@@ -84,10 +82,10 @@ def edit_profile():
         if eform.validate_on_submit():
             current_user.firstname = eform.firstname.data
             current_user.lastname = eform.lastname.data
-            current_user.phone = eform.phone.data 
-            current_user.major = eform.major.data 
-            current_user.gpa = eform.gpa.data 
-            current_user.graduationDate = eform.graduationDate.data 
+            current_user.phone = eform.phone.data
+            current_user.major = eform.major.data
+            current_user.gpa = eform.gpa.data
+            current_user.graduationDate = eform.graduationDate.data
             current_user.experience = eform.experience.data
             current_user.electiveCourses = eform.electives.data
             for language in eform.languages.data:
@@ -103,14 +101,14 @@ def edit_profile():
         # populate the user data from DB
         eform.firstname.data = current_user.firstname
         eform.lastname.data = current_user.lastname
-        eform.phone.data = current_user.phone 
-        eform.major.data = current_user.major 
-        eform.gpa.data = current_user.gpa 
+        eform.phone.data = current_user.phone
+        eform.major.data = current_user.major
+        eform.gpa.data = current_user.gpa
         eform.graduationDate.data = current_user.graduationDate
         eform.experience.data = current_user.experience
         eform.electives.data = current_user.electiveCourses
     else:
-        pass 
+        pass
     return render_template('edit_profile.html', title='Edit Profile', form = eform)
 
 @bp_routes.route('/edit_password/', methods=['GET', 'POST'])
@@ -223,3 +221,11 @@ def cancelApplication(application_id):
         db.session.commit()
         flash('Application has been canceled')
     return redirect(url_for('routes.index'))
+
+@bp_routes.route('/favicon.ico')
+def favicon():
+    path_list=[bp_routes.root_path,os.pardir,"View","static","img"]
+    print(bp_routes.root_path)
+    print(os.path.join(*path_list))
+    return send_from_directory(os.path.join(*path_list),
+        'favicon.ico',mimetype='image/vnd.microsoft.icon')

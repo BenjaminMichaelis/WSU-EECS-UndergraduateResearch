@@ -256,14 +256,6 @@ def cancelApplication(application_id):
         flash('Application has been canceled')
     return redirect(url_for('routes.index'))
 
-@bp_routes.route('/makefaculty', methods=['POST', 'GET'])
-@login_required
-def makefaculty():
-    current_user.faculty = True
-    db.session.add(current_user)
-    db.session.commit()
-    return redirect(url_for('routes.index'))
-
 @bp_routes.route('/favicon.ico')
 def favicon():
     path_list=[bp_routes.root_path,os.pardir,"View","static","img"]

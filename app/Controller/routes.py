@@ -24,7 +24,6 @@ def index():
     if sform.validate_on_submit():
         order = sform.select.data
         if order == '0':
-
             for post in posts.all():
                 cnt = 0
                 for pfield in post.ResearchFields:
@@ -41,7 +40,6 @@ def index():
             posts = Post.query.order_by(Post.title.asc())
         elif order == '2':
             posts = Post.query.order_by(Post.timecommitment.desc())
-
     return render_template('index.html', title="WSU Undergraduate Research Portal", posts=posts.all(), User = User, postscount = postscount, sortForm = sform)
 
 @bp_routes.route('/post/', methods=['POST','GET'])
@@ -170,6 +168,36 @@ def myposts():
         posts = Post.query.filter_by(user_id=current_user.id)
         return render_template('index.html', title="My Research Postings", posts=posts.all(), User = User)
     flash('Error: No faculty permissions discovered')
+    return redirect(url_for('routes.index'))
+
+@bp_routes.route('/make_faculty/<user_id>', methods=['POST'])
+@login_required
+def make_faculty(user_id):
+    if current_user.admin is True:
+        if request.method == 'POST':
+            # only admin can update users to be faculty
+                user = User.query.get_or_404(user_id)
+                if (user.faculty is True):
+                    user.faculty = False
+                else:
+                    user.faculty = True
+                db.session.add(user)
+                db.session.commit()
+                flash("User Status has been updated")
+                return redirect(url_for('routes.show_faculty')) #html for admin page
+    flash('Error: No admin permissions discovered')
+    return redirect(url_for('routes.index'))
+
+@bp_routes.route('/show_faculty/', methods=['GET'])
+@login_required
+def show_faculty():
+    if current_user.admin is True:
+        if request.method == 'GET':
+            users = User.query.all()
+            for user in users:
+                print(user.username)
+            return render_template('make_faculty.html', users=users, User = User) #html for admin page
+    flash('Error: No admin permissions discovered')
     return redirect(url_for('routes.index'))
 
 @bp_routes.route('/add_field/', methods=['GET', 'POST'])

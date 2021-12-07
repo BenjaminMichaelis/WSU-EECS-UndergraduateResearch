@@ -1,4 +1,5 @@
-from flask import Flask
+from flask import Flask, send_from_directory
+import os
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
 # TODO: (milestone 3) import LoginManager and Moment extensions here
@@ -24,6 +25,14 @@ def create_app(config_class=Config):
     # TODO: (milestone 3) Configure the app object for moment using `init_app` function. 
     moment.init_app(app)
 
+    @app.route('/favicon.ico')
+    def favicon():
+        path_list=[app.root_path,"View","static","img"]
+        print(app.root_path)
+        print(os.path.join(*path_list))
+        return send_from_directory(os.path.join(*path_list),
+            'favicon.ico',mimetype='image/vnd.microsoft.icon')
+
     # blueprint registration
     from app.Controller.errors import bp_errors as errors
     app.register_blueprint(errors)
@@ -35,5 +44,6 @@ def create_app(config_class=Config):
     if not app.debug and not app.testing:
         pass
         # ... no changes to logging setup
+    
 
     return app

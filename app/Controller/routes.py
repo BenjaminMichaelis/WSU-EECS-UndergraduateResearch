@@ -222,10 +222,10 @@ def cancelApplication(application_id):
         flash('Application has been canceled')
     return redirect(url_for('routes.index'))
 
-@bp_routes.route('/favicon.ico')
-def favicon():
-    path_list=[bp_routes.root_path,os.pardir,"View","static","img"]
-    print(bp_routes.root_path)
-    print(os.path.join(*path_list))
-    return send_from_directory(os.path.join(*path_list),
-        'favicon.ico',mimetype='image/vnd.microsoft.icon')
+# @bp_routes.route('/favicon.ico')
+# def favicon():
+#     path_list=[bp_routes.root_path,os.pardir,"View","static","img"]
+#     print(bp_routes.root_path)
+#     print(os.path.join(*path_list))
+#     return send_from_directory(os.path.join(*path_list),
+#         'favicon.ico',mimetype='image/vnd.microsoft.icon')

@@ -5,7 +5,7 @@ from flask import render_template, flash, redirect, url_for, request
 from config import Config
 
 from app import db
-from app.Controller.forms import PostForm, EditForm, EditPasswordForm, ApplyForm, AddFieldForm, RemoveFieldForm
+from app.Controller.forms import PostForm, EditForm, EditPasswordForm, ApplyForm, AddFieldForm, RemoveFieldForm, SortForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.Controller.auth_forms import LoginForm, RegistrationForm
 from app.Model.models import Post, Application, User, Field
@@ -19,7 +19,32 @@ def index():
     posts = Post.query.order_by(Post.timestamp.desc())
     postscount = Post.query.count()
     print(postscount)
-    return render_template('index.html', title="WSU Undergraduate Research Portal", posts=posts.all(), User = User, postscount = postscount)
+    sform = SortForm()
+    if sform.validate_on_submit():
+        order = sform.select.data
+        if order == '0':
+            
+            for post in posts.all():
+                cnt = 0
+                for pfield in post.ResearchFields:
+                    for ufield in current_user.Fields:
+                        if ufield.id == pfield.id:
+                            cnt+=1
+                            break
+                post.sharedFieldCount = cnt
+                print(cnt)
+                db.session.add(post)
+                db.session.commit()
+            posts = Post.query.order_by(Post.sharedFieldCount.desc())
+        elif order == '1':
+            posts = Post.query.order_by(Post.title.asc())
+        elif order == '2':
+            posts = Post.query.order_by(Post.timecommitment.desc())
+
+
+                
+
+    return render_template('index.html', title="WSU Undergraduate Research Portal", posts=posts.all(), User = User, postscount = postscount, sortForm = sform)
 
 @bp_routes.route('/post/', methods=['POST','GET'])
 @login_required

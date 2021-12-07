@@ -1,49 +1,49 @@
-# """
-# This file contains the functional tests for the routes.
-# These tests use GETs and POSTs to different URLs to check for the proper behavior.
-# Resources:
-#     https://flask.palletsprojects.com/en/1.1.x/testing/ 
-#     https://www.patricksoftwareblog.com/testing-a-flask-application-using-pytest/ 
-# """
-# import os
-# import pytest
-# from app import create_app, db
-# from app.Model.models import User, Post, Tag
-# from config import Config
+"""
+This file contains the functional tests for the routes.
+These tests use GETs and POSTs to different URLs to check for the proper behavior.
+Resources:
+    https://flask.palletsprojects.com/en/1.1.x/testing/ 
+    https://www.patricksoftwareblog.com/testing-a-flask-application-using-pytest/ 
+"""
+import os
+import pytest
+from app import create_app, db
+from app.Model.models import User, Post
+from config import Config
 
 
-# class TestConfig(Config):
-#     SQLALCHEMY_DATABASE_URI = 'sqlite://'
-#     SECRET_KEY = 'bad-bad-key'
-#     WTF_CSRF_ENABLED = False
-#     DEBUG = True
-#     TESTING = True
+class TestConfig(Config):
+    SQLALCHEMY_DATABASE_URI = 'sqlite://'
+    SECRET_KEY = 'bad-bad-key'
+    WTF_CSRF_ENABLED = False
+    DEBUG = True
+    TESTING = True
 
 
 
-# @pytest.fixture(scope='module')
-# def test_client():
-#     # create the flask application ; configure the app for tests
-#     flask_app = create_app(config_class=TestConfig)
+@pytest.fixture(scope='module')
+def test_client():
+    # create the flask application ; configure the app for tests
+    flask_app = create_app(config_class=TestConfig)
 
-#     db.init_app(flask_app)
-#     # Flask provides a way to test your application by exposing the Werkzeug test Client
-#     # and handling the context locals for you.
-#     testing_client = flask_app.test_client()
+    db.init_app(flask_app)
+    # Flask provides a way to test your application by exposing the Werkzeug test Client
+    # and handling the context locals for you.
+    testing_client = flask_app.test_client()
  
-#     # Establish an application context before running the tests.
-#     ctx = flask_app.app_context()
-#     ctx.push()
+    # Establish an application context before running the tests.
+    ctx = flask_app.app_context()
+    ctx.push()
  
-#     yield  testing_client 
-#     # this is where the testing happens!
+    yield  testing_client 
+    # this is where the testing happens!
  
-#     ctx.pop()
+    ctx.pop()
 
-# def new_user(uname, uemail,passwd):
-#     user = User(username=uname, email=uemail)
-#     user.set_password(passwd)
-#     return user
+def new_user(uname, uemail,passwd):
+    user = User(username=uname, email=uemail)
+    user.set_password(passwd)
+    return user
 
 
 # def init_tags():

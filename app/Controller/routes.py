@@ -197,5 +197,4 @@ def cancelApplication(application_id):
         db.session.delete(application)
         db.session.commit()
         flash('Application has been canceled')
-
     return redirect(url_for('routes.index'))

@@ -19,7 +19,7 @@
                     {% for error in form.lastname.errors %}
                     <span style="color: red;">[{{ error }}]</span>
                     {% endfor %}
-    <!-- 
+    <!--
                     wsuid = IntegerField('WSUID', [Length(min=8, max=9)])
                     major = StringField('Major')
                     gpa = StringField('GPA' [Length(max=4)])
@@ -67,26 +67,23 @@
                     {% for error in form.electives.errors %}
                     <span style="color: red;">[{{ error }}]</span>
                     {% endfor %}
-                    
+
                     <table>
                     <tr>
-                        
+
                         <p>{{ form.languages.label }}</p>
                         <p>{{ form.languages(class="formselect")}}</p>
-                        
                     </tr>
-                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                     <tr>
-                        
+
                         <span><p>{{ form.fields.label }}</p></span>
                         <span><p>{{ form.fields(class="formselect")}}</p></span>
-                    
+                    </tr>
+                    <tr>
+                        {{ form.submit(class='button') }}
                     </tr>
                     </table>
-
                 </div>
-                <br><br><br><br>
-                {{ form.submit(class='button') }}
             </form>
         </div>
     {% endif %}

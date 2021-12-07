@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Update User Permissions</h1>
+        <table>
+            {% for user in users %}
+                <tr class="showfacultytr">
+                    <td class="showfacultytd">
+                        {{ user.username }}
+                    </td>
+                    <td class="showfacultytd">
+                        {% if user.faculty == True %}
+                        <a href="{{ url_for('routes.make_faculty', user_id = user.id) }}" class = "buttonshow">Make Student</a>
+                        {% endif %}
+                        {% if user.faculty == False %}
+                        <a href="{{ url_for('routes.make_faculty', user_id = user.id) }}" class = "buttonshow">Make Faculty</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endblock %}

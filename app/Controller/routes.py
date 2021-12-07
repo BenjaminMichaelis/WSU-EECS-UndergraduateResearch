@@ -170,11 +170,12 @@ def myposts():
     flash('Error: No faculty permissions discovered')
     return redirect(url_for('routes.index'))
 
-@bp_routes.route('/make_faculty/<user_id>', methods=['POST'])
+@bp_routes.route('/make_faculty/<user_id>', methods=['POST','GET'])
 @login_required
 def make_faculty(user_id):
     if current_user.admin is True:
-        if request.method == 'POST':
+        # TODO: Make method post only
+        # if request.method == 'POST':
             # only admin can update users to be faculty
                 user = User.query.get_or_404(user_id)
                 if (user.faculty is True):
@@ -196,7 +197,7 @@ def show_faculty():
             users = User.query.all()
             for user in users:
                 print(user.username)
-            return render_template('make_faculty.html', users=users, User = User) #html for admin page
+            return render_template('show_faculty.html', users=users, User = User) #html for admin page
     flash('Error: No admin permissions discovered')
     return redirect(url_for('routes.index'))
 

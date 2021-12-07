@@ -40,12 +40,17 @@
             {%if current_user.admin == True %}
                 <li>
                     <a href="{{ url_for('routes.add_field') }}" class = "button">
-                        Add Fields
+                        Add Research Fields
                     </a>
                 </li>
                 <li>
                     <a href="{{ url_for('routes.remove_field') }}" class = "button">
-                        Remove Fields
+                        Remove Research Fields
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('routes.show_faculty') }}" class = "button">
+                        Update User Permissions
                     </a>
                 </li>
             {% endif %}

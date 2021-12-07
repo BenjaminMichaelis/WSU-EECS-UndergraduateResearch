@@ -105,6 +105,14 @@ li a:hover
     padding : 5px;
     border: 1px solid black;
     overflow-x:visible;
+    background-color: #fcfcfc;
+}
+
+.buttonshow:hover
+{
+    background-color: 157dd3;
+    color: white;
+    cursor:pointer;
 }
 
 .button:hover

@@ -52,13 +52,21 @@
             </td>
         </tr>
     {% endif %}
+    <tr>
         {% if current_user.faculty == False and post.get_Applications().filter_by(userid=current_user.id).first() == None %}
             <td>
                 <form action="{{url_for('routes.apply', post_id = post.id)}}" method="post">
                     <input type="submit" value="Apply" class="button" >
                 </form>
             </td>
+        {% elif (current_user.faculty == False and post.get_Applications().filter_by(userid=current_user.id).first() != None) and post.get_Applications().filter_by(userid=current_user.id).first().hired == False %}
+            <td>
+                <form action="{{url_for('routes.cancelApplication', application_id = post.get_Applications().filter_by(userid=current_user.id).first().id)}}" method="post">
+                    <input type="submit" value="Cancel" class="button" >
+                </form>
+            </td>
         {% endif %}
+    </tr>
         {% if current_user.faculty == False and post.get_Applications().filter_by(userid=current_user.id).first().approved == True %}
             <td class="studentApplicationStatus">
                 You have been approved for an interview. Please use the contact information above to schedule an interview.

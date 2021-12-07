@@ -192,7 +192,9 @@ def remove_field():
 def cancelApplication(application_id):
     if current_user.faculty is False:
         application = Application.query.filter_by(id=application_id).first()
-        db.session.remove(application)
+        if application.approved == True:
+            flash('You had been approved for an interview. Please inform the professor that you have canceled your application!')
+        db.session.delete(application)
         db.session.commit()
         flash('Application has been canceled')
-    return redirect(url_for('routes/index'))
+    return redirect(url_for('routes.index'))

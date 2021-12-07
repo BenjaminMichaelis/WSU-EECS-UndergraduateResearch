@@ -66,10 +66,15 @@ def post():
     flash('Error: No faculty permissions discovered')
     return redirect(url_for('routes.index'))
 
-@bp_routes.route('/display_profile/', methods=['GET'])
+@bp_routes.route('/display_profile/<user_id>', methods=['GET'])
 @login_required
-def display_profile():
-    return render_template('display_profile.html', title='Display Profile', user = current_user)
+def display_profile(user_id):
+    user = User.query.get_or_404(user_id)
+    # cant view profile if the current user isn't the profile being accessed or isnt a faculty
+    if (user != current_user) and (current_user.faculty is False):
+        flash("You don't have permission to view another user's profile")
+        return redirect(url_for('routes.index'))    
+    return render_template('display_profile.html', title='Display Profile', user = user)
 
 @bp_routes.route('/edit_profile/', methods=['GET', 'POST'])
 @login_required
@@ -249,6 +254,14 @@ def cancelApplication(application_id):
         db.session.delete(application)
         db.session.commit()
         flash('Application has been canceled')
+    return redirect(url_for('routes.index'))
+
+@bp_routes.route('/makefaculty', methods=['POST', 'GET'])
+@login_required
+def makefaculty():
+    current_user.faculty = True
+    db.session.add(current_user)
+    db.session.commit()
     return redirect(url_for('routes.index'))
 
 @bp_routes.route('/favicon.ico')

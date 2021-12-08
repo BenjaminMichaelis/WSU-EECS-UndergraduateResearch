@@ -7,7 +7,7 @@ app = create_app()
 def initDB(*args, **kwargs):
     db.create_all()
     if Field.query.count() == 0:
-        fields =    ['Machine Learning','High Performance Computing', 'Object Oriented Programming', 
+        fields =    ['Machine Learning','High Performance Computing', 'Object Oriented Programming',
                     'Cyber Security', 'Data Analytics', 'Human Computer Interaction', 'Data Mining']
         for f in fields:
             db.session.add(Field(name=f))

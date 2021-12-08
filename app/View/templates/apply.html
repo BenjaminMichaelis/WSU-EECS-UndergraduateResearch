@@ -9,7 +9,7 @@
         <form action="" method="post">
             {{ form.hidden_tag() }}
             <div>
-                
+
                 {{ form.preferredname.label }}<br>
                 {{ form.preferredname(class="formbody") }}<br>
                 {% for error in form.description.errors %}
@@ -39,10 +39,10 @@
                 {% endfor %}
 
                 {{ form.submit(class="button") }}
-                
+
             </div>
 
-            
+
         </form>
     {% endif %}
 

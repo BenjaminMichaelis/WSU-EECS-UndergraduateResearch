@@ -15,7 +15,7 @@ class TestConfig(Config):
     TESTING = True
     SQLALCHEMY_DATABASE_URI = 'sqlite://'
     ROOT_PATH = '..//'+basedir
-    
+
 class TestModels(unittest.TestCase):
     def setUp(self):
         self.app = create_app(TestConfig)
@@ -70,7 +70,7 @@ class TestModels(unittest.TestCase):
         self.assertEqual(u2.get_user_posts().count(), 1)
         self.assertEqual(u2.get_user_posts().all()[0].title, 'Another post')
         self.assertEqual(u2.get_user_posts().all()[0].description, 'This is a post by somebody else.')
-    
+
     def test_application_1(self):
         # add users to db
         u1 = User(username='john', email='john.doe@wsu.com')
@@ -81,7 +81,7 @@ class TestModels(unittest.TestCase):
         # tests that there are no posts or applications yet
         self.assertEqual(Post.query.filter_by(user_id=u1.id).count(), 0)
         self.assertEqual(Application.query.filter_by(userid=u1.id).count(), 0)
-        # add a a post by user 1 and an application by user 2 
+        # add a a post by user 1 and an application by user 2
         p1 = Post(title='My post 1', description='This is my first test post.', user_id=u1.id)
         db.session.add(p1)
         a1 = Application(userid = u2.id, preferredname = 'jane', description='hire me please')
@@ -89,7 +89,7 @@ class TestModels(unittest.TestCase):
         db.session.commit()
         # test that the a post by user 1 and an application by user 2 now exists
         self.assertEqual(Post.query.filter_by(user_id=u1.id).count(), 1)
-        self.assertEqual(Application.query.filter_by(userid=u2.id).count(), 1) 
+        self.assertEqual(Application.query.filter_by(userid=u2.id).count(), 1)
 
     def test_application_2(self):
         # add users to db
@@ -133,7 +133,7 @@ class TestModels(unittest.TestCase):
         db.session.add(u1)
         db.session.commit()
         self.assertEqual(User.query.count(), 1)
-    
+
     def test_field(self):
         f1 = Field(name="TestField1")
         f2 = Field(name="TestField2")
@@ -153,7 +153,7 @@ class TestModels(unittest.TestCase):
         db.session.add(l3)
         db.session.commit()
         self.assertEqual(Language.query.count(), 3)
-     
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

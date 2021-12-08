@@ -4,9 +4,11 @@ from flask_sqlalchemy import SQLAlchemy
 # TODO: (milestone 3) import LoginManager and Moment extensions here
 from flask_login import LoginManager
 from flask_moment import Moment
+import sentry_sdk
+from sentry_sdk.integrations.flask import FlaskIntegration
 
 db = SQLAlchemy()
-# TODO: (milestone 3) create LoginManager object and configure the login view as 'auth.login', i.e, `login` route in `auth` Blueprint. 
+# TODO: (milestone 3) create LoginManager object and configure the login view as 'auth.login', i.e, `login` route in `auth` Blueprint.
 login = LoginManager()
 login.login_view = 'auth.login'
 # TODO: (milestone 3) create Moment object
@@ -15,13 +17,13 @@ moment = Moment()
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
-    app.static_folder = config_class.STATIC_FOLDER 
+    app.static_folder = config_class.STATIC_FOLDER
     app.template_folder = config_class.TEMPLATE_FOLDER
 
     db.init_app(app)
-    # TODO: (milestone 3) Configure the app object for login using `init_app` function. 
+    # TODO: (milestone 3) Configure the app object for login using `init_app` function.
     login.init_app(app)
-    # TODO: (milestone 3) Configure the app object for moment using `init_app` function. 
+    # TODO: (milestone 3) Configure the app object for moment using `init_app` function.
     moment.init_app(app)
 
     # blueprint registration
@@ -37,3 +39,13 @@ def create_app(config_class=Config):
         # ... no changes to logging setup
 
     return app
+
+sentry_sdk.init(
+    dsn="https://fe98550c4a464589b281175db344646e@o1080390.ingest.sentry.io/6093085",
+    integrations=[FlaskIntegration()],
+
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production.
+    traces_sample_rate=1.0
+)

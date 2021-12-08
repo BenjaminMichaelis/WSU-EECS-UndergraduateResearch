@@ -1,40 +1,34 @@
-body
-{
+body {
     margin: 1px 1px 1px 15px;
     padding: 1px;
     font-family: Tahoma;
     text-align: left;
 }
 
-.status
-{
+.status {
     color: red;
     font-family: Tahoma;
     font-size: 12px;
     margin: 3px;
 }
 
-.form-container
-{
+.form-container {
     min-height: 1200px;
 }
 
-.table-row
-{
+.table-row {
     min-height: 1300px;
 }
 
-.showfacultytr
-{
+.showfacultytr {
     margin: 1px;
     padding: 1px;
     top: 0;
     width: auto;
-    background-color: rgba(205, 218, 223, 0.733)
+    background-color: rgba(205, 218, 223, 0.733);
 }
 
-.showfacultytd
-{
+.showfacultytd {
     float: left;
     text-align: center;
     text-transform: uppercase;
@@ -44,8 +38,7 @@ body
     width: auto;
 }
 
-.studentapptr
-{
+.studentapptr {
     margin: 1px;
     padding: 1px;
     top: 1px;
@@ -55,8 +48,7 @@ body
     align-content: center;
 }
 
-.studentapptd
-{
+.studentapptd {
     float: left;
     text-align: center;
     text-transform: uppercase;
@@ -69,8 +61,7 @@ body
     overflow: auto;
 }
 
-ul
-{
+ul {
     list-style-type: none;
     margin: 1px;
     padding: 1px;
@@ -80,13 +71,11 @@ ul
     width: auto;
 }
 
-li
-{
+li {
     float: left;
 }
 
-li a
-{
+li a {
     display: block;
     color: black;
     text-align: center;
@@ -95,9 +84,8 @@ li a
     text-decoration: none;
 }
 
-.nav-container
-{
-    background:#f6f6f6;
+.nav-container {
+    background: #f6f6f6;
     font-family: Tahoma;
     font-size: 12px;
     height: auto;
@@ -105,89 +93,78 @@ li a
     text-decoration: aquamarine;
 }
 
-li a:hover
-{
-    color:#2387D9;
+li a:hover {
+    color: #2387d9;
 }
 
-.buttonshow
-{
-    width : auto;
-    padding : auto;
+.buttonshow {
+    width: auto;
+    padding: auto;
     font-size: 16px;
-    margin : 5px;
-    padding : 5px;
+    margin: 5px;
+    padding: 5px;
     border: 1px solid black;
-    overflow-x:visible;
+    overflow-x: visible;
     background-color: #fcfcfc;
 }
 
-.buttonshow:hover
-{
+.buttonshow:hover {
     background-color: 157dd3;
     color: white;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-.buttonfacultyapplication
-{
+.buttonfacultyapplication {
     display: block;
     float: left;
-    width : auto;
+    width: auto;
     font-size: 16px;
-    margin : 1%;
-    padding : 5px;
+    margin: 1%;
+    padding: 5px;
     border: 1px solid black;
     overflow: auto;
     background-color: #fcfcfc;
 }
 
-.buttonfacultyapplication:hover
-{
+.buttonfacultyapplication:hover {
     background-color: 157dd3;
     color: white;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-.button
-{
-    width : auto;
-    padding : 3px;
+.button {
+    width: auto;
+    padding: 3px;
     font-size: 16px;
-    margin : 5px;
-    padding : 5px;
+    margin: 5px;
+    padding: 5px;
     border: 1px solid lightgray;
-    overflow-x:visible;
+    overflow-x: visible;
 }
 
-.button:hover
-{
+.button:hover {
     background-color: 157dd3;
     color: white;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-.posttable
-{
-    width : 100%;
+.posttable {
+    width: 100%;
     margin: 0px;
 }
 
-.studentApplicationStatus
-{
+.studentApplicationStatus {
     font-size: small;
     color: rgb(192, 54, 54);
 }
 
-.studentApplicationStatusTitle
-{
+.studentApplicationStatusTitle {
     font-size: medium;
     color: rgb(0, 0, 0);
     text-align: left;
 }
 
-.posttitle
-{
+.posttitle {
     text-align: center;
     font-weight: bold;
     font-style: normal;
@@ -195,30 +172,26 @@ li a:hover
     padding: 5px;
 }
 
-.postmessage
-{
+.postmessage {
     font-family: sans-serif;
     padding: 2px;
     font-size: medium;
 }
 
-.postline
-{
+.postline {
     font-family: sans-serif;
     padding: 2px;
     font-size: medium;
 }
 
-.posttimestamp
-{
-    font-family: 'Times New Roman', Times, serif;
+.posttimestamp {
+    font-family: "Times New Roman", Times, serif;
     padding: 2px;
     font-size: small;
     font-weight: bold;
 }
 
-.useritem
-{
+.useritem {
     text-align: center;
     padding: 3px;
     margin: 4px 3px 4px 3px;
@@ -226,8 +199,7 @@ li a:hover
     text-transform: uppercase;
 }
 
-.username
-{
+.username {
     text-align: left;
     padding: 2px;
     margin: 1px 1px 1px 1px;
@@ -235,8 +207,7 @@ li a:hover
     text-transform: uppercase;
 }
 
-.name
-{
+.name {
     text-align: left;
     padding: 2px;
     margin: 1px 1px 1px 1px;
@@ -244,16 +215,14 @@ li a:hover
     text-transform: capitalize;
 }
 
-.useremail
-{
+.useremail {
     text-align: left;
     padding: 2px;
     margin: 1px 1px 1px 1px;
     color: blue;
 }
 
-.pagetitle
-{
+.pagetitle {
     display: block;
     text-align: right;
     padding: 3px;
@@ -262,8 +231,7 @@ li a:hover
     text-transform: uppercase;
 }
 
-.postuser
-{
+.postuser {
     text-align: center;
     padding: 3px;
     margin: 4px 3px 4px 3px;
@@ -271,15 +239,13 @@ li a:hover
     font-size: medium;
 }
 
-.likecount
-{
+.likecount {
     text-align: center;
     font-weight: bold;
     font-size: small;
 }
 
-.likebtn
-{
+.likebtn {
     margin: 0 auto;
     height: 40px;
     width: 50px;
@@ -293,75 +259,66 @@ li a:hover
     -o-background-size: contain;
 }
 
-.likebtn:hover
-{
+.likebtn:hover {
     background-image: url("..//img//like_hover.png");
-    cursor:pointer;
+    cursor: pointer;
 }
 
-.textinput
-{
-    padding : 2px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.textinput {
+    padding: 2px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     font-size: 18px;
-    width : 400px;
+    width: 400px;
 }
 
-.forminput
-{
-    padding : 5px;
+.forminput {
+    padding: 5px;
     margin: 10px 0px 10px 0px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     font-size: 18px;
-    width : 20%;
+    width: 20%;
 }
 
-.flash-container
-{
+.flash-container {
     background: rgb(119, 185, 207);
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     font-size: 17px;
     padding: 15px;
     margin: 10px 0px 10px 0px;
 }
 
-.formtitle
-{
+.formtitle {
     font-size: 18px;
-    width : 80%;
+    width: 80%;
     margin: 10px 0px 10px 0px;
     padding: 10px;
 }
 
-.formbody
-{
+.formbody {
     font-size: 18px;
     width: 80%;
     height: 100px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     margin: 10px 0px 10px 0px;
     padding: 10px;
 }
 
-.formselect
-{
+.formselect {
     height: 40px;
     font-style: normal;
     margin: 10px 10px 20px 10px;
     padding: 5px;
 }
 
-.postlist
-{
+.postlist {
     display: flex;
     flex-wrap: wrap;
     margin: 10px 0px;
 }
 
-@media screen and (min-width: 1200px)
-{
-    .post-box
-    {
+@media screen and (min-width: 1200px) {
+    .post-box {
         display: flex;
         vertical-align: middle;
         background-color: white;
@@ -373,10 +330,8 @@ li a:hover
     }
 }
 
-@media screen and (min-width: 800px) and (max-width:1200px)
-{
-    .post-box
-    {
+@media screen and (min-width: 800px) and (max-width: 1200px) {
+    .post-box {
         display: flex;
         vertical-align: middle;
         background-color: white;
@@ -387,10 +342,8 @@ li a:hover
     }
 }
 
-@media screen and (max-width:800px)
-{
-    .post-box
-    {
+@media screen and (max-width: 800px) {
+    .post-box {
         display: flex;
         vertical-align: middle;
         background-color: white;
@@ -401,15 +354,13 @@ li a:hover
     }
 }
 
-.taglist
-{
+.taglist {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.tagitem
-{
+.tagitem {
     padding: 2px 3px;
     color: #555555;
     background-color: #eeeeee;

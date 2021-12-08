@@ -35,19 +35,19 @@
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
 
-                <p> {{ form.phone.label }}</p> 
-                <p> {{ form.phone(class='forminput')}}</p> 
- 
-                {% for error in form.phone.errors %} 
-                <span style="color: red;">[{{ error }}]</span> 
-                {% endfor %} 
- 
-                <p> {{ form.wsuid.label }}</p> 
-                <p> {{ form.wsuid(class='forminput')}}</p> 
- 
-                {% for error in form.wsuid.errors %} 
-                <span style="color: red;">[{{ error }}]</span> 
-                {% endfor %} 
+                <p> {{ form.phone.label }}</p>
+                <p> {{ form.phone(class='forminput')}}</p>
+
+                {% for error in form.phone.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
+                <p> {{ form.wsuid.label }}</p>
+                <p> {{ form.wsuid(class='forminput')}}</p>
+
+                {% for error in form.wsuid.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
 
                 <p> {{ form.password.label }}</p>
                 <p> {{ form.password(class='forminput')}}</p>

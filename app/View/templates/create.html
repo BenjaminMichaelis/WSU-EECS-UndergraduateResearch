@@ -9,7 +9,7 @@
         <form action="" method="post">
             {{ form.hidden_tag() }}
             <div>
-                <!--Displays the form item for the post's `title`.--> 
+                <!--Displays the form item for the post's `title`.-->
                 {{ form.title.label }}<br>
                 {{ form.title(class="formtitle") }}<br>
                 {% for error in form.title.errors %}

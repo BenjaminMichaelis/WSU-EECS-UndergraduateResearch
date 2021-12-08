@@ -2,8 +2,8 @@
 This file contains the functional tests for the routes.
 These tests use GETs and POSTs to different URLs to check for the proper behavior.
 Resources:
-    https://flask.palletsprojects.com/en/1.1.x/testing/ 
-    https://www.patricksoftwareblog.com/testing-a-flask-application-using-pytest/ 
+    https://flask.palletsprojects.com/en/1.1.x/testing/
+    https://www.patricksoftwareblog.com/testing-a-flask-application-using-pytest/
 """
 import os
 import pytest
@@ -30,14 +30,14 @@ def test_client():
     # Flask provides a way to test your application by exposing the Werkzeug test Client
     # and handling the context locals for you.
     testing_client = flask_app.test_client()
- 
+
     # Establish an application context before running the tests.
     ctx = flask_app.app_context()
     ctx.push()
- 
-    yield  testing_client 
+
+    yield  testing_client
     # this is where the testing happens!
- 
+
     ctx.pop()
 
 def new_user(uname, uemail,passwd):
@@ -62,7 +62,7 @@ def init_database():
     db.create_all()
     # initialize the tags
     init_fields()
-    #add a user    
+    #add a user
     user1 = new_user(uname='sakire', uemail='sakire@wsu.edu',passwd='1234')
     # Insert user data
     db.session.add(user1)
@@ -91,7 +91,7 @@ def test_register(test_client,init_database):
     THEN check that the response is valid and the database is updated correctly
     """
     # Create a test client using the Flask application configured for testing
-    response = test_client.post('/register/', 
+    response = test_client.post('/register/',
                           data=dict(username='john', firstname='john', lastname='doe', email='john@wsu.edu', phone=1234567890, wsuid = 123456789, password="bad-bad-password",password2="bad-bad-password"),
                           follow_redirects = True)
     assert response.status_code == 200
@@ -99,16 +99,16 @@ def test_register(test_client,init_database):
     s = db.session.query(User).filter(User.username=='john')
     assert s.first().email == 'john@wsu.edu'
     assert s.count() == 1
-    assert b"Sign In" in response.data   
+    assert b"Sign In" in response.data
     assert b"Please log in to access this page." in response.data
 
 def test_invalidlogin(test_client,init_database):
     """
     GIVEN a Flask application configured for testing
     WHEN the '/login' form is submitted (POST) with wrong credentials
-    THEN check that the response is valid and login is refused 
+    THEN check that the response is valid and login is refused
     """
-    response = test_client.post('/login/', 
+    response = test_client.post('/login/',
                           data=dict(username='sakire', password='12345',remember_me=False),
                           follow_redirects = True)
     assert response.status_code == 200
@@ -118,15 +118,15 @@ def test_login_logout(request,test_client,init_database):
     """
     GIVEN a Flask application configured for testing
     WHEN the '/login' form is submitted (POST) with correct credentials
-    THEN check that the response is valid and login is succesfull 
+    THEN check that the response is valid and login is succesfull
     """
-    response = test_client.post('/login/', 
+    response = test_client.post('/login/',
                           data=dict(username='sakire', password='1234',remember_me=False),
                           follow_redirects = True)
     assert response.status_code == 200
     assert b"WSU Undergraduate Research Portal" in response.data
 
-    response = test_client.get('/logout',                       
+    response = test_client.get('/logout',
                           follow_redirects = True)
     assert response.status_code == 200
     assert b"Sign In" in response.data
@@ -138,18 +138,18 @@ def test_postResearch(test_client,init_database):
     THEN check that response is valid and the class is successfully created in the database
     """
     #login
-    response = test_client.post('/login/', 
+    response = test_client.post('/login/',
                         data=dict(username='sakire', password='1234',remember_me=False),
                         follow_redirects = True)
     assert response.status_code == 200
     assert b"WSU Undergraduate Research Portal" in response.data
-    
-    
-    #test the "PostSmile" form 
+
+
+    #test the "PostSmile" form
     response = test_client.get('/post/')
     assert response.status_code == 302
-    
 
 
 
-    
+
+

@@ -8,20 +8,20 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support.ui import Select
 from time import sleep
 
-# User fixure
+# User fixture
 @pytest.fixture
 def user1():
     return  {'username':'zachg', 'firstname':'Zach', 'lastname':'Griswold', 'email':'zachg@wsu.edu', 'phone':'5413906454', 'wsuid':'11111111', 'password':'strongpassword'}
 
-# User fixure
+# User fixture
 @pytest.fixture
 def user2():
     return  {'username':'blaket', 'firstname':'Blake', 'lastname':'Calvin', 'email':'blaket@wsu.edu', 'phone':'1234567890', 'wsuid':'12345678', 'password':'alsostrongpassword', 'faculty':True}
 
- # Post fixure
+ # Post fixture
 @pytest.fixture
 def post1():
-    return {'title': 'open position', 
+    return {'title': 'open position',
             'description': 'this position is for smart people only.' ,
             'startdate': '10-21-2021',
             'enddate': '10-31-2021',
@@ -29,10 +29,10 @@ def post1():
             'qualifications': 'gotta be sooper smart'
             }
 
- # Post fixure
+ # Post fixture
 @pytest.fixture
 def post2():
-    return {'title': 'open position 2', 
+    return {'title': 'open position 2',
             'description': 'this position is also for smart people only.' ,
             'startdate': '10-22-2021',
             'enddate': '11-3-2021',
@@ -40,14 +40,14 @@ def post2():
             'qualifications': 'gotta be sooper dooper smart'
             }
 
- # Post fixure
+ # Post fixture
 @pytest.fixture
 def post3():
-    return {'title': 'open position 3', 
+    return {'title': 'open position 3',
             'description':  """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pretium est velit, ut rutrum nulla venenatis nec. Quisque blandit pharetra orci. Duis gravida nunc non mattis ornare. Cras tempus enim eget est gravida, et interdum neque sodales. Duis velit libero, rutrum ut posuere a, mattis ut enim. In hac habitasse platea dictumst. Proin at felis velit.
-                            Vivamus elementum ipsum porta molestie malesuada. Nam a neque suscipit, venenatis mi nec, tempus turpis. Praesent laoreet ultrices purus, sagittis mattis odio varius placerat. Nam faucibus leo sed consectetur lacinia. In porta porttitor pulvinar. Integer non lorem nec odio sodales tempus eget ac urna. Morbi ac tellus nisl. Vivamus iaculis efficitur ultricies. Cras eleifend 
+                            Vivamus elementum ipsum porta molestie malesuada. Nam a neque suscipit, venenatis mi nec, tempus turpis. Praesent laoreet ultrices purus, sagittis mattis odio varius placerat. Nam faucibus leo sed consectetur lacinia. In porta porttitor pulvinar. Integer non lorem nec odio sodales tempus eget ac urna. Morbi ac tellus nisl. Vivamus iaculis efficitur ultricies. Cras eleifend
                             uis ipsum et dictum. Donec a accumsan tellus, ac aliquet diam. Curabitur in rhoncus elit. Sed erat nulla, volutpat et dapibus vel, porttitor eget dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vestibulum eros sagittis accumsan iaculis. Fusce ac pretium enim, nec dapibus risus. Fusce malesuada vitae ligula vitae dictum.
-                            Sed ornare mi pellentesque gravida mollis. Vivamus nec euismod nunc. Vestibulum imperdiet interdum efficitur. Morbi a sem quam. Cras commodo justo at iaculis blandit. Nunc magna ante, ultricies at finibus quis, bibendum non odio. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla euismod leo ut magna lobortis aliquam. 
+                            Sed ornare mi pellentesque gravida mollis. Vivamus nec euismod nunc. Vestibulum imperdiet interdum efficitur. Morbi a sem quam. Cras commodo justo at iaculis blandit. Nunc magna ante, ultricies at finibus quis, bibendum non odio. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla euismod leo ut magna lobortis aliquam.
                             Nulla vitae elit posuere, lobortis magna a, volutpat nulla. Vivamus eget massa sollicitudin, condimentum sapien eget, ultrices lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce mollis vitae ligula ut tempor. Integer sit amet massa et diam fringilla convallis. Mauris ac sapien libero.""" ,
             'startdate': '10-11-2021',
             'enddate': '10-18-2021',
@@ -57,9 +57,9 @@ def post3():
 
 
 # """
-# Download the chrome driver and make sure you have chromedriver executable in your PATH variable. 
-# To download the ChromeDriver to your system navigate to its download page. 
-# https://sites.google.com/a/chromium.org/chromedriver/home 
+# Download the chrome driver and make sure you have chromedriver executable in your PATH variable.
+# To download the ChromeDriver to your system navigate to its download page.
+# https://sites.google.com/a/chromium.org/chromedriver/home
 # """
 @pytest.fixture
 def browser():
@@ -69,7 +69,7 @@ def browser():
     opts.headless = False
     driver = webdriver.Chrome(options=opts, executable_path = CHROME_PATH + '\chromedriver.exe')
     driver.implicitly_wait(10)
-    
+
     yield driver
 
     # For cleanup, quit the driver
@@ -96,7 +96,7 @@ def test_register_form(browser,user2):
     sleep(2)
     browser.find_element_by_name("password").send_keys(user2['password'])
     sleep(2)
-    browser.find_element_by_name("password2").send_keys(user2['password'])    
+    browser.find_element_by_name("password2").send_keys(user2['password'])
     sleep(2)
     browser.find_element_by_name("submit").click()
     sleep(5)
@@ -121,7 +121,7 @@ def test_register_error(browser,user2):
     sleep(2)
     browser.find_element_by_name("password").send_keys(user2['password'])
     sleep(2)
-    browser.find_element_by_name("password2").send_keys(user2['password'])    
+    browser.find_element_by_name("password2").send_keys(user2['password'])
     sleep(2)
     browser.find_element_by_name("submit").click()
     sleep(5)

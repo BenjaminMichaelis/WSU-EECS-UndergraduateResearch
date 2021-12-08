@@ -93,8 +93,8 @@ class User(UserMixin, db.Model):
         , lazy='dynamic')
 
     LanguagesKnown = db.relationship(
-        'Language',  secondary = userLanguages, 
-        primaryjoin=(userLanguages.c.user_id == id), backref=db.backref('userLanguages', lazy='dynamic'), 
+        'Language',  secondary = userLanguages,
+        primaryjoin=(userLanguages.c.user_id == id), backref=db.backref('userLanguages', lazy='dynamic'),
         lazy='dynamic')
 
     posts = db.relationship('Post', backref='writer', lazy='dynamic')
@@ -112,10 +112,10 @@ class User(UserMixin, db.Model):
 
     def get_user_posts(self):
         return self.posts
-    
+
     def get_Languages(self):
         return self.LanguagesKnown
-    
+
     def get_fields(self):
         return self.Fields
 
@@ -130,7 +130,7 @@ class User(UserMixin, db.Model):
         for field in self.get_fields():
             count += 1
         return count
-    
+
     def remove_languages(self):
         for language in self.LanguagesKnown:
             self.LanguagesKnown.remove(language)
@@ -144,7 +144,7 @@ class User(UserMixin, db.Model):
 class Language(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20))
-    
+
     def __repr__(self):
         return '<Language name: {} Language id: {}'.format(self.name,self.id)
 

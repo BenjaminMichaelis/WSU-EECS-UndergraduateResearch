@@ -36,7 +36,7 @@
                         View My Positions
                     </a>
                 </li>
-            {% endif %} 
+            {% endif %}
             {%if current_user.admin == True %}
                 <li>
                     <a href="{{ url_for('routes.add_field') }}" class = "button">
@@ -87,13 +87,13 @@
         </ul>
             <div>
                 {% with messages = get_flashed_messages() %}
-                    {% if messages %} 
+                    {% if messages %}
                         {% for message in messages %}
                             <div class="flash-container">{{ message }}</div>
-                        {% endfor %} 
-                    {% endif %} 
-                {% endwith %} 
-                {% block content %} 
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                {% block content %}
                 {% endblock %}
             </div>
     </body>

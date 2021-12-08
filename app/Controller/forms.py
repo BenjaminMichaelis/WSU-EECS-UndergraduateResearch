@@ -70,11 +70,12 @@ class EditForm(FlaskForm):
             id = id//10 
             count = count + 1 
         if count < 8 or count > 9: 
-            raise ValidationError('Not a valid WSU ID') 
-# class SortForm(FlaskForm):
-#     select = SelectField('Select',choices = [(3,'Date'),(2,'Title'),(1,'# of likes'),(0,'Happiness level')])
-#     usersposts = BooleanField('Display my posts only.')
-#     submit = SubmitField('Refresh')
+            raise ValidationError('Not a valid WSU ID')
+             
+class SortForm(FlaskForm):
+    select = SelectField('sortOrder', choices=[(0,'Recommended'),(1,'Title'),(2,'Time Commitment')])
+    #recommended = BooleanField('Show Recommended Positions Only')
+    submit = SubmitField('Refresh')
 
 class EditPasswordForm(FlaskForm):
     password = PasswordField('New Password', validators=[EqualTo('password2', message='Passwords must match')])

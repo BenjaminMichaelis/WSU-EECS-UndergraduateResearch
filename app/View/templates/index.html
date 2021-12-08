@@ -1,6 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% if current_user.faculty == False %}
+    <form action="" method="POST">
+        {{ sortForm.hidden_tag() }}
+        <div>
+            {{sortForm.select}}
+            {{sortForm.submit(class="button")}}
+        </div>
+    </form>
+{% endif %}
+
 <div class="postlist">
     {% if postscount == 0 %}
         <H2 width="100%"  style="color:rgb(216, 68, 58)"> No faculty member currently has open research positions. Please check back soon in a few days.</H2>

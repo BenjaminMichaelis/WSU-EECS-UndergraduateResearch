@@ -1,11 +1,12 @@
 from __future__ import print_function
+import os
 import sys
-from flask import Blueprint
+from flask import Blueprint, send_from_directory
 from flask import render_template, flash, redirect, url_for, request
 from config import Config
 
 from app import db
-from app.Controller.forms import PostForm, EditForm, EditPasswordForm, ApplyForm, AddFieldForm, RemoveFieldForm
+from app.Controller.forms import PostForm, EditForm, EditPasswordForm, ApplyForm, AddFieldForm, RemoveFieldForm, SortForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.Controller.auth_forms import LoginForm, RegistrationForm
 from app.Model.models import Post, Application, User, Field
@@ -19,7 +20,27 @@ def index():
     posts = Post.query.order_by(Post.timestamp.desc())
     postscount = Post.query.count()
     print(postscount)
-    return render_template('index.html', title="WSU Undergraduate Research Portal", posts=posts.all(), User = User, postscount = postscount)
+    sform = SortForm()
+    if sform.validate_on_submit():
+        order = sform.select.data
+        if order == '0':
+            for post in posts.all():
+                cnt = 0
+                for pfield in post.ResearchFields:
+                    for ufield in current_user.Fields:
+                        if ufield.id == pfield.id:
+                            cnt+=1
+                            break
+                post.sharedFieldCount = cnt
+                print(cnt)
+                db.session.add(post)
+                db.session.commit()
+            posts = Post.query.order_by(Post.sharedFieldCount.desc())
+        elif order == '1':
+            posts = Post.query.order_by(Post.title.asc())
+        elif order == '2':
+            posts = Post.query.order_by(Post.timecommitment.desc())
+    return render_template('index.html', title="WSU Undergraduate Research Portal", posts=posts.all(), User = User, postscount = postscount, sortForm = sform)
 
 @bp_routes.route('/post/', methods=['POST','GET'])
 @login_required
@@ -30,7 +51,7 @@ def post():
         sform = PostForm()
         if request.method == 'POST':
             if sform.validate_on_submit():
-                newPost = Post(title = sform.title.data, description = sform.description.data, user_id = current_user.id, 
+                newPost = Post(title = sform.title.data, description = sform.description.data, user_id = current_user.id,
                 startdate = sform.startdate.data, enddate = sform.enddate.data, timecommitment = sform.timecommitment.data,
                 qualifications = sform.qualifications.data)
                 for ResearchFields in sform.ResearchFields.data:
@@ -45,10 +66,15 @@ def post():
     flash('Error: No faculty permissions discovered')
     return redirect(url_for('routes.index'))
 
-@bp_routes.route('/display_profile/', methods=['GET'])
+@bp_routes.route('/display_profile/<user_id>', methods=['GET'])
 @login_required
-def display_profile():
-    return render_template('display_profile.html', title='Display Profile', user = current_user)
+def display_profile(user_id):
+    user = User.query.get_or_404(user_id)
+    # cant view profile if the current user isn't the profile being accessed or isnt a faculty
+    if (user != current_user) and (current_user.faculty is False):
+        flash("You don't have permission to view another user's profile")
+        return redirect(url_for('routes.index'))    
+    return render_template('display_profile.html', title='Display Profile', user = user)
 
 @bp_routes.route('/edit_profile/', methods=['GET', 'POST'])
 @login_required
@@ -59,10 +85,10 @@ def edit_profile():
         if eform.validate_on_submit():
             current_user.firstname = eform.firstname.data
             current_user.lastname = eform.lastname.data
-            current_user.phone = eform.phone.data 
-            current_user.major = eform.major.data 
-            current_user.gpa = eform.gpa.data 
-            current_user.graduationDate = eform.graduationDate.data 
+            current_user.phone = eform.phone.data
+            current_user.major = eform.major.data
+            current_user.gpa = eform.gpa.data
+            current_user.graduationDate = eform.graduationDate.data
             current_user.experience = eform.experience.data
             current_user.electiveCourses = eform.electives.data
             for language in eform.languages.data:
@@ -72,20 +98,20 @@ def edit_profile():
             db.session.add(current_user)
             db.session.commit()
             flash("Your changes have been saved")
-            return redirect(url_for('routes.display_profile'))
+            return redirect(url_for('routes.display_profile', user_id = current_user.id))
         pass
     elif request.method == 'GET':
         # populate the user data from DB
         eform.firstname.data = current_user.firstname
         eform.lastname.data = current_user.lastname
-        eform.phone.data = current_user.phone 
-        eform.major.data = current_user.major 
-        eform.gpa.data = current_user.gpa 
+        eform.phone.data = current_user.phone
+        eform.major.data = current_user.major
+        eform.gpa.data = current_user.gpa
         eform.graduationDate.data = current_user.graduationDate
         eform.experience.data = current_user.experience
         eform.electives.data = current_user.electiveCourses
     else:
-        pass 
+        pass
     return render_template('edit_profile.html', title='Edit Profile', form = eform)
 
 @bp_routes.route('/edit_password/', methods=['GET', 'POST'])
@@ -149,6 +175,37 @@ def myposts():
     flash('Error: No faculty permissions discovered')
     return redirect(url_for('routes.index'))
 
+@bp_routes.route('/make_faculty/<user_id>', methods=['POST','GET'])
+@login_required
+def make_faculty(user_id):
+    if current_user.admin is True:
+        # TODO: Make method post only
+        # if request.method == 'POST':
+            # only admin can update users to be faculty
+                user = User.query.get_or_404(user_id)
+                if (user.faculty is True):
+                    user.faculty = False
+                else:
+                    user.faculty = True
+                db.session.add(user)
+                db.session.commit()
+                flash("User Status has been updated")
+                return redirect(url_for('routes.show_faculty')) #html for admin page
+    flash('Error: No admin permissions discovered')
+    return redirect(url_for('routes.index'))
+
+@bp_routes.route('/show_faculty/', methods=['GET'])
+@login_required
+def show_faculty():
+    if current_user.admin is True:
+        if request.method == 'GET':
+            users = User.query.all()
+            for user in users:
+                print(user.username)
+            return render_template('show_faculty.html', users=users, User = User) #html for admin page
+    flash('Error: No admin permissions discovered')
+    return redirect(url_for('routes.index'))
+
 @bp_routes.route('/add_field/', methods=['GET', 'POST'])
 @login_required
 def add_field():
@@ -192,7 +249,17 @@ def remove_field():
 def cancelApplication(application_id):
     if current_user.faculty is False:
         application = Application.query.filter_by(id=application_id).first()
-        db.session.remove(application)
+        if application.approved == True:
+            flash('You had been approved for an interview. Please inform the professor that you have canceled your application!')
+        db.session.delete(application)
         db.session.commit()
         flash('Application has been canceled')
-    return redirect(url_for('routes/index'))
+    return redirect(url_for('routes.index'))
+
+@bp_routes.route('/favicon.ico')
+def favicon():
+    path_list=[bp_routes.root_path,os.pardir,"View","static","img"]
+    print(bp_routes.root_path)
+    print(os.path.join(*path_list))
+    return send_from_directory(os.path.join(*path_list),
+        'favicon.ico',mimetype='image/vnd.microsoft.icon')

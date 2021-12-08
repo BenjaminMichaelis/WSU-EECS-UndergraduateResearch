@@ -1,5 +1,6 @@
 <html>
     <head>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
         {% if title %}
         <title>{{ title }}</title>
         {% else %}
@@ -11,7 +12,6 @@
         />
         {{ moment.include_moment() }}
     </head>
-
     <body>
         <ul>
             <li>
@@ -40,12 +40,17 @@
             {%if current_user.admin == True %}
                 <li>
                     <a href="{{ url_for('routes.add_field') }}" class = "button">
-                        Add Fields
+                        Add Research Fields
                     </a>
                 </li>
                 <li>
                     <a href="{{ url_for('routes.remove_field') }}" class = "button">
-                        Remove Fields
+                        Remove Research Fields
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('routes.show_faculty') }}" class = "button">
+                        Update User Permissions
                     </a>
                 </li>
             {% endif %}
@@ -57,7 +62,7 @@
                 </li>
             {% else %}
                 <li>
-                    <a href="{{ url_for('routes.display_profile') }}" class="button">
+                    <a href="{{ url_for('routes.display_profile', user_id = current_user.id) }}" class="button">
                         Profile
                     </a>
                 </li>

@@ -98,10 +98,15 @@
                     Students who have applied: 
                     {% for Application in post.get_Applications().all() %}
                         <br>* <a href=" {{ url_for('routes.display_profile', user_id = Application.userid) }} ">{{ Application.preferredname }}</a>
+                        <a href=" {{ url_for('routes.becoming_hired', app_id = Application.id) }} ">Hire</a>
                         {% if User.query.filter_by(id=Application.userid).first().approved == True %}
                             <span class="status">(Approved for interview elsewhere)</span>
-                        {% elif User.query.filter_by(id=Application.userid).first().hired == True %}
+                        {% endif %}
+                        {% if User.query.filter_by(id=Application.userid).first().hired == True and Application.hired == False %}
                             <span class="status">(Hired elsewhere)</span>
+                        {% endif %}
+                        {% if User.query.filter_by(id=Application.userid).first().hired == True and Application.hired == True %}
+                            <span class="status">(Hired For this Position Already)</span>
                         {% endif %}
                     {% endfor %}
                 </div>

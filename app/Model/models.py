@@ -130,6 +130,16 @@ class User(UserMixin, db.Model):
         for field in self.get_fields():
             count += 1
         return count
+    
+    def remove_languages(self):
+        for language in self.LanguagesKnown:
+            self.LanguagesKnown.remove(language)
+        db.session.commit()
+
+    def remove_fields(self):
+        for field in self.Fields:
+            self.Fields.remove(field)
+        db.session.commit()
 
 class Language(db.Model):
     id = db.Column(db.Integer, primary_key=True)

@@ -78,6 +78,10 @@ def edit_profile():
     if request.method == 'POST':
         # handle the form submission
         if eform.validate_on_submit():
+            # clearing the relationships
+            current_user.remove_languages()
+            current_user.remove_fields()
+
             current_user.firstname = eform.firstname.data
             current_user.lastname = eform.lastname.data
             current_user.phone = eform.phone.data
@@ -105,6 +109,8 @@ def edit_profile():
         eform.graduationDate.data = current_user.graduationDate
         eform.experience.data = current_user.experience
         eform.electives.data = current_user.electiveCourses
+        eform.languages.data = current_user.LanguagesKnown
+        eform.fields.data = current_user.Fields
     else:
         pass
     return render_template('edit_profile.html', title='Edit Profile', form = eform)

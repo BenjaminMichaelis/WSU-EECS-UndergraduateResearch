@@ -11,7 +11,7 @@ from app.Controller.auth_forms import LoginForm, RegistrationForm
 from app import db
 
 bp_auth = Blueprint('auth', __name__)
-bp_auth.template_folder = Config.TEMPLATE_FOLDER 
+bp_auth.template_folder = Config.TEMPLATE_FOLDER
 
 @bp_auth.route('/register/', methods=['POST','GET'])
 def register():

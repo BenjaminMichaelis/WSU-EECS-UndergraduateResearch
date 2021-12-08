@@ -20,35 +20,148 @@ body {
     min-height: 1300px;
 }
 
+.showfacultytr {
+    margin: 1px;
+    padding: 1px;
+    top: 0;
+    width: auto;
+    background-color: rgba(205, 218, 223, 0.733);
+}
+
+.showfacultytd {
+    float: left;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 15px 17px;
+    text-decoration: none;
+    display: block;
+    width: auto;
+}
+
+.studentapptr {
+    margin: 1px;
+    padding: 1px;
+    top: 1px;
+    width: auto;
+    height: auto;
+    background-color: rgba(205, 218, 223, 0.733);
+    align-content: center;
+}
+
+.studentapptd {
+    float: left;
+    text-align: center;
+    text-transform: uppercase;
+    padding: auto;
+    text-decoration: none;
+    display: block;
+    width: auto;
+    height: auto;
+    overflow-wrap: normal;
+    overflow: auto;
+}
+
+ul {
+    list-style-type: none;
+    margin: 1px;
+    padding: 1px;
+    overflow: hidden;
+    background-color: #f6f6f6;
+    top: 0;
+    width: auto;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 15px 17px;
+    text-decoration: none;
+}
+
 .nav-container {
-    background:#f6f6f6;
+    background: #f6f6f6;
     font-family: Tahoma;
     font-size: 12px;
-    height: 32px;
+    height: auto;
     text-transform: uppercase;
     text-decoration: aquamarine;
 }
-a:hover {
-    color:#2387D9;
+
+li a:hover {
+    color: #2387d9;
+}
+
+.buttonshow {
+    width: auto;
+    padding: auto;
+    font-size: 16px;
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid black;
+    overflow-x: visible;
+    background-color: #fcfcfc;
+}
+
+.buttonshow:hover {
+    background-color: 157dd3;
+    color: white;
+    cursor: pointer;
+}
+
+.buttonfacultyapplication {
+    display: block;
+    float: left;
+    width: auto;
+    font-size: 16px;
+    margin: 1%;
+    padding: 5px;
+    border: 1px solid black;
+    overflow: auto;
+    background-color: #fcfcfc;
+}
+
+.buttonfacultyapplication:hover {
+    background-color: 157dd3;
+    color: white;
+    cursor: pointer;
 }
 
 .button {
-    width : 65px;
-    padding : 3px;    
+    width: auto;
+    padding: 3px;
     font-size: 16px;
-    margin : 5px;
-    padding : 5px;
+    margin: 5px;
+    padding: 5px;
     border: 1px solid lightgray;
+    overflow-x: visible;
 }
+
 .button:hover {
     background-color: 157dd3;
     color: white;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-.posttable { 
-    width : 100%;
+.posttable {
+    width: 100%;
     margin: 0px;
+}
+
+.studentApplicationStatus {
+    font-size: small;
+    color: rgb(192, 54, 54);
+}
+
+.studentApplicationStatusTitle {
+    font-size: medium;
+    color: rgb(0, 0, 0);
+    text-align: left;
 }
 
 .posttitle {
@@ -72,21 +185,21 @@ a:hover {
 }
 
 .posttimestamp {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: "Times New Roman", Times, serif;
     padding: 2px;
     font-size: small;
     font-weight: bold;
 }
 
-.useritem{
+.useritem {
     text-align: center;
     padding: 3px;
     margin: 4px 3px 4px 3px;
-    color: blue; 
+    color: blue;
     text-transform: uppercase;
 }
 
-.username{
+.username {
     text-align: left;
     padding: 2px;
     margin: 1px 1px 1px 1px;
@@ -94,7 +207,7 @@ a:hover {
     text-transform: uppercase;
 }
 
-.name{
+.name {
     text-align: left;
     padding: 2px;
     margin: 1px 1px 1px 1px;
@@ -102,26 +215,27 @@ a:hover {
     text-transform: capitalize;
 }
 
-.useremail{
+.useremail {
     text-align: left;
     padding: 2px;
     margin: 1px 1px 1px 1px;
-    color: blue; 
+    color: blue;
 }
 
-.pagetitle{
+.pagetitle {
+    display: block;
     text-align: right;
     padding: 3px;
     margin: 4px 3px 4px 3px;
-    color: crimson; 
+    color: crimson;
     text-transform: uppercase;
 }
 
-.postuser{
+.postuser {
     text-align: center;
     padding: 3px;
     margin: 4px 3px 4px 3px;
-    color: gray; 
+    color: gray;
     font-size: medium;
 }
 
@@ -143,38 +257,40 @@ a:hover {
     -webkit-background-size: contain;
     -moz-background-size: contain;
     -o-background-size: contain;
-} 
+}
+
 .likebtn:hover {
     background-image: url("..//img//like_hover.png");
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .textinput {
-	padding : 2px;
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	font-size: 18px;
-	width : 400px;
+    padding: 2px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    width: 400px;
 }
 
 .forminput {
-	padding : 5px;
+    padding: 5px;
     margin: 10px 0px 10px 0px;
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	font-size: 18px;
-	width : 20%;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    width: 20%;
 }
 
 .flash-container {
     background: rgb(119, 185, 207);
-	font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-	font-size: 17px;
-	padding: 15px;
-	margin: 10px 0px 10px 0px;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    font-size: 17px;
+    padding: 15px;
+    margin: 10px 0px 10px 0px;
 }
 
 .formtitle {
     font-size: 18px;
-    width : 80%;
+    width: 80%;
     margin: 10px 0px 10px 0px;
     padding: 10px;
 }
@@ -183,7 +299,7 @@ a:hover {
     font-size: 18px;
     width: 80%;
     height: 100px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     margin: 10px 0px 10px 0px;
     padding: 10px;
 }
@@ -201,7 +317,7 @@ a:hover {
     margin: 10px 0px;
 }
 
-@media screen and (min-width: 1200px){
+@media screen and (min-width: 1200px) {
     .post-box {
         display: flex;
         vertical-align: middle;
@@ -214,7 +330,7 @@ a:hover {
     }
 }
 
-@media screen and (min-width: 800px) and (max-width:1200px){
+@media screen and (min-width: 800px) and (max-width: 1200px) {
     .post-box {
         display: flex;
         vertical-align: middle;
@@ -226,7 +342,7 @@ a:hover {
     }
 }
 
-@media screen and (max-width:800px){
+@media screen and (max-width: 800px) {
     .post-box {
         display: flex;
         vertical-align: middle;
@@ -246,8 +362,8 @@ a:hover {
 
 .tagitem {
     padding: 2px 3px;
-    color: #555555; 
-    background-color: #eeeeee; 
+    color: #555555;
+    background-color: #eeeeee;
     border: #000000 1px solid;
     margin: 2px 5px;
     width: auto;

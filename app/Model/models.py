@@ -33,6 +33,7 @@ class Post(db.Model):
     enddate = db.Column(db.Date)
     timecommitment = db.Column(db.Integer)
     qualifications = db.Column(db.String(1500))
+    sharedFieldCount = db.Column(db.Integer)
     ResearchFields = db.relationship(
         'Field',  secondary = postFields,
         primaryjoin=(postFields.c.post_id == id), backref=db.backref('postFields', lazy='dynamic')
@@ -58,6 +59,9 @@ class Application(db.Model):
     description = db.Column(db.String(1500))
     referenceName = db.Column(db.String(50))
     referenceEmail = db.Column(db.String(50))
+    approved = db.Column(db.Boolean, default=False)
+    hired = db.Column(db.Boolean, default=False)
+    nothired = db.Column(db.Boolean, default=False)
 
 class Field(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -89,8 +93,8 @@ class User(UserMixin, db.Model):
         , lazy='dynamic')
 
     LanguagesKnown = db.relationship(
-        'Language',  secondary = userLanguages, 
-        primaryjoin=(userLanguages.c.user_id == id), backref=db.backref('userLanguages', lazy='dynamic'), 
+        'Language',  secondary = userLanguages,
+        primaryjoin=(userLanguages.c.user_id == id), backref=db.backref('userLanguages', lazy='dynamic'),
         lazy='dynamic')
 
     posts = db.relationship('Post', backref='writer', lazy='dynamic')
@@ -108,10 +112,10 @@ class User(UserMixin, db.Model):
 
     def get_user_posts(self):
         return self.posts
-    
+
     def get_Languages(self):
         return self.LanguagesKnown
-    
+
     def get_fields(self):
         return self.Fields
 
@@ -123,14 +127,24 @@ class User(UserMixin, db.Model):
 
     def get_FieldsCount(self):
         count = 0
-        for language in self.get_Languages():
+        for field in self.get_fields():
             count += 1
         return count
+
+    def remove_languages(self):
+        for language in self.LanguagesKnown:
+            self.LanguagesKnown.remove(language)
+        db.session.commit()
+
+    def remove_fields(self):
+        for field in self.Fields:
+            self.Fields.remove(field)
+        db.session.commit()
 
 class Language(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20))
-    
+
     def __repr__(self):
         return '<Language name: {} Language id: {}'.format(self.name,self.id)
 

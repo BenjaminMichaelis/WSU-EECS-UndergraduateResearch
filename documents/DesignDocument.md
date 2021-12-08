@@ -96,7 +96,7 @@ the View, Model, and Controller components only interact in specific ways.
 
 #### 2.2.1 Model
 
-Briefly explain the role of the model.  
+Briefly explain the role of the model.
 
 The role of the model is to manage the data, logic, and rules of the application. In other words,
 it contains only pure application data. It does not handle any logic on how to present the data
@@ -326,7 +326,7 @@ will involve calling a method on the model.
       will query all of the posts that faculty user has created and render them
       to their screen.
 
-**Note:** Some of your subsystems will interact with the Web clients (browsers). Make sure to include a detailed description of the  Web API interface (i.e. the set of routes) your application will implement. For each route specify its “methods”, “URL path”, and “a description of the operation it implements”.  
+**Note:** Some of your subsystems will interact with the Web clients (browsers). Make sure to include a detailed description of the  Web API interface (i.e. the set of routes) your application will implement. For each route specify its “methods”, “URL path”, and “a description of the operation it implements”.
 You can use the following table template to list your route specifications.
 
 (***in iteration-1***) Brainstorm with your team members and identify all routes you need to implement for the completed application and explain each route briefly. If you included most of the major routes but you missed only a few, it maybe still acceptable.

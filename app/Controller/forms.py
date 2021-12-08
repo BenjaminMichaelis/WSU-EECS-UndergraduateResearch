@@ -28,7 +28,7 @@ class PostForm(FlaskForm):
     startdate = DateField('Start Date MM-DD-YYYY', format='%m-%d-%Y', validators=[DataRequired(message="Required, must be in MM-DD-YYYY")])
     enddate = DateField('End Date MM-DD-YYYY', format='%m-%d-%Y', validators=[DataRequired(message="Required, must be in MM-DD-YYYY")])
     timecommitment = IntegerField('Time Commitment (in Hours Per Week)', validators=[DataRequired()])
-    ResearchFields = QuerySelectMultipleField('Research Fields', query_factory=get_fields , get_label=get_fieldlabel, widget=ListWidget(prefix_label=False), 
+    ResearchFields = QuerySelectMultipleField('Research Fields', query_factory=get_fields , get_label=get_fieldlabel, widget=ListWidget(prefix_label=False),
       option_widget=CheckboxInput() )
     qualifications = TextAreaField('Required Qualifications', [Length(min=1, max=1500)])
     submit = SubmitField('Post')
@@ -45,38 +45,48 @@ class EditForm(FlaskForm):
     firstname = StringField('First Name')
     lastname = StringField('Last Name')
     major = StringField('Major')
-    gpa = DecimalField('GPA', validators=[Optional()]) 
-    graduationDate = DateField('Expected Graduation MM-DD-YYYY', format='%m-%d-%Y', validators=[Optional()]) 
-    phone = IntegerField('Phone Number') 
+    gpa = DecimalField('GPA', validators=[Optional()])
+    graduationDate = DateField('Expected Graduation MM-DD-YYYY', format='%m-%d-%Y', validators=[Optional()])
+    phone = IntegerField('Phone Number')
     experience = TextAreaField('Describe any prior experience you may have')
     electives = TextAreaField('Enter the technical elective courses you completed and the grade you received')
     languages = QuerySelectMultipleField('Languages you have experience in', query_factory=get_languages, get_label=get_languageLabel, widget=ListWidget(prefix_label=False), option_widget=CheckboxInput())
     fields = QuerySelectMultipleField('Research topics you are interested in', query_factory=get_fields, get_label=get_fieldlabel, widget=ListWidget(prefix_label=False), option_widget=CheckboxInput())
     submit = SubmitField('Save')
 
-    def validate_phone(form, phone): 
-        number = form.phone.data 
-        count = 0 
-        while (number > 0): 
-            number = number//10 
-            count = count + 1 
-        if count < 10 or count > 11: 
-            raise ValidationError('Not a valid phone number') 
+    def validate_phone(form, phone):
+        number = form.phone.data
+        count = 0
+        while (number > 0):
+            number = number//10
+            count = count + 1
+        if count < 10 or count > 11:
+            raise ValidationError('Not a valid phone number')
 
-    def validate_wsuid(form, wsuid): 
-        id = form.wsuid.data 
-        count = 0 
-        while (id > 0): 
-            id = id//10 
-            count = count + 1 
-        if count < 8 or count > 9: 
-            raise ValidationError('Not a valid WSU ID') 
-# class SortForm(FlaskForm):
-#     select = SelectField('Select',choices = [(3,'Date'),(2,'Title'),(1,'# of likes'),(0,'Happiness level')])
-#     usersposts = BooleanField('Display my posts only.')
-#     submit = SubmitField('Refresh')
+    def validate_wsuid(form, wsuid):
+        id = form.wsuid.data
+        count = 0
+        while (id > 0):
+            id = id//10
+            count = count + 1
+        if count < 8 or count > 9:
+            raise ValidationError('Not a valid WSU ID')
+
+class SortForm(FlaskForm):
+    select = SelectField('sortOrder', choices=[(0,'Recommended'),(1,'Title'),(2,'Time Commitment')])
+    #recommended = BooleanField('Show Recommended Positions Only')
+    submit = SubmitField('Refresh')
 
 class EditPasswordForm(FlaskForm):
     password = PasswordField('New Password', validators=[EqualTo('password2', message='Passwords must match')])
     password2 = PasswordField('Repeat Password')
+    submit = SubmitField('Save')
+
+class AddFieldForm(FlaskForm):
+    newfieldname = StringField('New Field:')
+    submit = SubmitField('Save')
+
+class RemoveFieldForm(FlaskForm):
+    ResearchFields = QuerySelectMultipleField('Fields to remove', query_factory=get_fields , get_label=get_fieldlabel, widget=ListWidget(prefix_label=False),
+    option_widget=CheckboxInput() )
     submit = SubmitField('Save')

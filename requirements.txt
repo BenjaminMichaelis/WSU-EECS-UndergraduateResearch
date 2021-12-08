@@ -7,8 +7,10 @@ flask-bootstrap
 flask-login
 flask-moment
 email-validator
-wtforms
-wtforms-sqlalchemy
+WTForms==2.3.3
+WTForms-SQLAlchemy==0.2
 python-dotenv
 pytest
 phonenumbers
+sentry-sdk[flask]
+SQLAlchemy

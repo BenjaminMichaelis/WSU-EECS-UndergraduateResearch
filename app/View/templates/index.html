@@ -1,14 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% if current_user.faculty == False %}
+    <form action="" method="POST">
+        {{ sortForm.hidden_tag() }}
+        <div>
+            {{sortForm.select}}
+            {{sortForm.submit(class="button")}}
+        </div>
+    </form>
+{% endif %}
+
 <div class="postlist">
-    {% for post in posts %}
-    {% if ((post.writer.id == current_user.id) or (current_user.faculty == False)) %}
-    <div class="post-box">
-        {% include '_post.html' %}
-    </div>
+    {% if postscount == 0 %}
+        <H2 width="100%"  style="color:rgb(216, 68, 58)"> No faculty member currently has open research positions. Please check back soon in a few days.</H2>
+    {% else %}
+        {% for post in posts %}
+            {% if ((post.writer.id == current_user.id) or (current_user.faculty == False)) %}
+                <div class="post-box">
+                    {% include '_post.html' %}
+                </div>
+            {% endif %}
+        {% endfor %}
     {% endif %}
-    {% endfor %}
 </div>
 
 {% endblock %}

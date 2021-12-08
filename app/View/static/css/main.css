@@ -49,8 +49,8 @@ body
     margin: 1px;
     padding: 1px;
     top: 1px;
-    width: 10%;
-    height: 10%;
+    width: auto;
+    height: auto;
     background-color: rgba(205, 218, 223, 0.733);
     align-content: center;
 }
@@ -60,7 +60,7 @@ body
     float: left;
     text-align: center;
     text-transform: uppercase;
-    padding: 15px 17px;
+    padding: auto;
     text-decoration: none;
     display: block;
     width: auto;
@@ -110,17 +110,6 @@ li a:hover
     color:#2387D9;
 }
 
-.button
-{
-    width : auto;
-    padding : 3px;
-    font-size: 16px;
-    margin : 5px;
-    padding : 5px;
-    border: 1px solid lightgray;
-    overflow-x:visible;
-}
-
 .buttonshow
 {
     width : auto;
@@ -149,7 +138,7 @@ li a:hover
     margin : 1%;
     padding : 5px;
     border: 1px solid black;
-    overflow-x: visible;
+    overflow: auto;
     background-color: #fcfcfc;
 }
 
@@ -158,6 +147,17 @@ li a:hover
     background-color: 157dd3;
     color: white;
     cursor:pointer;
+}
+
+.button
+{
+    width : auto;
+    padding : 3px;
+    font-size: 16px;
+    margin : 5px;
+    padding : 5px;
+    border: 1px solid lightgray;
+    overflow-x:visible;
 }
 
 .button:hover

@@ -62,7 +62,7 @@
                 </li>
             {% else %}
                 <li>
-                    <a href="{{ url_for('routes.display_profile') }}" class="button">
+                    <a href="{{ url_for('routes.display_profile', user_id = current_user.id) }}" class="button">
                         Profile
                     </a>
                 </li>

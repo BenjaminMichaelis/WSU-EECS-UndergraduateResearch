@@ -67,6 +67,7 @@
             </td>
         {% endif %}
     </tr>
+    <tr>
         {% if current_user.faculty == False and post.get_Applications().filter_by(userid=current_user.id).first().approved == True %}
             <td class="studentApplicationStatus">
                 You have been approved for an interview. Please use the contact information above to schedule an interview.
@@ -93,24 +94,41 @@
                     <input type="submit" value="Delete" class="button" >
                 </form>
             </td>
-            <td width="80%">
-                <div class="postmessage">
-                    Students who have applied: 
-                    {% for Application in post.get_Applications().all() %}
-                        <br>* <a href=" {{ url_for('routes.display_profile', user_id = Application.userid) }} ">{{ Application.preferredname }}</a>
-                        <a href=" {{ url_for('routes.becoming_hired', app_id = Application.id) }} ">Hire</a>
-                        {% if User.query.filter_by(id=Application.userid).first().approved == True %}
-                            <span class="status">(Approved for interview elsewhere)</span>
-                        {% endif %}
-                        {% if User.query.filter_by(id=Application.userid).first().hired == True and Application.hired == False %}
-                            <span class="status">(Hired elsewhere)</span>
-                        {% endif %}
-                        {% if User.query.filter_by(id=Application.userid).first().hired == True and Application.hired == True %}
-                            <span class="status">(Hired For this Position Already)</span>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </td>
+    </tr>
+                    <div class="postmessage">
+                        <tr>
+                            <td class="studentapptd">
+                                Students who have applied: 
+                            </td>
+                        </tr>
+                        {% for Application in post.get_Applications().all() %}
+                            <tr class="studentapptr">
+                                <td class="studentapptd">
+                                    <a href=" {{ url_for('routes.display_profile', user_id = Application.userid) }}">{{ Application.preferredname }}</a>
+                                </td>
+                                <td class="studentapptd">
+                                    <a href=" {{ url_for('routes.becoming_approved', app_id = Application.id) }}" class="buttonfacultyapplication">Approve for Interview</a>
+                                </td>
+                                <td class="studentapptd">
+                                    <a href=" {{ url_for('routes.becoming_hired', app_id = Application.id) }}" class="buttonfacultyapplication">Hire</a>
+                                </td>
+                                <td class="studentapptd">
+                                    {% if User.query.filter_by(id=Application.userid).first().approved == True %}
+                                        <span class="status">(Approved for interview elsewhere.)</span>
+                                    {% endif %}
+                                    {% if Application.approved == True %}
+                                        <span class="status">(Approved for interview for this position already.)</span>
+                                    {% endif %}
+                                    {% if User.query.filter_by(id=Application.userid).first().hired == True and Application.hired == False %}
+                                        <span class="status">(Hired elsewhere.)</span>
+                                    {% endif %}
+                                    {% if User.query.filter_by(id=Application.userid).first().hired == True and Application.hired == True %}
+                                        <span class="status">(Hired For this Position Already.)</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </div>
         {% endif %}
     </tr>
 </table>

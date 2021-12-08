@@ -188,9 +188,30 @@ def becoming_hired(app_id):
     user = User.query.get_or_404(app.userid)
     if user.hired is True:
         flash("This student has already been hired for a position.")
-        return redirect(url_for('routes.index'))  
+        return redirect(url_for('routes.index'))
     app.hired = True
     user.hired = True
+    db.session.add(user)
+    db.session.add(app)
+    db.session.commit()
+    return redirect(url_for('routes.index'))
+
+@bp_routes.route('/becoming_approved/<app_id>', methods=['GET'])
+@login_required
+def becoming_approved(app_id):
+    # TODO: Make method post only
+    # if request.method == 'POST':
+    # cant view profile if the current user isn't the profile being accessed or isn't a faculty
+    if current_user.faculty is False:
+        flash("You don't have permission to update student's status")
+        return redirect(url_for('routes.index'))
+    app = Application.query.filter_by(id=app_id).first()
+    user = User.query.get_or_404(app.userid)
+    if user.hired is True:
+        flash("This student has already been hired for a position.")
+        return redirect(url_for('routes.index'))
+    app.approved = True
+    user.approved = True
     db.session.add(user)
     db.session.add(app)
     db.session.commit()
